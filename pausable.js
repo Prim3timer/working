@@ -35,7 +35,8 @@ console.log(go)
 let cycleSteady = document.createElement("div");
 
 let  cycle = document.getElementsByClassName("indicator")[0]
-let  set = document.getElementsByClassName("indicator")[2]
+let rounder = document.getElementsByClassName('indicator')[1]
+// let  set = document.getElementsByClassName("indicator")[2]
 console.log(cycle)
 let style
 
@@ -58,6 +59,7 @@ cycle.innerHTML = sec;
 let duration = 0;
 // occassional content of the the set element
 let round = 1;
+rounder.innerHTML = `Round ${round}`
 
 set.innerHTML = `${round}`;
 
@@ -158,7 +160,7 @@ function general(currentItem, formerItem, nextItem) {
         } else reject("not resolved");
         sec = 0;
       }
-    }, 1000);
+    }, 10);
   });
 }
 
@@ -259,7 +261,7 @@ let reality = async () => {
     // if five sets have not been completed, keep repeating the sets
     //by invoking the reality function
     if (round <= 5) {
-      set.innerHTML = round
+      rounder.innerHTML = `Round ${round}`
       reality();
       // round++
     } else {
