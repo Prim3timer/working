@@ -94,10 +94,12 @@ function general(currentItem, formerItem, nextItem) {
     formerItem.style.transform = "scale(1)";
     formerItem.style.backgroundColor = "darkorange";
     formerItem.style.color = "yellow";
+    noShader(formerItem)
 
     jogUp.style.transform = "scale(1.5)";
     jogUp.style.color = "yellow";
     jogUp.style.backgroundColor = "green";
+    shader(jogUp)
     
     // change the content of the set element back to  the 'round' variable
     // after 3 seconds
@@ -119,9 +121,11 @@ function general(currentItem, formerItem, nextItem) {
         currentItem.style.transform = "scale(1.5)";
         currentItem.style.color = "yellow";
         currentItem.style.backgroundColor = "green";
+        shader(currentItem)
         jogUp.style.transform = "scale(1)";
         jogUp.style.color = "sandybrown";
         jogUp.style.backgroundColor = "maroon";
+        noShader(jogUp)
 
         formerItem.style.color = "sandybrown";
         formerItem.style.backgroundColor = "maroon";
@@ -158,6 +162,12 @@ function general(currentItem, formerItem, nextItem) {
   });
 }
 
+const noShader = (formerItem) => {
+  formerItem.style.boxShadow =  '0em 0em 0em';
+}
+const shader = (currentItem) => {
+  currentItem.style.boxShadow =  '0.2em 0.3em 0.4em gray';
+}
 pauser.addEventListener("click", () => {
   //the unique condition is desinged to let this event
   //handler invoke the reality function just once
