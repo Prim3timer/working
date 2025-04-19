@@ -160,7 +160,8 @@ function general(currentItem, formerItem, nextItem) {
         } else reject("not resolved");
         sec = 0;
       }
-    }, 10);
+      // rate of sec change
+    }, 1000);
   });
 }
 
