@@ -34,7 +34,7 @@ let ID;
 let planks;
 let warning = 0;
 
-cycleSteady.appendChild(cycle);
+// cycleSteady.appendChild(cycle);
 
 cycle.style.color = "purple";
 // the contianer for all the excercise types
@@ -48,30 +48,7 @@ all.appendChild(squat);
 all.appendChild(running);
 all.appendChild(plank);
 all.appendChild(jackKnife);
-for (let i = 0; i < all.childNodes.length; i++) {
-  //all.style.marginLeft = "3%";
-  all.style.marginTop = "5%";
-  jogUp.style.marginTop = "10%";
-  jogUp.style.width = "15%";
-  jogUp.style.marginLeft = "42%";
-  jogUp.style.borderRadius = "4px";
-  jogUp.style.padding = ".5em";
-  jogUp.style.textAlign = "center";
-  jogUp.style.transitionDuration = "500ms";
-  // give all the different excersises styling
-  all.children[0].style.marginLeft = "2.5%";
-  all.children[i].style.marginLeft = "1%";
-  all.children[i].style.padding = ".5em";
-  all.children[i].style.borderRadius = "4px";
-  all.children[i].style.width = "15%";
-  all.children[i].style.textAlign = "center";
-  all.children[i].style.float = "left";
-  all.children[i].style.transitionDuration = "500ms";
-  all.children[i].style.fontSize = "150%";
-  all.children[i].style.color = "sandybrown";
-  all.children[i].style.backgroundColor = "maroon";
-  set.style.transitionDuration = "500ms";
-}
+
 
 let i = 0;
 console.log(i)
@@ -84,12 +61,12 @@ let round = 1;
 set.innerHTML = `Round ${round}`;
 
 // the body element
-let main = document.getElementById("mat");
-main.appendChild(jogUp);
-main.appendChild(set);
-set.style.marginLeft = "1em";
-main.appendChild(cycleSteady);
-main.appendChild(all);
+// let main = document.getElementById("mat");
+// main.appendChild(jogUp);
+// main.appendChild(set);
+// set.style.marginLeft = "1em";
+// main.appendChild(cycleSteady);
+// main.appendChild(all);
 
 cycleSteady.style.marginBottom = "   2%";
 cycleSteady.style.marginLeft = "23%";

@@ -1,6 +1,116 @@
-   body {
-        background: radial-gradient(circle at 70%, skyblue, teal);
-      }
+   
+   #mat {
+    text-align: center;
+    
+    /* background-color: yellow; */
+    /* justify-content: center; */
+  }
+
+  button {
+    background-color: bisque;
+    border-color: bisque;
+    width: 10rem;
+    height: 2.5rem;
+    font-size: 1.5em;
+    /* float: left; */
+    margin-right: 1em;
+    border-radius: 8px;
+    box-shadow: 0.2em 0.3em 0.4em gray;
+  }
+  button:active {
+    box-shadow: 0em 0em 0em gray;
+    transition-property: box-shadow scale;
+    transform: scale(0.95, 0.95);
+    box-shadow: 0em 0e 0em;
+    transition-duration: 0.1s;
+  }
+
+ #buttons {
+  /* margin: 1% 0 0 15%; */
+ }
+  h1 {
+    font-size: 300%;
+    margin-left: 4.3em;
+  }
+  #set {
+    font-size: 4em;
+    color: plum;
+    margin-left: 3em;
+    float: left;
+  }
+
+
+  button:active {
+    box-shadow: 0em 0em 0em gray;
+    transition-property: box-shadow scale;
+    transform: scale(0.95, 0.95);
+    box-shadow: 0em 0e 0em;
+    transition-duration: 0.1s;
+  }
+
+  #buttons {
+   /* margin-top: 1.5rem; */
+  }
+  h1 {
+    font-size: 300%;
+    /* margin-left: 4.3em; */
+  }
+  #set {
+  
+  }
+
+  #jog-cont {
+  justify-items: center;
+    /* background-color: aqua; */
+  }
+
+  .exercise, #jog-up {
+    width: 8rem;
+    height: 2rem;
+    color: sandybrown;
+    background-color: maroon;
+    border-color: maroon;
+    text-align: center;
+   border-radius: 5px;
+    padding: .5rem;
+    font-size: 1.4rem;
+  }
+  
+  #exercise-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;  
+    column-gap: .5rem;
+  }
+
+  #table-cont {
+    /* margin: .5rem; */
+    /* justify-content: center; */
+    justify-self: center;
+    display: flex;
+    column-gap: 2rem;
+    width: 70%;
+    /* background-color: green; */
+    margin: 0 .5rem;
+    
+  }
+#time-table {
+border: 1px solid brown;
+border-collapse: collapse;
+font-size: 2rem;
+/* background-color: aqua; */
+}
+
+td, th  {
+  border-radius: 10px;
+padding: 5px;
+border: 5px solid darkgoldenrod;
+}
+td {
+font-size: 3rem;
+}
+
 
       button {
         background-color: bisque;
@@ -21,9 +131,6 @@
         transition-duration: 0.1s;
       }
 
-     #buttons {
-      margin: 1% 0 0 15%;
-     }
       h1 {
         font-size: 300%;
         margin-left: 4.3em;
@@ -34,3 +141,5 @@
         margin-left: 3em;
         float: left;
       }
+
+      

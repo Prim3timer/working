@@ -2,92 +2,66 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="pausable.css" />
+    <!-- <link rel="stylesheet" href="pausable.css" /> -->
+    <!-- <link rel='stylesheet' href="/pausable.css"> -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Aerobics</title>
     <style>
-/*          body {
-        background: radial-gradient(circle at 70%, skyblue, teal);
-      } */
-
-      button {
-        background-color: bisque;
-        border-color: bisque;
-        width: 12rem;
-        height: 3rem;
-        font-size: 1.5em;
-        /* float: left; */
-        margin-right: 1em;
-        border-radius: 8px;
-        box-shadow: 0.2em 0.3em 0.4em gray;
-      }
-      button:active {
-        box-shadow: 0em 0em 0em gray;
-        transition-property: box-shadow scale;
-        transform: scale(0.95, 0.95);
-        box-shadow: 0em 0e 0em;
-        transition-duration: 0.1s;
-      }
-
-     #buttons {
-      margin: 1% 0 0 15%;
-     }
-      h1 {
-        font-size: 300%;
-        margin-left: 4.3em;
-      }
-      #set {
-        font-size: 4em;
-        color: plum;
-        margin-left: 3em;
-        float: left;
-      }
-
-      button {
-        background-color: bisque;
-        border-color: bisque;
-        width: 12rem;
-        height: 3rem;
-        font-size: 1.5em;
-        /* float: left; */
-        margin-right: 1em;
-        border-radius: 8px;
-        box-shadow: 0.2em 0.3em 0.4em gray;
-      }
-      button:active {
-        box-shadow: 0em 0em 0em gray;
-        transition-property: box-shadow scale;
-        transform: scale(0.95, 0.95);
-        box-shadow: 0em 0e 0em;
-        transition-duration: 0.1s;
-      }
-
-      #buttons {
-        margin: 1% 0 0 15%;
-      }
-      h1 {
-        font-size: 300%;
-        margin-left: 4.3em;
-      }
-      #set {
-        font-size: 4em;
-        color: plum;
-        margin-left: 3em;
-        float: left;
-      }
+  @import url('/puasable.css');     
     </style>
-    <link rel='stylesheet' href='pausable.csss'>
   </head>
   <body id="mat">
     <div id="buttons">
       <button id="backer">Rewind</button>
       <button id="halter">Start</button>
       <button id="foward">FFoward</button>
+
+<div
+id="jog-cont"
+>
+
+  <p id="jog-up">Jog Up</p>
+</div>
+<section
+id="table-cont"
+>
+<h2
+style="font-size: 2.5rem;
+color: purple;"
+>Let's Get It!</h2>
+  <table
+  id="time-table"
+  >
+    <tbody>
+      <tr>
+        <th>Timer</th>
+        <th>Set</th>
+      </tr>
+      <td style="font-weight: bold;
+      color: purple;">30</td>
+      <td>1</td>
+      <tr>
+        
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<article id="exercise-cont">
+  <p class="exercise">Press</p>
+  <p class="exercise">Squat</p>
+  <p class="exercise">Climb</p>
+  <p class="exercise">Plank</p>
+  <p class="exercise">Sprint</p>
+</article>
+
+
+
     </div>
 
     <!-- <button id="halter" onclick="pause()">Pause</button> -->
-    <span id="set"></span>
+    <!-- <span id="set"></span> -->
     <script src="pausable.js" type="module"></script>
   </body>
 </html>
