@@ -74,6 +74,7 @@ for (let i = 0; i < all.childNodes.length; i++) {
 }
 
 let i = 0;
+console.log(i)
 let sec = 0;
 cycle.innerHTML = sec;
 let duration = 0;
