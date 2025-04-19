@@ -61,7 +61,7 @@ let duration = 0;
 let round = 1;
 rounder.innerHTML = `Round ${round}`
 
-set.innerHTML = `${round}`;
+// set.innerHTML = `${round}`;
 
 // the body element
 // let main = document.getElementById("mat");
