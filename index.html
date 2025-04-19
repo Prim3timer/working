@@ -24,7 +24,7 @@
     height: 2.5rem;
     font-size: 1.5em;
     /* float: left; */
-    margin-right: 1em;
+    /* margin-right: 1em; */
     border-radius: 8px;
     box-shadow: 0.2em 0.3em 0.4em gray;
   }
@@ -39,14 +39,11 @@
  #buttons {
   /* margin: 1% 0 0 15%; */
  }
-  h1 {
-    font-size: 300%;
-    margin-left: 4.3em;
-  }
+
   #set {
     font-size: 4em;
     color: plum;
-    margin-left: 3em;
+    /* margin-left: 3em; */
     float: left;
   }
 
@@ -60,7 +57,10 @@
   }
 
   #buttons {
-   /* margin-top: 1.5rem; */
+    justify-content: center;
+ display: flex;
+ row-gap: 10px;
+ flex-wrap: wrap;
   }
   h1 {
     font-size: 300%;
@@ -71,8 +71,14 @@
   }
 
   #jog-cont {
+    justify-self: center;
   display: flex;
   justify-content: center;
+  flex-direction: row;
+  column-gap: 3rem;
+  width: 100%;
+  /* flex: 0 0 100% */
+  /* background-color: gray; */
   }
 
   .exercise, #jog-up {
@@ -86,6 +92,14 @@
     padding: .5rem;
     font-size: 1.4rem;
   }
+
+  h2{
+    flex: 0 1 25%;
+    font-size: 3rem;
+    padding: 5px;
+border: 5px solid darkgoldenrod;
+border-left: 20px solid darkgoldenrod;
+  }
   
   #exercise-cont {
     display: flex;
@@ -94,34 +108,23 @@
     justify-content: center;
     text-align: center;  
     column-gap: .5rem;
+    margin-top: 8rem;
   }
 
   #table-cont {
-    /* margin: .5rem; */
-    /* justify-content: center; */
+    position: absolute;
+    top: 30%;
+    left: 10%;
     justify-self: center;
+    justify-content: center;
     display: flex;
-    column-gap: 2rem;
-    width: 70%;
+    /* row-gap: 2px; */
+    width: 80%;
     /* background-color: green; */
-    margin: 0 .5rem;
+    /* height: 10rem; */
+   /* flex-wrap: wrap; */
     
   }
-#time-table {
-border: 1px solid brown;
-border-collapse: collapse;
-font-size: 2rem;
-/* background-color: aqua; */
-}
-
-td, th  {
-  border-radius: 10px;
-padding: 5px;
-border: 5px solid darkgoldenrod;
-}
-td {
-font-size: 3rem;
-}
 
 
       button {
@@ -154,6 +157,24 @@ font-size: 3rem;
         float: left;
       }
 
+      span {
+        position: absolute;
+        font-size: 2.5rem;
+        font-weight: bold;
+        /* float: left; */
+        justify-self: center;
+        text-align: center;
+        /* background-color: green; */
+        margin: 2rem 8rem;
+      }
+
+      #go {
+        font-size: 2rem;
+        font-weight: bold;
+        /* background-color: gray; */
+        /* width: 10rem; */
+      }
+
 
   /* @import url('/puasable.css');      */
     </style>
@@ -163,36 +184,36 @@ font-size: 3rem;
       <button id="backer">Rewind</button>
       <button id="halter">Start</button>
       <button id="foward">FFoward</button>
+      </div>
 
 <div
 id="jog-cont"
 >
-
+<p id="go">Let's Go!</p>
   <p id="jog-up">Jog Up</p>
 </div>
+<!-- <p
+style="font-size: 2.5rem;
+color: purple;
+font-weight: bold;"
+>Let's Get It!</p> -->
 <section
 id="table-cont"
 >
+<!-- <h2
+class="indicator"
+>Clock</h2> -->
+<h2 
+class="indicator"
+style="font-weight: bold;
+color: purple;">30</h2>
 <h2
-style="font-size: 2.5rem;
-color: purple;"
->Let's Get It!</h2>
-  <table
-  id="time-table"
-  >
-    <tbody>
-      <tr>
-        <th>Timer</th>
-        <th>Set</th>
-      </tr>
-      <td style="font-weight: bold;
-      color: purple;">30</td>
-      <td>1</td>
-      <tr>
-        
-      </tr>
-    </tbody>
-  </table>
+class="indicator"
+>Set</h2>
+
+<h2
+class="indicator"
+>1</h2>
 </section>
 
 <article id="exercise-cont">
@@ -207,8 +228,7 @@ color: purple;"
 
     </div>
 
-    <!-- <button id="halter" onclick="pause()">Pause</button> -->
-    <!-- <span id="set"></span> -->
+    <span id="set"></span>
     <script src="pausable.js" type="module"></script>
   </body>
 </html>

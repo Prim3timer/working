@@ -3,62 +3,63 @@ let pauser = document.getElementById("halter");
 let rewind = document.getElementById("backer");
 let foward = document.getElementById('foward')
 
-let subject = document.createElement("h2");
+console.log(pauser)
+
+// let subject = document.createElement("h2");
 // subject.style.color = 'rebeccapurple'
-let jogUp = document.createElement("p");
-jogUp.innerHTML = "Jog Up!";
+let jogUp = document.getElementById("jog-up");
+console.log(jogUp)
 
-let pressUp = document.createElement("p");
-pressUp.innerHTML = "Press Up";
 
-let squat = document.createElement("p");
-squat.innerHTML = "Squat";
-let running = document.createElement("p");
-running.innerHTML = "Mt. Climb";
+const excercises = document.getElementsByClassName("exercise")
 
-let plank = document.createElement("p");
-plank.innerHTML = "Plank";
+let pressUp = excercises[0];
+console.log(pressUp)
 
-let jackKnife = document.createElement("p");
-jackKnife.innerHTML = "High Knee";
+let squat = excercises[1];
+console.log(squat)
+
+let running = excercises[2];
+
+let plank = excercises[3];
+
+let jackKnife = excercises[4];
+
+
+let exCont = document.getElementById('exercise-cont')
+console.log(exCont.children[0])
+
+const go = document.getElementById('go')
+console.log(go)
 // the element that contains the  the element that contains the timer  (seconds)
 let cycleSteady = document.createElement("div");
 
-// the element that containse the sec variable
-let cycle = document.createElement("h1");
-// the element that contains the round variable. The word round is  its
-// content for most of the time. It however does change
-// from time to time.
-let set = document.getElementById("set");
+let  cycle = document.getElementsByClassName("indicator")[0]
+let  set = document.getElementsByClassName("indicator")[2]
+console.log(cycle)
+let style
+
 let ID;
 let planks;
 let warning = 0;
 
-// cycleSteady.appendChild(cycle);
-
-cycle.style.color = "purple";
 // the contianer for all the excercise types
-let all = document.createElement("div");
+// let all = document.createElement("div");
 
 {
   /* insert all the various excersises into the div element */
 }
-all.appendChild(pressUp);
-all.appendChild(squat);
-all.appendChild(running);
-all.appendChild(plank);
-all.appendChild(jackKnife);
+
 
 
 let i = 0;
-console.log(i)
 let sec = 0;
 cycle.innerHTML = sec;
 let duration = 0;
 // occassional content of the the set element
 let round = 1;
 
-set.innerHTML = `Round ${round}`;
+set.innerHTML = `${round}`;
 
 // the body element
 // let main = document.getElementById("mat");
@@ -68,9 +69,9 @@ set.innerHTML = `Round ${round}`;
 // main.appendChild(cycleSteady);
 // main.appendChild(all);
 
-cycleSteady.style.marginBottom = "   2%";
-cycleSteady.style.marginLeft = "23%";
-cycleSteady.style.marginTop = "5%";
+
+
+
 let ready = false;
 let pIndex = 0;
 
@@ -81,6 +82,10 @@ let controls = {
   runFunc: true,
 };
 
+jogUp.style.transitionDuration = '500ms'
+for (let i = 0; i < excercises.length; i++) {
+  excercises[i].style.transitionDuration = '500ms'
+}
 function general(currentItem, formerItem, nextItem) {
   let { complete } = controls;
   complete = "no";
@@ -93,10 +98,11 @@ function general(currentItem, formerItem, nextItem) {
     jogUp.style.transform = "scale(1.5)";
     jogUp.style.color = "yellow";
     jogUp.style.backgroundColor = "green";
+    
     // change the content of the set element back to  the 'round' variable
     // after 3 seconds
     setTimeout(() => {
-      set.innerHTML = "Round " + round;
+      go.innerHTML = `Let's Go!`;
     }, 3000);
     // transfrorm the current excercise element after 16 seconds
     // an interval to check for when sec exceeds 14
@@ -125,6 +131,7 @@ function general(currentItem, formerItem, nextItem) {
         let round = 1;
         //clearInterval(planks);
       }
+
       // pausing the app.
       cycle.innerHTML = sec;
       if (controls.pause === true) {
@@ -140,8 +147,8 @@ function general(currentItem, formerItem, nextItem) {
 
       // if sec = 35 and controls.complete = 'yes', resolve the promise
       if (sec > 35) {
-        controls.complete = "yes";
-        if (controls.complete === "yes") {
+        complete = "yes";
+        if (complete === "yes") {
           resolve(console.log("resolved"));
           clearInterval(ID);
         } else reject("not resolved");
@@ -157,6 +164,7 @@ pauser.addEventListener("click", () => {
   let { runFunc, pause } = controls;
   if (runFunc === true) {
     console.log(pause)
+    console.log(runFunc)
     reality();
     pauser.innerHTML = "Pause";
   } else if (controls.pause === false) {
@@ -237,16 +245,19 @@ let reality = async () => {
     // increase the value of round after a set is complete
     round++;
     // temporarily change the content of the set element to 'well done'
-    set.innerHTML = `Well Done!`;
+    go.innerHTML = `Well Done!`;
     // if five sets have not been completed, keep repeating the sets
     //by invoking the reality function
     if (round <= 5) {
+      set.innerHTML = round
       reality();
+      // round++
     } else {
       // otherwise change the content of the set element to 'congrats'
       // and shutdown the programm
-      set.innerHTML = "Congrats!";
+      go.innerHTML = "Congrats!";
       round = 1;
+      sec  = 0
       pauser.innerHTML = "Start";
       controls.runFunc = true;
     }
