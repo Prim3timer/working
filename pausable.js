@@ -149,7 +149,7 @@ function general(currentItem, formerItem, nextItem) {
         sec = 0;
       }
       // rate of sec change
-    }, 100);
+    }, 1000);
   });
 }
 
@@ -245,7 +245,7 @@ let reality = async () => {
 
     } else if (round === 5) {
 
-      go.innerHTML = 'One more round'
+      go.innerHTML = '1 more round!'
     }
     else go.innerHTML = `Well Done!`;
     // if five sets have not been completed, keep repeating the sets
