@@ -186,7 +186,7 @@ pauser.addEventListener("click", () => {
   } else if (controls.pause === false) {
     //console.log(runFunc)
     controls.pause = true;
-    pauser.innerHTML = "Resume";
+    pauser.innerHTML = "Play";
     cycle.innerHTML = sec;
   } else {
     controls.pause = false;
