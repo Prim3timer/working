@@ -35,8 +35,11 @@ console.log(go)
 let cycleSteady = document.createElement("div");
 
 let  cycle = document.getElementsByClassName("indicator")[0]
+
+cycle.style.width = '4rem'
+cycle.style.borderRight = '5px solid brown'
 let rounder = document.getElementsByClassName('indicator')[1]
-// let  set = document.getElementsByClassName("indicator")[2]
+cycle.style.borderLeft = '5px solid brown'
 console.log(cycle)
 let style
 

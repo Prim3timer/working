@@ -87,14 +87,16 @@
     font-size: 1.4rem;
   }
 
-  h2{
+  th {
     /* flex: 0 1 20%;   */
     font-size: 10rem;
     /* width: 10rem; */
     padding: 2px 30px;
-border: 5px solid darkgoldenrod;
-border-left: 10px solid darkgoldenrod;
+/* border: 5px solid darkgoldenrod; */
+/* border-left: 10px solid darkgoldenrod; */
   }
+
+  
   
   #exercise-cont {
     display: flex;
@@ -105,14 +107,21 @@ border-left: 10px solid darkgoldenrod;
     column-gap: .5rem;
     /* margin-top: 7rem; */
   }
+table {
 
+  border-collapse: collapse;
+}
+
+  table th{
+    border: 2px solid brown;
+  }
   #table-cont {
     justify-self: center;
     justify-content: center;
     text-align: center;
     align-content: center;
     align-items: center;
-    display: flex;
+    display: flex;  
     row-gap: 2px;
     /* margin: -2rem 0; */
     /* background-color: gray; */
@@ -195,19 +204,22 @@ font-weight: bold;"
 <section
 id="table-cont"
 >
+
+<table>
+  <tbody>
+    <tr><th
+      class="indicator"
+      ></th>
+    <th
+    class="indicator"
+    ></th></tr>
+  </tbody>
+</table>
+
 <!-- <h2
 class="indicator"
 >Clock</h2> -->
-<h2 
-class="indicator"
-style="font-weight: bold;
-border-left: 5px solid darkgoldenrod;
-width: 6rem;
-color: purple;">0</h2>
-<h2
-style="width: 20rem;"
-class="indicator"
->Round 1</h2>
+
 
 
 </section>
