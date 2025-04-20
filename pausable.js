@@ -37,9 +37,9 @@ let cycleSteady = document.createElement("div");
 let  cycle = document.getElementsByClassName("indicator")[0]
 
 cycle.style.width = '4rem'
-cycle.style.borderRight = '5px solid brown'
+// cycle.style.borderRight = '5px solid goldenrod'
 let rounder = document.getElementsByClassName('indicator')[1]
-cycle.style.borderLeft = '5px solid brown'
+cycle.style.borderRight = '5px solid goldenrod'
 console.log(cycle)
 let style
 
