@@ -3,28 +3,14 @@ let pauser = document.getElementById("halter");
 let rewind = document.getElementById("backer");
 let foward = document.getElementById('foward')
 
-console.log(pauser)
 
-// let subject = document.createElement("h2");
-// subject.style.color = 'rebeccapurple'
 let jogUp = document.getElementById("jog-up");
-console.log(jogUp)
-
-
 const excercises = document.getElementsByClassName("exercise")
-
 let pressUp = excercises[0];
-console.log(pressUp)
-
 let squat = excercises[1];
-console.log(squat)
-
 let running = excercises[2];
-
 let plank = excercises[3];
-
 let jackKnife = excercises[4];
-
 
 let exCont = document.getElementById('exercise-cont')
 console.log(exCont.children[0])
@@ -40,7 +26,6 @@ cycle.style.width = '4rem'
 // cycle.style.borderRight = '5px solid goldenrod'
 let rounder = document.getElementsByClassName('indicator')[1]
 cycle.style.borderRight = '5px solid goldenrod'
-console.log(cycle)
 let style
 
 let ID;
@@ -99,12 +84,12 @@ function general(currentItem, formerItem, nextItem) {
     formerItem.style.transform = "scale(1)";
     formerItem.style.backgroundColor = "darkorange";
     formerItem.style.color = "yellow";
-    noShader(formerItem)
+    formerItem.style.boxShadow = '0em 0em 0em'
 
     jogUp.style.transform = "scale(1.5)";
     jogUp.style.color = "yellow";
     jogUp.style.backgroundColor = "green";
-    shader(jogUp)
+    jogUp.style.boxShadow = '0.2em 0.3em 0.4em gray';
     
     // change the content of the set element back to  the 'round' variable
     // after 3 seconds
@@ -126,11 +111,11 @@ function general(currentItem, formerItem, nextItem) {
         currentItem.style.transform = "scale(1.5)";
         currentItem.style.color = "yellow";
         currentItem.style.backgroundColor = "green";
-        shader(currentItem)
+        currentItem.style.boxShadow = '0.2em 0.3em 0.4em gray';
         jogUp.style.transform = "scale(1)";
         jogUp.style.color = "sandybrown";
         jogUp.style.backgroundColor = "maroon";
-        noShader(jogUp)
+        jogUp.style.boxShadow = '0em 0em 0em'
 
         formerItem.style.color = "sandybrown";
         formerItem.style.backgroundColor = "maroon";
@@ -168,12 +153,6 @@ function general(currentItem, formerItem, nextItem) {
   });
 }
 
-const noShader = (formerItem) => {
-  formerItem.style.boxShadow =  '0em 0em 0em';
-}
-const shader = (currentItem) => {
-  currentItem.style.boxShadow =  '0.2em 0.3em 0.4em gray';
-}
 pauser.addEventListener("click", () => {
   //the unique condition is desinged to let this event
   //handler invoke the reality function just once
