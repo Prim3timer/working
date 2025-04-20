@@ -149,7 +149,7 @@ function general(currentItem, formerItem, nextItem) {
         sec = 0;
       }
       // rate of sec change
-    }, 1000);
+    }, 100);
   });
 }
 
@@ -240,7 +240,14 @@ let reality = async () => {
     // increase the value of round after a set is complete
     round++;
     // temporarily change the content of the set element to 'well done'
-    go.innerHTML = `Well Done!`;
+    if (round === 4){
+      go.innerHTML = `home stretch!`;
+
+    } else if (round === 5) {
+
+      go.innerHTML = 'One more round'
+    }
+    else go.innerHTML = `Well Done!`;
     // if five sets have not been completed, keep repeating the sets
     //by invoking the reality function
     if (round <= 5) {
