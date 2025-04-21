@@ -259,6 +259,7 @@ let reality = async () => {
       // and shutdown the programm
       go.innerHTML = "Congrats!";
       round = 1;
+         rounder.innerHTML = `Round ${round}`
       sec  = 0
       pauser.innerHTML = "Start";
       controls.runFunc = true;
