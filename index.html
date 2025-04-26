@@ -17,9 +17,6 @@
     /* align-items: center; */
     justify-content: center;
     /* align-items: center; */
-    
-    /* background-color: yellow; */
-    justify-content: center;
   }
 
   #fer {
@@ -73,14 +70,17 @@
  row-gap: 10px;
  flex-wrap: wrap;
  font-weight: bold;
+ column-gap: .5rem;
   }
   h1 {
     font-size: 300%;
     /* margin-left: 4.3em; */
   }
-  #set {
+ #buttons > *  {
+  flex: 0 1 30%
+ }
+
   
-  }
 
   #jog-cont {
     justify-self: center;
@@ -133,6 +133,9 @@
     /* margin-top: 7rem; */
     /* background-color: blue; */
   }
+  .exercise {
+    flex: 0 1 16%
+  }
 table {
 /* justify-self: center; */
   border-radius: 5px;
@@ -169,7 +172,7 @@ table {
         height: 3rem;
         font-size: 1.5em;
         /* float: left; */
-        margin-right: 1em;
+        /* margin-right: 1em; */
         border-radius: 8px;
         box-shadow: 0.2em 0.3em 0.4em gray;
       }

@@ -261,6 +261,7 @@ let reality = async () => {
       round = 1;
          rounder.innerHTML = `Round ${round}`
       sec  = 0
+      cycle.innerHTML = sec;
       pauser.innerHTML = "Start";
       controls.runFunc = true;
     }
