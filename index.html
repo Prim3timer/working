@@ -83,6 +83,10 @@
   #jog-cont {
     justify-self: center;
   display: flex;
+padding: .5rem;
+  /* display: grid;
+  grid-auto-flow: column; */
+
   justify-content: center;
   align-items: center;
   flex-direction: row;
@@ -112,7 +116,11 @@
   }
 
   #jog-cont > * {
-    flex: 0 1 30%;
+
+    /* flex: 0 1 100%; */
+    /* width: 15%; */
+    /* background-color: green; */
+    justify-content: center;
   }
 
 
@@ -139,6 +147,11 @@
     /* width: 10%; */
     /* margin-top: 7rem; */
     /* background-color: blue; */
+    /* outline: 3px solid brown; */
+  }
+
+  #exercise-cont > * {
+
   }
   .exercise {
     flex: 0 1 16.5%
@@ -214,6 +227,7 @@ table {
       }
 
       #go {
+        width: 50%;
         font-size: 2.5rem;
         font-weight: bold;
         color: darkslateblue;
