@@ -48,7 +48,7 @@ cycle.innerHTML = sec;
 let duration = 0;
 // occassional content of the the set element
 let round = 1;
-// const RoundInspector = round === 1 ?   0 : round > 1 &&  round < 4 ?  3000 : round > 4 ?  6000 : interlude = 3000
+
 rounder.innerHTML = `Round ${round}`
 
 
@@ -63,11 +63,14 @@ let controls = {
   runFunc: true,
 };
 
+let RoundInspector = 0
+
 jogUp.style.transitionDuration = '500ms'
 for (let i = 0; i < excercises.length; i++) {
   excercises[i].style.transitionDuration = '500ms'
 }
 function general(currentItem, formerItem, nextItem) {
+
   let { complete } = controls;
   complete = "no";
   return new Promise((resolve, reject) => {
@@ -86,7 +89,7 @@ function general(currentItem, formerItem, nextItem) {
     // after 3 seconds
     setTimeout(() => {
       go.innerHTML = `Let's Go!`;
-    }, 3000);
+    }, RoundInspector);
     // transfrorm the current excercise element after 16 seconds
     // an interval to check for when sec exceeds 14
    // planks = setInterval(() => {}, 1000);
@@ -233,13 +236,15 @@ let reality = async () => {
     // temporarily change the content of the set element to 'well done'
     if (round === 4){
       go.innerHTML = `home stretch!`;
+      RoundInspector = 6000
       
     } else if (round === 5) {
+      RoundInspector = 10000
       
       go.innerHTML = '1 more round!'
     }
     else {
-      
+      RoundInspector =  3000
       go.innerHTML = `Well Done!`;
     }
     // if five sets have not been completed, keep repeating the sets
