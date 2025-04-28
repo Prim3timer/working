@@ -32,6 +32,7 @@ let ID;
 let planks;
 let warning = 0;
 
+
 // the contianer for all the excercise types
 // let all = document.createElement("div");
 
@@ -47,18 +48,8 @@ cycle.innerHTML = sec;
 let duration = 0;
 // occassional content of the the set element
 let round = 1;
+// const RoundInspector = round === 1 ?   0 : round > 1 &&  round < 4 ?  3000 : round > 4 ?  6000 : interlude = 3000
 rounder.innerHTML = `Round ${round}`
-
-// set.innerHTML = `${round}`;
-
-// the body element
-// let main = document.getElementById("mat");
-// main.appendChild(jogUp);
-// main.appendChild(set);
-// set.style.marginLeft = "1em";
-// main.appendChild(cycleSteady);
-// main.appendChild(all);
-
 
 
 
@@ -242,12 +233,15 @@ let reality = async () => {
     // temporarily change the content of the set element to 'well done'
     if (round === 4){
       go.innerHTML = `home stretch!`;
-
+      
     } else if (round === 5) {
-
+      
       go.innerHTML = '1 more round!'
     }
-    else go.innerHTML = `Well Done!`;
+    else {
+      
+      go.innerHTML = `Well Done!`;
+    }
     // if five sets have not been completed, keep repeating the sets
     //by invoking the reality function
     if (round <= 5) {
