@@ -14,9 +14,13 @@
 
     display: flex;
     flex-direction: column;    
-   text-align: center;
-   /* justify-content: center; */
+   /* text-align: center; */
+   justify-content: center;
    /* align-items: center; */
+   /* justify-items: center; */
+   text-align: center;
+   /* background-color: blue; */
+   min-width: 100vw;
   }
   
   #fer {
@@ -24,8 +28,12 @@
     display: flex; 
    flex-direction: column;
    /* background-color: aquamarine; */
+   max-width: 800px;
  height: 100vh;
-   justify-content: center
+   justify-content: center;
+   justify-self: center;
+   /* align-self: flex-end; */
+
   }
 
   button {
@@ -261,7 +269,8 @@ id="table-cont"
 
 <table>
   <tbody>
-    <tr><th
+    <tr>
+      <th
       id="clock"
       class="indicator"
       ></th>
