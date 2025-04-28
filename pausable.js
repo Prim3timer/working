@@ -63,14 +63,14 @@ let controls = {
   runFunc: true,
 };
 
-let RoundInspector = 0
+
 
 jogUp.style.transitionDuration = '500ms'
 for (let i = 0; i < excercises.length; i++) {
   excercises[i].style.transitionDuration = '500ms'
 }
+let RoundInspector = 0
 function general(currentItem, formerItem, nextItem) {
-
   let { complete } = controls;
   complete = "no";
   return new Promise((resolve, reject) => {
@@ -235,13 +235,13 @@ let reality = async () => {
     round++;
     // temporarily change the content of the set element to 'well done'
     if (round === 4){
-      go.innerHTML = `home stretch!`;
+      go.innerHTML = `the home stretch!`;
       RoundInspector = 6000
       
     } else if (round === 5) {
       RoundInspector = 10000
       
-      go.innerHTML = '1 more round!'
+      go.innerHTML = 'one more round!'
     }
     else {
       RoundInspector =  3000
