@@ -47,7 +47,7 @@ let sec = 0;
 cycle.innerHTML = sec;
 let duration = 0;
 // occassional content of the the set element
-let round = 1;
+let round = 3;
 
 rounder.innerHTML = `Round ${round}`
 
@@ -236,10 +236,10 @@ let reality = async () => {
     // temporarily change the content of the set element to 'well done'
     if (round === 4){
       go.innerHTML = `the home stretch!`;
-      RoundInspector = 6000
+      RoundInspector = 10000
       
     } else if (round === 5) {
-      RoundInspector = 10000
+      RoundInspector = 15000
       
       go.innerHTML = 'one more round!'
     }

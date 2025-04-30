@@ -20,6 +20,7 @@
    /* text-align: center; */
    /* background-color: blue; */
    min-width: 100vw;
+   min-height: 100vh;
   }
 
   
@@ -105,6 +106,10 @@ padding: .5rem;
   /* flex-shrink: 1; */
   /* background-color: green; */
   }
+
+  /* #jog-cont >*:nth-child(1){
+    flex-basis: 55%;
+  } */
   
 
 
@@ -235,7 +240,8 @@ table {
       }
 
       #go {
-        width: 45%;
+        /* width: 45%; */
+        flex-basis: 50%;
         font-size: 4rem;
         font-weight: bold;
         color: darkslateblue;
@@ -265,6 +271,7 @@ id="jog-cont"
 <p id="go"></p>
   <p id="jog-up">Jog Up</p>
 </div>
+<i class="p-icon--plus"></i>
 <section
 id="table-cont"
 >
