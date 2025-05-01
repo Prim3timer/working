@@ -47,7 +47,7 @@ let sec = 0;
 cycle.innerHTML = sec;
 let duration = 0;
 // occassional content of the the set element
-let round = 3;
+let round = 1;
 
 rounder.innerHTML = `Round ${round}`
 
