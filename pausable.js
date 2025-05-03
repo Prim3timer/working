@@ -88,7 +88,7 @@ function general(currentItem, formerItem, nextItem) {
     // change the content of the set element back to  the 'round' variable
     // after 3 seconds
     setTimeout(() => {
-      go.innerHTML = `Let's Go!`;
+      go.innerHTML = `Let's Work!`;
     }, RoundInspector);
     // transfrorm the current excercise element after 16 seconds
     // an interval to check for when sec exceeds 14
