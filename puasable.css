@@ -1,10 +1,28 @@
-   
-   #mat {
-    text-align: center;
-    
-    /* background-color: yellow; */
-    /* justify-content: center; */
+ #mat {
+
+    display: flex;
+    flex-direction: column;    
+   justify-content: center;
+   /* align-items: center; */
+   justify-items: center;
+   /* text-align: center; */
+   /* background-color: blue; */
+   min-width: 100vw;
+   /* min-height: 100vh; */
   }
+
+  
+  #fer {
+
+    display: flex; 
+   flex-direction: column;
+   /* background-color: aquamarine; */
+   /* max-width: 800px; */
+ min-height: 100vh;
+   justify-content: center;
+
+  }
+
 
   button {
     background-color: bisque;
@@ -12,8 +30,9 @@
     width: 10rem;
     height: 2.5rem;
     font-size: 1.5em;
+    font-weight: bold;
     /* float: left; */
-    margin-right: 1em;
+    /* margin-right: 1em; */
     border-radius: 8px;
     box-shadow: 0.2em 0.3em 0.4em gray;
   }
@@ -21,91 +40,154 @@
     box-shadow: 0em 0em 0em gray;
     transition-property: box-shadow scale;
     transform: scale(0.95, 0.95);
-    box-shadow: 0em 0e 0em;
+    box-shadow: 0em 0em 0em;
     transition-duration: 0.1s;
   }
 
  #buttons {
-  /* margin: 1% 0 0 15%; */
+  /* margin: 1rem 0 0 0; */
  }
-  h1 {
-    font-size: 300%;
-    margin-left: 4.3em;
-  }
+ .indicator {
+  font-size: 3rem;
+ }
+
   #set {
     font-size: 4em;
     color: plum;
-    margin-left: 3em;
-    float: left;
+    /* margin-left: 3em; */
+    /* float: left; */
   }
 
-
-  button:active {
-    box-shadow: 0em 0em 0em gray;
-    transition-property: box-shadow scale;
-    transform: scale(0.95, 0.95);
-    box-shadow: 0em 0e 0em;
-    transition-duration: 0.1s;
-  }
 
   #buttons {
-   /* margin-top: 1.5rem; */
+    display: flex;
+    row-gap: 10px;
+    flex-wrap: wrap;
+ font-weight: bold;
+ column-gap: .5rem;
+ justify-content: center;
   }
   h1 {
     font-size: 300%;
     /* margin-left: 4.3em; */
   }
-  #set {
-  
-  }
+ #buttons > *  {
+  flex: 0 0 20%
+ }
+
+
 
   #jog-cont {
-  justify-items: center;
-    /* background-color: aqua; */
+    justify-self: center;
+    justify-content: center;
+  display: flex;
+padding: .5rem;
+  align-items: center;
+  flex-direction: row;
+  column-gap: 2rem;
+  width: 100%;
+  height: 5rem;  
+  margin: 1rem 0;
+  text-align: left;
+  justify-content: center;
+  /* align-items: flex-start; */
+  /* flex-shrink: 1; */
+  /* background-color: green; */
   }
 
+  /* #jog-cont >*:nth-child(1){
+    flex-basis: 55%;
+  } */
+  
+
+
   .exercise, #jog-up {
-    width: 8rem;
-    height: 2rem;
+    width: 15%;
+    height: 40%;
+    display: flex;
     color: sandybrown;
     background-color: maroon;
     border-color: maroon;
     text-align: center;
+    align-items: center;
+    justify-content: center;
    border-radius: 5px;
     padding: .5rem;
-    font-size: 1.4rem;
+    font-size: 150%;
+    /* background-color: blue; */
   }
+
+  #jog-cont > * {
+
+    /* flex: 0 1 100%; */
+    /* width: 15%; */
+    /* background-color: green; */
+    justify-content: center;
+  }
+
+
+  th {
+    /* flex: 0 1 20%;   */
+    font-size: 20%;
+    /* width: 10rem; */
+    padding: 2px 30px;
+/* border: 5px solid darkgoldenrod; */
+/* border-left: 10px solid darkgoldenrod; */
+/* background-color: green; */
+  }
+
+  
   
   #exercise-cont {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     text-align: center;  
     column-gap: .5rem;
+    /* height: 4rem; */
+    /* width: 10%; */
+    /* margin-top: 7rem; */
+    /* background-color: blue; */
+    /* outline: 3px solid brown; */
   }
 
+  #exercise-cont > * {
+    flex: 0 1 16%
+  }
+  .exercise {
+  }
+table {
+/* justify-self: center; */
 
+  border-radius: 5px;
+  border-collapse: collapse;
+}
+
+  th{
+    border: 2px solid goldenrod;
+    /* width: 2rem; */
+  }
   #table-cont {
-    /* margin: .5rem; */
-    /* justify-content: center; */
     justify-self: center;
-    display: flex;
-    column-gap: 2rem;
-    width: 70%;
-    /* background-color: green; */
-    margin: 0 .5rem;
+    justify-content: center;
+    /* align-items: center; */
+    display: flex;  
+    row-gap: 1rem;
+    column-gap: 3rem;
+    flex-wrap: wrap;
+    /* margin: -2rem 0; */
+    /* background-color: gray; */
+    /* width: 70%; */
     
   }
 
-
-h2  {
-  border-radius: 10px;
-padding: 5px;
-border: 5px solid darkgoldenrod;
-}
-td {
-font-size: 3rem;
-}
+  #clock {
+    font-size:5rem;
+    color: purple;
+    /* width: 70rem; */
+    /* background-color: gray; */
+  }
 
 
       button {
@@ -115,7 +197,7 @@ font-size: 3rem;
         height: 3rem;
         font-size: 1.5em;
         /* float: left; */
-        margin-right: 1em;
+        /* margin-right: 1em; */
         border-radius: 8px;
         box-shadow: 0.2em 0.3em 0.4em gray;
       }
@@ -123,7 +205,7 @@ font-size: 3rem;
         box-shadow: 0em 0em 0em gray;
         transition-property: box-shadow scale;
         transform: scale(0.95, 0.95);
-        box-shadow: 0em 0e 0em;
+        box-shadow: 0em 0em 0em;
         transition-duration: 0.1s;
       }
 
@@ -138,4 +220,30 @@ font-size: 3rem;
         float: left;
       }
 
-      go
+      span {
+        position: absolute;
+        font-size: 2.5rem;
+        font-weight: bold;
+        /* float: left; */
+        justify-self: center;
+        text-align: center;
+        /* background-color: green; */
+        margin: 2rem 8rem;
+      }
+
+      #go {
+        width: 95%;
+        /* flex-basis: 50%; */
+        font-size: 4rem;
+        font-weight: bold;
+        color: darkslateblue;
+        /* background-color: gray; */
+        text-transform: uppercase;
+        /* text-align: center; */
+        /* justify-content: center; */
+        align-items: flex-start;
+        /* width: 10rem; */
+      }
+    
+
+
