@@ -101,7 +101,7 @@ padding: .5rem;
   height: 5rem;  
   margin: 1rem 0;
   text-align: left;
-  justify-content: flex-start;
+  justify-content: center;
   /* align-items: flex-start; */
   /* flex-shrink: 1; */
   /* background-color: green; */
@@ -183,7 +183,9 @@ table {
     justify-content: center;
     /* align-items: center; */
     display: flex;  
-    row-gap: 2px;
+    row-gap: 1rem;
+    column-gap: 3rem;
+    flex-wrap: wrap;
     /* margin: -2rem 0; */
     /* background-color: gray; */
     /* width: 70%; */
@@ -193,7 +195,7 @@ table {
   #clock {
     font-size:5rem;
     color: purple;
-    /* width: 40rem; */
+    /* width: 70rem; */
     /* background-color: gray; */
   }
 
@@ -240,14 +242,16 @@ table {
       }
 
       #go {
-        /* width: 45%; */
-        flex-basis: 50%;
+        width: 95%;
+        /* flex-basis: 50%; */
         font-size: 4rem;
         font-weight: bold;
         color: darkslateblue;
         /* background-color: gray; */
         text-transform: uppercase;
-        text-align: center;
+        /* text-align: center; */
+        /* justify-content: center; */
+        align-items: flex-start;
         /* width: 10rem; */
       }
     
@@ -269,13 +273,13 @@ table {
 id="jog-cont"
 >
 <p id="go"></p>
-  <p id="jog-up">Jog Up</p>
+  
 </div>
 <i class="p-icon--plus"></i>
 <section
 id="table-cont"
 >
-
+<p id="jog-up">Jog Up</p>
 <table>
   <tbody>
     <tr>
