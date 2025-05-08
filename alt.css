@@ -41,7 +41,7 @@ button {
     grid-auto-flow: column;
 /* defines the width of the items in the container */
 grid-auto-columns: minmax(200px, auto);    
-width: 100vw;
+/* width: 100vw; */
 
 /* container height; */
 grid-auto-rows: 5rem;
@@ -68,11 +68,11 @@ justify-content: center;
     /* max-width: 800px; */
     justify-self: center;
     color: steelblue;
-    background-color: aqua;
+    /* background-color: aqua; */
     font-size: 4rem;
     justify-content: start;
     align-items: start;
-    width: 100vw;
+    /* width: 100%; */
 }
 #go {
     display: grid;
@@ -94,7 +94,7 @@ justify-content: center;
     align-items: center;
     /* margin: 1rem; */
     column-gap: 4rem;
-    width: 100vw;
+    /* width: 100vw; */
 }
 
 #jog-up{
@@ -160,7 +160,7 @@ border-radius: 5px;
     grid-template-rows: minmax(8rem, auto);
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    /* width: 100vw; */
 }
 
 .exercise {
