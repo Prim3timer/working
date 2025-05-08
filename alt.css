@@ -6,6 +6,7 @@ html {
 
 
 body {
+    /* background-color: greenyellow; */
     display: grid;
    min-height: 100%;
    align-items: center;
@@ -41,7 +42,7 @@ button {
     grid-auto-flow: column;
 /* defines the width of the items in the container */
 grid-auto-columns: minmax(200px, auto);    
-width: 100vw;
+/* width: 100%; */
 
 /* container height; */
 grid-auto-rows: 5rem;
@@ -72,7 +73,7 @@ justify-content: center;
     font-size: 4rem;
     justify-content: start;
     align-items: start;
-    width: 100%;
+    /* width: 100%; */
 }
 #go {
     display: grid;
@@ -160,7 +161,7 @@ border-radius: 5px;
     grid-template-rows: minmax(8rem, auto);
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    /* width: 100%; */
 }
 
 .exercise {
@@ -172,3 +173,8 @@ border-radius: 5px;
     background-color: maroon;
     color: sandybrown;
 }
+
+@media screen and (max-width: 585px) {
+  
+    
+}    
