@@ -95,7 +95,7 @@ function general(currentItem, formerItem, nextItem) {
       go.style.height = '4rem'  
       go.style.whiteSpace =  'no-wrap'  
       go.style.margin =  '1rem 0'  
-       // go.innerHTML = `Let's Work!`;
+       go.innerHTML = `Let's Work!`;
     }, RoundInspector);
     // transfrorm the current excercise element after 16 seconds
     // an interval to check for when sec exceeds 14
