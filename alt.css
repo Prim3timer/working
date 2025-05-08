@@ -62,14 +62,15 @@ justify-content: center;
 #go-container {
     display: grid;
     /* grid-auto-rows: 5rem; */
-    justify-content: center;
+    /* justify-content: center; */
     /* background-color: yellowgreen; */
-    width: 90vw;
+    max-width: 800px;
     justify-self: center;
     color: steelblue;
     font-size: 4rem;
     /* margin: 1rem 0; */
     justify-content: start;
+    align-items: start;
     /* width: 80vw; */
 }
 #go {
