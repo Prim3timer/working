@@ -176,5 +176,8 @@ border-radius: 5px;
 
 @media screen and (max-width: 585px) {
   
-    
+    body {
+        min-width: 120%;
+        /* background-color: gray; */
+    }
 }    
