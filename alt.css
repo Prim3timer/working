@@ -2,7 +2,7 @@ body {
     display: grid;
    min-height: 100vh;
    align-items: center;
-   width: 100vw;
+ 
 }
 * {
     margin: 0;
@@ -33,6 +33,7 @@ button {
     grid-auto-flow: column;
 /* defines the width of the items in the container */
 grid-auto-columns: minmax(200px, auto);    
+width: 100%;
 
 /* container height; */
 grid-auto-rows: 5rem;
@@ -63,6 +64,7 @@ justify-content: center;
     font-size: 4rem;
     justify-content: start;
     align-items: start;
+    width: 100%;
 }
 #go {
     display: grid;
@@ -84,6 +86,7 @@ justify-content: center;
     align-items: center;
     /* margin: 1rem; */
     column-gap: 4rem;
+    width: 100%;
 }
 
 #jog-up{
@@ -149,6 +152,7 @@ border-radius: 5px;
     grid-template-rows: minmax(8rem, auto);
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .exercise {
