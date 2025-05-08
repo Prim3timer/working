@@ -121,7 +121,7 @@ border-radius: 5px;
 .indicator-container {
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: 120px 250px;
+    grid-template-columns: 120px 300px;
     align-items: center;
     /* background-color: red; */
 }
