@@ -18,15 +18,15 @@ console.log(exCont.children[0])
 const go = document.getElementById('go')
 console.log(go)
 // the element that contains the  the element that contains the timer  (seconds)
-let cycleSteady = document.createElement("div");
+// let cycleSteady = document.createElement("div");
 
 let  cycle = document.getElementsByClassName("indicator")[0]
 
-cycle.style.width = '4rem'
+// cycle.style.width = '4rem'
 // cycle.style.borderRight = '5px solid goldenrod'
 let rounder = document.getElementsByClassName('indicator')[1]
-cycle.style.borderRight = '5px solid goldenrod'
-let style
+// let rounder = document.getElementsByClassName('indicator')
+// cycle.style.borderRight = '5px solid goldenrod'
 
 let ID;
 let planks;
@@ -83,12 +83,19 @@ function general(currentItem, formerItem, nextItem) {
     jogUp.style.transform = "scale(1.5)";
     jogUp.style.color = "yellow";
     jogUp.style.backgroundColor = "green";
+    jogUp.style.border = '2px solid green'
     jogUp.style.boxShadow = '0.2em 0.3em 0.4em gray';
     
     // change the content of the set element back to  the 'round' variable
     // after 3 seconds
     setTimeout(() => {
-      go.innerHTML = `Let's Work!`;
+      go.style.transitionProperty = 'font-size width height'
+      go.style.transitionDuration = '300ms'
+      go.style.fontSize = '4rem'     
+      go.style.height = '4rem'  
+      go.style.whiteSpace =  'no-wrap'  
+      go.style.margin =  '1rem 0'  
+       // go.innerHTML = `Let's Work!`;
     }, RoundInspector);
     // transfrorm the current excercise element after 16 seconds
     // an interval to check for when sec exceeds 14
@@ -109,6 +116,7 @@ function general(currentItem, formerItem, nextItem) {
         jogUp.style.transform = "scale(1)";
         jogUp.style.color = "sandybrown";
         jogUp.style.backgroundColor = "maroon";
+        jogUp.style.border = "2px solid maroon";
         jogUp.style.boxShadow = '0em 0em 0em'
 
         formerItem.style.color = "sandybrown";
