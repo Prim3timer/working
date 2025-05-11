@@ -12,8 +12,6 @@
    justify-content: center;
    /* align-items: center; */
    justify-items: center;
-   /* text-align: center; */
-   /* background-color: blue; */
    min-width: 100vw;
    /* min-height: 100vh; */
   }
@@ -58,10 +56,11 @@
     width: 90vw;
     justify-content: flex-start;
     align-items: center;
-   
+   /* justify-content: center; */
     padding: .5rem 0;
     /* background-color: aqua; */
-    height: 4rem;
+    height: 5rem;
+    margin: .5rem 0;
   }
 
   #go {
@@ -89,7 +88,8 @@
     /* margin-left: 4.3em; */
   }
  #buttons > *  {
-  flex: 0 0 20%
+  flex: 0 1 25%;
+  padding: .5rem;
  }
 
 
