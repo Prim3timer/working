@@ -19,6 +19,7 @@
    /* background-color: aquamarine; */
    /* max-width: 800px; */
  min-height: 100vh;
+ /* align-items: center; */
    justify-content: center;
 
   }
@@ -44,20 +45,28 @@
     transition-duration: 0.1s;
   }
 
- #buttons {
-  /* margin: 1rem 0 0 0; */
- }
- .indicator {
-  font-size: 3rem;
- }
-
-  #set {
-    font-size: 4em;
-    color: plum;
-    /* margin-left: 3em; */
-    /* float: left; */
+  #go-container {
+    display: flex;
+    align-self: center;
+    width: 90vw;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: scroll;
+    padding: .5rem 0;
+    /* background-color: aqua; */
+    height: 4rem;
   }
 
+  #go {
+    display: flex;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    place-content: center;
+    color: darkslateblue;
+    font-size: .001px;
+    height: 1px;
+    text-transform: uppercase;
+}
 
   #buttons {
     display: flex;
@@ -77,29 +86,55 @@
 
 
 
-  #jog-cont {
-    justify-self: center;
+  #status-container {
+    display: flex;
+    align-self  : center;
     justify-content: center;
-  display: flex;
 padding: .5rem;
   align-items: center;
-  flex-direction: row;
-  column-gap: 2rem;
-  width: 100%;
+  column-gap: 3rem;
+  width: 95%;
   height: 5rem;  
-  margin: 1rem 0;
-  text-align: left;
-  justify-content: center;
-  /* align-items: flex-start; */
-  /* flex-shrink: 1; */
-  /* background-color: green; */
+  /* margin: 1rem 0; */
+  /* text-align: left; */
+  /* justify-content: flex-start; */
+  /* background-color: cadetblue; */
   }
 
-  /* #jog-cont >*:nth-child(1){
-    flex-basis: 55%;
-  } */
-  
+  .indicator-container {
+    display: flex;
+    align-items: center;
+    /* background-color: blue; */
+    height: 5rem;
 
+  }
+
+  #clock {
+    height: 6rem;
+    width: 6rem;
+    text-align: center;
+    color: purple;
+    font-size: 5rem;
+   border-radius: 5px;
+   padding: 0 .5rem;
+
+ }
+
+  #status-container p  {
+    border: 2px solid brown;
+}
+  
+  .indicator:last-child {
+    display: flex;
+    align-items: center;
+    font-size: 3rem;
+    height: 5rem;
+    flex: 1 1 80%;
+    padding: 0 1rem;
+    background-color: goldenrod;
+    border-radius: 0 5px 5px 0;
+    
+}
 
   .exercise, #jog-up {
     width: 15%;
@@ -231,19 +266,9 @@ table {
         margin: 2rem 8rem;
       }
 
-      #go {
-        width: 95%;
-        /* flex-basis: 50%; */
-        font-size: 4rem;
-        font-weight: bold;
-        color: darkslateblue;
-        /* background-color: gray; */
-        text-transform: uppercase;
-        /* text-align: center; */
-        /* justify-content: center; */
-        align-items: flex-start;
-        /* width: 10rem; */
-      }
+    
+
+   
     
 
 
