@@ -140,7 +140,7 @@ padding: .5rem;
     border: 2px solid brown;
 }
 #jog-up {
-  flex: 0 1 20%;
+  flex: 0 1 18%;
 }
   
   .indicator:last-child {
@@ -183,11 +183,12 @@ padding: .5rem;
     text-align: center;  
     column-gap: .5rem;
     row-gap: 1rem;
+    /* background-color: yellow; */
  
   }
 
   #exercise-cont > * {
-    flex: 0 1 16%
+    flex: 0 1 18%
   }
   .exercise {
   }
@@ -225,23 +226,9 @@ padding: .5rem;
         font-size: 300%;
         margin-left: 4.3em;
       }
-      #set {
-        font-size: 4em;
-        color: plum;
-        margin-left: 3em;
-        float: left;
-      }
+   
 
-      span {
-        position: absolute;
-        font-size: 2.5rem;
-        font-weight: bold;
-        /* float: left; */
-        justify-self: center;
-        text-align: center;
-        /* background-color: green; */
-        margin: 2rem 8rem;
-      }
+      
 
     
 
