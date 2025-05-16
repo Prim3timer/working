@@ -7,7 +7,7 @@ const signature = document.getElementsByClassName('copy-right')[0]
 
 const copyWritght = '&copy;'
 const current = new Date().getFullYear()
-signature.innerText = ` Amalu Productions ${current}`
+signature.innerText = ` ${current} Amalu Productions`
 console.log(signature)
 
 let jogUp = document.getElementById("jog-up");
