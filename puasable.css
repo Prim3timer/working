@@ -134,7 +134,7 @@ padding: .5rem;
     place-content: center;
     color: purple;
     /* flex: 0 0 20%; */
-    flex: 0 0 0%;
+    grid-template-columns: 0rem;
     /* font-size: 5rem; */
     font-size: 0.01px;
     border-radius: 5px;
@@ -157,10 +157,6 @@ padding: .5rem;
     font-size: .01px;
     /* height: 5rem; */
     height: 1px;
-    /* border-right: 2px solid brown; 
-    border-top: 2px solid brown; 
-    border-bottom: 2px solid brown;  */
-    /* flex: 0 0 60%; */
     flex: 0 0 0%;
     /* padding: 0 1rem; */
     background-color: goldenrod;

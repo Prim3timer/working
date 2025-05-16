@@ -76,7 +76,7 @@ jogUp.style.transitionDuration = '500ms'
 for (let i = 0; i < excercises.length; i++) {
   excercises[i].style.transitionDuration = '500ms'
 }
-let RoundInspector = 0
+let RoundInspector = 3000
 function general(currentItem, formerItem, nextItem) {
   let { complete } = controls;
   complete = "no";
@@ -101,13 +101,13 @@ function general(currentItem, formerItem, nextItem) {
       go.style.fontSize = '4rem'     
       go.style.height = '4rem'  
       go.style.whiteSpace =  'no-wrap'  
-      go.style.margin =  '1rem 0'  
-       go.innerHTML = `Let's Work!`;
+      go.style.margin =  '1rem 0'
+      go.innerHTML = `Let' Work!`  
     }, RoundInspector);
     // transfrorm the current excercise element after 16 seconds
     // an interval to check for when sec exceeds 14
-   // planks = setInterval(() => {}, 1000);
-   
+    
+    
       
     ID = window.setInterval(() => {
       if (sec > 14) {
@@ -161,16 +161,16 @@ function general(currentItem, formerItem, nextItem) {
       // rate of sec change
       if (sec > 6){
         
-      cycle.style.transitionProperty = 'font-size height border flex-basis'
-      cycle.style.transitionDuration = '1.5s'
+      cycle.style.transitionProperty = 'font-size, height, border, grid-template-columns'
+      cycle.style.transitionDuration = '2s, 1.5s, 1.5s, 2s'
         cycle.style.fontSize = '5rem'
         cycle.style.height = '6rem'
         cycle.style.border = '2px solid brown'
-        cycle.style.flexBasis = '20%'
+        cycle.style.gridTemplateColumns = '5rem'
 
 
-      rounder.style.transitionProperty = 'font-size height border-right border-top border-bottom flex'
-      rounder.style.transitionDuration = '1.5s'
+      rounder.style.transitionProperty = 'font-size, height, border-right, border-top, border-bottom, flex'
+      rounder.style.transitionDuration = '1.5s, 1s, 1s, 1s, 1s, 1.5s'
         rounder.style.fontSize = '3rem'
         rounder.style.height = '5rem'
         rounder.style.borderRight = '2px solid brown'
@@ -181,7 +181,7 @@ function general(currentItem, formerItem, nextItem) {
 
         dashboard.style.transitionProperty = 'flex'
         dashboard.style.transitionDuration = '1.5s'
-        dashboard.style.flex = '0 1 65%'
+        dashboard.style.flex = '0 1 60%'
 
 
     
@@ -279,6 +279,7 @@ let reality = async () => {
     // increase the value of round after a set is complete
     round++;
     // temporarily change the content of the set element to 'well done'
+
     if (round === 4){
       go.innerHTML = `the home stretch!`;
       RoundInspector = 10000
