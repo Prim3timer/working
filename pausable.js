@@ -3,6 +3,12 @@ let pauser = document.getElementById("halter");
 let rewind = document.getElementById("backer");
 let foward = document.getElementById('foward')
 
+const signature = document.getElementsByClassName('copy-right')[0]
+
+const copyWritght = '&copy;'
+const current = new Date().getFullYear()
+signature.innerText = ` Amalu Productions ${current}`
+console.log(signature)
 
 let jogUp = document.getElementById("jog-up");
 const excercises = document.getElementsByClassName("exercise")
