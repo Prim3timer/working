@@ -115,13 +115,13 @@ padding: .5rem;
 
 
   .indicator-container {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: flex-end;
     /* background-color: blue; */
     height: 5rem;
     flex: 0 1 65%
-
+    
   }
 
   #clock {
@@ -129,20 +129,21 @@ padding: .5rem;
     height: 6rem;
     /* width: 350px; */
     text-align: center;
+    place-content: center;
     color: purple;
     flex: 0 0 20%;
     font-size: 5rem;
-   border-radius: 5px;
-   /* background-color: yellow; */
-   padding: 0 .5rem;
-   border: 2px solid brown;
+    border-radius: 5px;
+    /* background-color: yellow; */
+    padding: 0 .5rem;
+    border: 2px solid brown;
 
  }
 
-  #status-container p  {
-  }
-  #jog-up {
-    flex: 0 1 20%;
+ #status-container p  {
+}
+#jog-up {
+  flex: 0 1 20%;
   }
   
   .indicator:last-child {
@@ -159,6 +160,11 @@ padding: .5rem;
     background-color: goldenrod;
     border-radius: 0 5px 5px 0;
     
+  }
+  
+  .indicator-container > *{
+    /* visibility: hidden; */
+
 }
 
 

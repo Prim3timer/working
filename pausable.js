@@ -4,7 +4,8 @@ let rewind = document.getElementById("backer");
 let foward = document.getElementById('foward')
 
 const signature = document.getElementsByClassName('copy-right')[0]
-
+const dashboard = document.getElementsByClassName('indicator-container')[0]
+console.log(dashboard)
 const copyWritght = '&copy;'
 const current = new Date().getFullYear()
 signature.innerText = ` ${current} Amalu Productions`
@@ -106,7 +107,8 @@ function general(currentItem, formerItem, nextItem) {
     // transfrorm the current excercise element after 16 seconds
     // an interval to check for when sec exceeds 14
    // planks = setInterval(() => {}, 1000);
-
+   
+      
     ID = window.setInterval(() => {
       if (sec > 14) {
         // the current excercise is currentItem
@@ -157,6 +159,21 @@ function general(currentItem, formerItem, nextItem) {
         sec = 0;
       }
       // rate of sec change
+      if (sec > 7){
+        
+        dashboard.style.display = 'flex'
+        cycle.style.display = 'flex'
+        rounder.style.display = 'flex'
+        cycle.style.visibility = 'visible'
+        rounder.style.visibility = 'visible'
+      //  dashboard.style.display = 'flex'
+      //  cycle.style.display = 'flex'
+      //  rounder.style.display = 'flex'
+      //  cycle.style.visibility = 'visible'
+      //  rounder.style.visibility = 'visible'
+      
+ 
+     }
     }, 1000);
   });
 }
