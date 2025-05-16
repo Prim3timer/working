@@ -115,57 +115,60 @@ padding: .5rem;
 
 
   .indicator-container {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: flex-end;
     /* background-color: blue; */
     height: 5rem;
-    flex: 0 1 65%
+    /* flex: 0 1 65% */
+    flex: 0 1 0%
     
   }
 
   #clock {
-    display: grid ;
-    height: 6rem;
+    display: grid;
+    /* height: 6rem; */
+    height: 1px;
     /* width: 350px; */
     text-align: center;
     place-content: center;
     color: purple;
-    flex: 0 0 20%;
-    font-size: 5rem;
+    /* flex: 0 0 20%; */
+    flex: 0 0 0%;
+    /* font-size: 5rem; */
+    font-size: 0.01px;
     border-radius: 5px;
     /* background-color: yellow; */
     padding: 0 .5rem;
-    border: 2px solid brown;
+    /* border: 2px solid brown; */
 
  }
 
- #status-container p  {
-}
 #jog-up {
   flex: 0 1 20%;
+  min-height: 3.5rem;
   }
   
   .indicator:last-child {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
-    height: 5rem;
-    border-right: 2px solid brown; 
+    /* font-size: 3rem; */
+    font-size: .01px;
+    /* height: 5rem; */
+    height: 1px;
+    /* border-right: 2px solid brown; 
     border-top: 2px solid brown; 
-    border-bottom: 2px solid brown; 
-    flex: 0 0 60%;
+    border-bottom: 2px solid brown;  */
+    /* flex: 0 0 60%; */
+    flex: 0 0 0%;
     /* padding: 0 1rem; */
     background-color: goldenrod;
     border-radius: 0 5px 5px 0;
+    border: none;
     
   }
-  
-  .indicator-container > *{
-    /* visibility: hidden; */
 
-}
 
 
 
@@ -207,13 +210,6 @@ padding: .5rem;
   }
 
 
-
-  #clock {
-    font-size:5rem;
-    color: purple;
-    /* width: 70rem; */
-    /* background-color: gray; */
-  }
 
 
       button {

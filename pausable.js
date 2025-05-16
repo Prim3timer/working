@@ -97,7 +97,7 @@ function general(currentItem, formerItem, nextItem) {
     // after 3 seconds
     setTimeout(() => {
       go.style.transitionProperty = 'font-size width height'
-      go.style.transitionDuration = '300ms'
+      go.style.transitionDuration = '1000ms'
       go.style.fontSize = '4rem'     
       go.style.height = '4rem'  
       go.style.whiteSpace =  'no-wrap'  
@@ -159,18 +159,32 @@ function general(currentItem, formerItem, nextItem) {
         sec = 0;
       }
       // rate of sec change
-      if (sec > 7){
+      if (sec > 6){
         
-        dashboard.style.display = 'flex'
-        cycle.style.display = 'flex'
-        rounder.style.display = 'flex'
-        cycle.style.visibility = 'visible'
-        rounder.style.visibility = 'visible'
-      //  dashboard.style.display = 'flex'
-      //  cycle.style.display = 'flex'
-      //  rounder.style.display = 'flex'
-      //  cycle.style.visibility = 'visible'
-      //  rounder.style.visibility = 'visible'
+      cycle.style.transitionProperty = 'font-size height border flex-basis'
+      cycle.style.transitionDuration = '1.5s'
+        cycle.style.fontSize = '5rem'
+        cycle.style.height = '6rem'
+        cycle.style.border = '2px solid brown'
+        cycle.style.flexBasis = '20%'
+
+
+      rounder.style.transitionProperty = 'font-size height border-right border-top border-bottom flex'
+      rounder.style.transitionDuration = '1.5s'
+        rounder.style.fontSize = '3rem'
+        rounder.style.height = '5rem'
+        rounder.style.borderRight = '2px solid brown'
+        rounder.style.borderTop = '2px solid brown'
+        rounder.style.borderBottom = '2px solid brown'
+        rounder.style.backgroundColor = 'goldenrod'
+        rounder.style.flex = '0 0 60%'
+
+        dashboard.style.transitionProperty = 'flex'
+        dashboard.style.transitionDuration = '1.5s'
+        dashboard.style.flex = '0 1 65%'
+
+
+    
       
  
      }
