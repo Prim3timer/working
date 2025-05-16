@@ -97,12 +97,12 @@ function general(currentItem, formerItem, nextItem) {
     // after 3 seconds
     setTimeout(() => {
       go.style.transitionProperty = 'font-size width height'
-      go.style.transitionDuration = '1000ms'
+      go.style.transitionDuration = '300ms'
       go.style.fontSize = '4rem'     
       go.style.height = '4rem'  
       go.style.whiteSpace =  'no-wrap'  
       go.style.margin =  '1rem 0'
-      go.innerHTML = `Let' Work!`  
+      go.innerHTML = `Let's Work!`  
     }, RoundInspector);
     // transfrorm the current excercise element after 16 seconds
     // an interval to check for when sec exceeds 14
@@ -166,7 +166,7 @@ function general(currentItem, formerItem, nextItem) {
         cycle.style.fontSize = '5rem'
         cycle.style.height = '6rem'
         cycle.style.border = '2px solid brown'
-        cycle.style.gridTemplateColumns = '5rem'
+        cycle.style.gridTemplateColumns = '5.5rem'
 
 
       rounder.style.transitionProperty = 'font-size, height, border-right, border-top, border-bottom, flex'
