@@ -123,7 +123,7 @@ padding: .5rem;
   }
 
   #clock {
-    display: grid;
+    display: grid ;
     height: 6rem;
     /* width: 350px; */
     text-align: center;
@@ -133,15 +133,15 @@ padding: .5rem;
    border-radius: 5px;
    /* background-color: yellow; */
    padding: 0 .5rem;
+   border: 2px solid brown;
 
  }
 
   #status-container p  {
-    border: 2px solid brown;
-}
-#jog-up {
-  flex: 0 1 20%;
-}
+  }
+  #jog-up {
+    flex: 0 1 20%;
+  }
   
   .indicator:last-child {
     display: flex;
@@ -149,6 +149,9 @@ padding: .5rem;
     justify-content: center;
     font-size: 3rem;
     height: 5rem;
+    border-right: 2px solid brown; 
+    border-top: 2px solid brown; 
+    border-bottom: 2px solid brown; 
     flex: 0 0 70%;
     /* padding: 0 1rem; */
     background-color: goldenrod;
@@ -160,7 +163,7 @@ padding: .5rem;
 
   .exercise, #jog-up {
 
-    height: 40%;
+    height: 50%;
     display: flex;
     color: sandybrown;
     background-color: maroon;
@@ -170,12 +173,13 @@ padding: .5rem;
     justify-content: center;
    border-radius: 5px;
     padding: .5rem;
-    font-size: 150%;
+    font-size: 200%;
     /* background-color: blue; */
   }
 
   
   #exercise-cont {
+    height: 4rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -188,7 +192,8 @@ padding: .5rem;
   }
 
   #exercise-cont > * {
-    flex: 0 1 18%
+    flex: 0 1 18%;
+    height: 90%;
   }
   .exercise {
   }
