@@ -159,28 +159,34 @@ function general(currentItem, formerItem, nextItem) {
         sec = 0;
       }
       // rate of sec change
-      if (sec > 6){
+      if (sec > 1){
         
         cycle.style.transitionProperty = 'font-size, height, border, grid-template-columns'
-        cycle.style.transitionDuration = '1.5s, 1.5s, 1.5s, 1.5s'
-        cycle.style.fontSize = '5rem'
-        cycle.style.height = '6rem'
-        cycle.style.border = '2px solid brown'
-        cycle.style.gridTemplateColumns = '5.5rem'
-        
-        
-        rounder.style.transitionProperty = 'font-size, height, border-right, border-top, border-bottom, flex'
-        rounder.style.transitionDuration = '1.5s, 1s, 1s, 1s, 1s, 1.5s'
+        cycle.style.transitionDuration = '.9s, .5s, .5s, .1s'
+      // cycle.style.transitonDelay = '3s'
+      cycle.style.fontSize = '5.5rem'
+      cycle.style.height = '6rem'
+      cycle.style.border = '2px solid brown'
+      cycle.style.gridTemplateColumns = '5.5rem'
+      cycle.style.transitionDelay = '.1s'
+      
+      
+      rounder.style.transitionProperty = 'font-size, height, border-right, border-top, border-bottom, flex'
+      rounder.style.transitionDuration = '.9s, .6s, .6s, .6s, .6s, 1s'
+      // rounder.style.transitionDuration = '.5s'
+      rounder.style.transitTimingFunction = 'ease-in'
+  
         rounder.style.fontSize = '3rem'
         rounder.style.height = '5rem'
         rounder.style.borderRight = '2px solid brown'
         rounder.style.borderTop = '2px solid brown'
         rounder.style.borderBottom = '2px solid brown'
         rounder.style.backgroundColor = 'goldenrod'
-        rounder.style.flex = '0 0 60%'
+        rounder.style.flex = '0 1 55%'
+        rounder.style.transitionDelay = '.1s'
 
         dashboard.style.transitionProperty = 'flex'
-        dashboard.style.transitionDuration = '1.5s'
+        dashboard.style.transitionDuration = '.9s'
         dashboard.style.flex = '0 1 60%'
 
 

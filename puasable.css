@@ -10,21 +10,22 @@
   text-align: center;
   height: 2rem;
   /* background-color: yellowgreen; */
- }
+}
 body{
+  /* background-color: yellowgreen; */
   display: flex;
   min-height: 100vh;
+  /* border-bottom: 2px solid red; */
+  
 }
 
 
   #fer {
 padding-top: .5rem;
     display: grid; 
-   flex-direction: column;
    flex-grow: 1;
    /* background-color: aquamarine; */
-   /* max-width: 800px; */
- /* min-height: 100vh; */
+ border: 2px solid red;
  /* align-items: center; */
    justify-content: center;
 
@@ -161,6 +162,7 @@ padding: .5rem;
     /* font-size: 3rem; */
     font-size: .01px;
     /* height: 5rem; */
+    white-space: nowrap;
     height: 1px;
     flex: 0 0 0%;
     /* padding: 0 1rem; */
