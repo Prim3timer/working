@@ -108,7 +108,7 @@ function general(currentItem, formerItem, nextItem) {
     // an interval to check for when sec exceeds 14
     
     
-      
+    
     ID = window.setInterval(() => {
       if (sec > 14) {
         // the current excercise is currentItem
@@ -116,7 +116,7 @@ function general(currentItem, formerItem, nextItem) {
         // It is used to make the current excersise appear above
         //  previous and next excercises
         currentItem.style.zIndex = pIndex;
-
+        
         currentItem.style.transform = "scale(1.5)";
         currentItem.style.color = "yellow";
         currentItem.style.backgroundColor = "green";
@@ -129,7 +129,7 @@ function general(currentItem, formerItem, nextItem) {
 
         formerItem.style.color = "sandybrown";
         formerItem.style.backgroundColor = "maroon";
-
+        
         // the variable for the z-index.
         pIndex++;
         let round = 1;
@@ -139,12 +139,12 @@ function general(currentItem, formerItem, nextItem) {
       // pausing the app.
       cycle.innerHTML = sec;
       if (controls.pause === true) {
-      return
+        return
       }
        else sec++;
 
-      // giving the athlete notice to start preparing for the next excercise
-      if ((sec > 12 && sec <= 15) || (sec > 32 && sec <= 35)) {
+       // giving the athlete notice to start preparing for the next excercise
+       if ((sec > 12 && sec <= 15) || (sec > 32 && sec <= 35)) {
         cycle.style.color = "darkorange";
         //cycle element's color goes back to normal after warning.
       } else cycle.style.color = "purple";
@@ -161,16 +161,16 @@ function general(currentItem, formerItem, nextItem) {
       // rate of sec change
       if (sec > 6){
         
-      cycle.style.transitionProperty = 'font-size, height, border, grid-template-columns'
-      cycle.style.transitionDuration = '1.5s, 1.5s, 1.5s, 1.5s'
+        cycle.style.transitionProperty = 'font-size, height, border, grid-template-columns'
+        cycle.style.transitionDuration = '1.5s, 1.5s, 1.5s, 1.5s'
         cycle.style.fontSize = '5rem'
         cycle.style.height = '6rem'
         cycle.style.border = '2px solid brown'
         cycle.style.gridTemplateColumns = '5.5rem'
-
-
-      rounder.style.transitionProperty = 'font-size, height, border-right, border-top, border-bottom, flex'
-      rounder.style.transitionDuration = '1.5s, 1s, 1s, 1s, 1s, 1.5s'
+        
+        
+        rounder.style.transitionProperty = 'font-size, height, border-right, border-top, border-bottom, flex'
+        rounder.style.transitionDuration = '1.5s, 1s, 1s, 1s, 1s, 1.5s'
         rounder.style.fontSize = '3rem'
         rounder.style.height = '5rem'
         rounder.style.borderRight = '2px solid brown'
