@@ -159,7 +159,7 @@ function general(currentItem, formerItem, nextItem) {
         sec = 0;
       }
       // rate of sec change
-      if (sec > 1){
+      if (sec > 4){
         
         cycle.style.transitionProperty = 'font-size, height, border, grid-template-columns'
         cycle.style.transitionDuration = '.9s, .5s, .5s, .1s'
