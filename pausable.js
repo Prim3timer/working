@@ -162,13 +162,13 @@ function general(currentItem, formerItem, nextItem) {
       if (sec > 4){
         
         cycle.style.transitionProperty = 'font-size, height, border, grid-template-columns'
-        cycle.style.transitionDuration = '1.5s'
+        cycle.style.transitionDuration = '1s'
       // cycle.style.transitonDelay = '3s'
       cycle.style.fontSize = '5.5rem'
       cycle.style.height = '6rem'
       cycle.style.border = '2px solid brown'
       cycle.style.gridTemplateColumns = '5.5rem'
-      cycle.style.transitionDelay = '.1s'
+      // cycle.style.transitionDelay = '.5s'
       
       
       rounder.style.transitionProperty = 'font-size, height, border-right, border-top, border-bottom, flex'
@@ -183,7 +183,7 @@ function general(currentItem, formerItem, nextItem) {
         rounder.style.borderBottom = '2px solid brown'
         rounder.style.backgroundColor = 'goldenrod'
         rounder.style.flex = '0 1 55%'
-        rounder.style.transitionDelay = '.1s'
+        rounder.style.transitionDelay = '.5s'
 
         dashboard.style.transitionProperty = 'flex'
         dashboard.style.transitionDuration = '.9s'
