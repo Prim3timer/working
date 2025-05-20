@@ -52,16 +52,13 @@ padding-top: .5rem;
 
   #go-container {
     display: flex;
-    align-self: center;
     width: 90vw;
-  
     justify-content: flex-start;
-    align-items: flex-end;
-   /* justify-content: center; */
+    align-items: center;
     padding: .5rem 0;
     /* background-color: aqua; */
     height: 5rem;
-    margin: .5rem 0;
+    /* margin: .5rem 0; */
   }
 
   #go {

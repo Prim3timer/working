@@ -162,7 +162,7 @@ function general(currentItem, formerItem, nextItem) {
       if (sec > 4){
         
         cycle.style.transitionProperty = 'font-size, height, border, grid-template-columns'
-        cycle.style.transitionDuration = '.9s, .5s, .5s, .1s'
+        cycle.style.transitionDuration = '1.5s'
       // cycle.style.transitonDelay = '3s'
       cycle.style.fontSize = '5.5rem'
       cycle.style.height = '6rem'
