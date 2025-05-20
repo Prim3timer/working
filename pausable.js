@@ -97,7 +97,7 @@ function general(currentItem, formerItem, nextItem) {
     // after 3 seconds
     setTimeout(() => {
       go.style.transitionProperty = 'font-size width height'
-      go.style.transitionDuration = '300ms'
+      go.style.transitionDuration = '400ms'
       go.style.fontSize = '4rem'     
       go.style.height = '4rem'  
       go.style.whiteSpace =  'no-wrap'  
@@ -163,7 +163,6 @@ function general(currentItem, formerItem, nextItem) {
         
         cycle.style.transitionProperty = 'font-size, height, border, grid-template-columns'
         cycle.style.transitionDuration = '1s'
-      // cycle.style.transitonDelay = '3s'
       cycle.style.fontSize = '5.5rem'
       cycle.style.height = '6rem'
       cycle.style.border = '2px solid brown'
@@ -172,7 +171,7 @@ function general(currentItem, formerItem, nextItem) {
       
       
       rounder.style.transitionProperty = 'font-size, height, border-right, border-top, border-bottom, flex'
-      rounder.style.transitionDuration = '.9s, .6s, .6s, .6s, .6s, 1s'
+      rounder.style.transitionDuration = '.9s, .6s, .6s, .6s, .6s, .8s'
       // rounder.style.transitionDuration = '.5s'
       rounder.style.transitTimingFunction = 'ease-in'
   
@@ -183,11 +182,13 @@ function general(currentItem, formerItem, nextItem) {
         rounder.style.borderBottom = '2px solid brown'
         rounder.style.backgroundColor = 'goldenrod'
         rounder.style.flex = '0 1 55%'
-        rounder.style.transitionDelay = '.5s'
+        // rounder.style.transitionDelay = '.1s'
 
         dashboard.style.transitionProperty = 'flex'
-        dashboard.style.transitionDuration = '.9s'
+        dashboard.style.transitionDuration = '1.2s'
+        dashboard.transitTimingFunction = 'ease-in'
         dashboard.style.flex = '0 1 60%'
+        // dashboard.style.transitionDelay = '.2s'
 
 
     
