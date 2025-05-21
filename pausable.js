@@ -167,6 +167,7 @@ function general(currentItem, formerItem, nextItem) {
       cycle.style.height = '6rem'
       cycle.style.border = '2px solid brown'
       cycle.style.gridTemplateColumns = '5.5rem'
+      cycle.transitTimingFunction = 'ease-in'
       // cycle.style.transitionDelay = '.5s'
       
       
@@ -186,7 +187,7 @@ function general(currentItem, formerItem, nextItem) {
 
         dashboard.style.transitionProperty = 'flex'
         dashboard.style.transitionDuration = '1.2s'
-        dashboard.transitTimingFunction = 'ease-in'
+        // dashboard.transitTimingFunction = 'ease-in'
         dashboard.style.flex = '0 1 60%'
         // dashboard.style.transitionDelay = '.2s'
 
