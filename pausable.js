@@ -2,6 +2,7 @@ let clicker = document.getElementById("halter");
 let pauser = document.getElementById("halter");
 let rewind = document.getElementById("backer");
 let foward = document.getElementById('foward')
+let roundUp = document.getElementById('round-up')
 
 const signature = document.getElementsByClassName('copy-right')[0]
 const dashboard = document.getElementsByClassName('indicator-container')[0]
@@ -190,11 +191,6 @@ function general(currentItem, formerItem, nextItem) {
         // dashboard.transitTimingFunction = 'ease-in'
         dashboard.style.flex = '0 1 60%'
         // dashboard.style.transitionDelay = '.2s'
-
-
-    
-      
- 
      }
     }, 1000);
   });
@@ -219,6 +215,17 @@ pauser.addEventListener("click", () => {
     pauser.innerHTML = "Pause";
   }
 });
+
+roundUp.addEventListener('click', () => {
+  if (round > 4){
+    round = 0
+    rounder.innerHTML = `Round ${round}`
+  }
+  if (round < 6){
+    round++
+    rounder.innerHTML = `Round ${round}`
+  } 
+})
 
 let reducer;
 let upInter = (e) => {
