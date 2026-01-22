@@ -94,27 +94,22 @@
  }
 
  #round-up {
-   flex: 1 1 15%
+   flex: 1 1 5%
  }
 
 
  #buttons>* {
    font-size: 1.5rem;
-   /* flex: 1 1 15%; */
+   flex: 1 1 5%;
    align-content: center;
    justify-content: center;
    height: 3.5rem;
- }
-
- #halter {
-   flex: 1 1 5%
  }
 
  #foward,
  #backer {
    display: flex;
    align-items: center;
-   flex: 1 1 5%;
  }
 
  #foward>*:nth-child(1) {
