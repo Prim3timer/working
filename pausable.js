@@ -21,10 +21,8 @@ let plank = excercises[3];
 let jackKnife = excercises[4];
 
 let exCont = document.getElementById('exercise-cont')
-console.log(exCont.children[0])
 
 const go = document.getElementById('go')
-console.log(go)
 // the element that contains the  the element that contains the timer  (seconds)
 // let cycleSteady = document.createElement("div");
 

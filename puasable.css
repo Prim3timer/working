@@ -166,7 +166,7 @@
 
  #jog-up {
    flex: 0 1 20%;
-   min-height: 4.5rem;
+   min-height: 3.5rem;
  }
 
  .indicator:last-child {
@@ -200,18 +200,16 @@
    align-items: center;
    justify-content: center;
    border-radius: 5px;
-   padding: .5rem;
-   font-size: 200%;
-   /* background-color: blue; */
+   font-size: 150%;
  }
 
 
  #exercise-cont {
    height: 4rem;
    display: flex;
-   flex-direction: row;
    flex-wrap: wrap;
    justify-content: center;
+   align-items: center;
    text-align: center;
    column-gap: .5rem;
    row-gap: 1rem;
@@ -221,13 +219,8 @@
 
  #exercise-cont>* {
    flex: 0 1 18%;
-   height: 90%;
+   height: 65%;
  }
-
- .exercise {}
-
-
-
 
  button {
    background-color: bisque;
