@@ -28,7 +28,7 @@ console.log(go)
 // the element that contains the  the element that contains the timer  (seconds)
 // let cycleSteady = document.createElement("div");
 
-let  cycle = document.getElementsByClassName("indicator")[0]
+let cycle = document.getElementsByClassName("indicator")[0]
 
 // cycle.style.width = '4rem'
 // cycle.style.borderRight = '5px solid goldenrod'
@@ -93,23 +93,23 @@ function general(currentItem, formerItem, nextItem) {
     jogUp.style.backgroundColor = "green";
     jogUp.style.border = '2px solid green'
     jogUp.style.boxShadow = '0.2em 0.3em 0.4em gray';
-    
+
     // change the content of the set element back to  the 'round' variable
     // after 3 seconds
     setTimeout(() => {
       go.style.transitionProperty = 'font-size width height'
       go.style.transitionDuration = '400ms'
-      go.style.fontSize = '4rem'     
-      go.style.height = '4rem'  
-      go.style.whiteSpace =  'no-wrap'  
-      go.style.margin =  '1rem 0'
-      go.innerHTML = `Let's Work!`  
+      go.style.fontSize = '4rem'
+      go.style.height = '4rem'
+      go.style.whiteSpace = 'no-wrap'
+      go.style.margin = '1rem 0'
+      go.innerHTML = `Let's Work!`
     }, RoundInspector);
     // transfrorm the current excercise element after 16 seconds
     // an interval to check for when sec exceeds 14
-    
-    
-    
+
+
+
     ID = window.setInterval(() => {
       if (sec > 14) {
         // the current excercise is currentItem
@@ -117,7 +117,7 @@ function general(currentItem, formerItem, nextItem) {
         // It is used to make the current excersise appear above
         //  previous and next excercises
         currentItem.style.zIndex = pIndex;
-        
+
         currentItem.style.transform = "scale(1.5)";
         currentItem.style.color = "yellow";
         currentItem.style.backgroundColor = "green";
@@ -130,7 +130,7 @@ function general(currentItem, formerItem, nextItem) {
 
         formerItem.style.color = "sandybrown";
         formerItem.style.backgroundColor = "maroon";
-        
+
         // the variable for the z-index.
         pIndex++;
         let round = 1;
@@ -142,10 +142,10 @@ function general(currentItem, formerItem, nextItem) {
       if (controls.pause === true) {
         return
       }
-       else sec++;
+      else sec++;
 
-       // giving the athlete notice to start preparing for the next excercise
-       if ((sec > 12 && sec <= 15) || (sec > 32 && sec <= 35)) {
+      // giving the athlete notice to start preparing for the next excercise
+      if ((sec > 12 && sec <= 15) || (sec > 32 && sec <= 35)) {
         cycle.style.color = "darkorange";
         //cycle element's color goes back to normal after warning.
       } else cycle.style.color = "purple";
@@ -160,23 +160,23 @@ function general(currentItem, formerItem, nextItem) {
         sec = 0;
       }
       // rate of sec change
-      if (sec > 4){
-        
+      if (sec > 4) {
+
         cycle.style.transitionProperty = 'font-size, height, border, grid-template-columns'
         cycle.style.transitionDuration = '1s'
-      cycle.style.fontSize = '5.5rem'
-      cycle.style.height = '6rem'
-      cycle.style.border = '2px solid brown'
-      cycle.style.gridTemplateColumns = '5.5rem'
-      cycle.transitTimingFunction = 'ease-in'
-      // cycle.style.transitionDelay = '.5s'
-      
-      
-      rounder.style.transitionProperty = 'font-size, height, border-right, border-top, border-bottom, flex'
-      rounder.style.transitionDuration = '.9s, .6s, .6s, .6s, .6s, .8s'
-      // rounder.style.transitionDuration = '.5s'
-      rounder.style.transitTimingFunction = 'ease-in'
-  
+        cycle.style.fontSize = '5.5rem'
+        cycle.style.height = '6rem'
+        cycle.style.border = '2px solid brown'
+        cycle.style.gridTemplateColumns = '5.5rem'
+        cycle.transitTimingFunction = 'ease-in'
+        // cycle.style.transitionDelay = '.5s'
+
+
+        rounder.style.transitionProperty = 'font-size, height, border-right, border-top, border-bottom, flex'
+        rounder.style.transitionDuration = '.9s, .6s, .6s, .6s, .6s, .8s'
+        // rounder.style.transitionDuration = '.5s'
+        rounder.style.transitTimingFunction = 'ease-in'
+
         rounder.style.fontSize = '3rem'
         rounder.style.height = '5rem'
         rounder.style.borderRight = '2px solid brown'
@@ -191,7 +191,7 @@ function general(currentItem, formerItem, nextItem) {
         // dashboard.transitTimingFunction = 'ease-in'
         dashboard.style.flex = '0 1 60%'
         // dashboard.style.transitionDelay = '.2s'
-     }
+      }
     }, 1000);
   });
 }
@@ -203,28 +203,28 @@ pauser.addEventListener("click", () => {
   if (runFunc === true) {
     console.log(pause)
     console.log(runFunc)
+    pauser.innerHTML = `<i class="fa-solid fa-pause"/>`;
     reality();
-    pauser.innerHTML = "Pause";
   } else if (controls.pause === false) {
     //console.log(runFunc)
     controls.pause = true;
-    pauser.innerHTML = "Play";
     cycle.innerHTML = sec;
+    pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
   } else {
     controls.pause = false;
-    pauser.innerHTML = "Pause";
+    pauser.innerHTML = `<i class="fa-solid fa-pause"/>`;
   }
 });
 
 roundUp.addEventListener('click', () => {
-  if (round > 4){
+  if (round > 4) {
     round = 0
     rounder.innerHTML = `Round ${round}`
   }
-  if (round < 6){
+  if (round < 6) {
     round++
     rounder.innerHTML = `Round ${round}`
-  } 
+  }
 })
 
 let reducer;
@@ -255,7 +255,7 @@ let downInter = (e) => {
 let decreaser = (e) => {
   sec -= 1;
   setInterval(() => {
-  if (sec < 1) sec = 0;
+    if (sec < 1) sec = 0;
     cycle.innerHTML = sec;
   }, 10);
 };
@@ -295,17 +295,17 @@ let reality = async () => {
     round++;
     // temporarily change the content of the set element to 'well done'
 
-    if (round === 4){
+    if (round === 4) {
       go.innerHTML = `the home stretch!`;
       RoundInspector = 10000
-      
+
     } else if (round === 5) {
       RoundInspector = 15000
-      
+
       go.innerHTML = 'one more round!'
     }
     else {
-      RoundInspector =  3000
+      RoundInspector = 3000
       go.innerHTML = `Well Done!`;
     }
     // if five sets have not been completed, keep repeating the sets
@@ -319,8 +319,8 @@ let reality = async () => {
       // and shutdown the programm
       go.innerHTML = "Congrats!";
       round = 1;
-         rounder.innerHTML = `Round ${round}`
-      sec  = 0
+      rounder.innerHTML = `Round ${round}`
+      sec = 0
       cycle.innerHTML = sec;
       pauser.innerHTML = "Start";
       controls.runFunc = true;
