@@ -164,10 +164,7 @@
 
  }
 
- #jog-up {
-   flex: 0 1 20%;
-   min-height: 3.5rem;
- }
+
 
  .indicator:last-child {
    display: flex;
@@ -201,6 +198,12 @@
    justify-content: center;
    border-radius: 5px;
    font-size: 2rem;
+ }
+
+ #jog-up {
+   flex: 0 1 20%;
+   min-height: 3rem;
+   font-size: 1.5rem;
  }
 
 
