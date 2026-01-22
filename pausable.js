@@ -320,7 +320,7 @@ let reality = async () => {
       rounder.innerHTML = `Round ${round}`
       sec = 0
       cycle.innerHTML = sec;
-      pauser.innerHTML = "Start";
+      pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
       controls.runFunc = true;
     }
   }
