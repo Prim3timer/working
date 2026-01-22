@@ -200,7 +200,7 @@
    align-items: center;
    justify-content: center;
    border-radius: 5px;
-   font-size: 150%;
+   font-size: 2rem;
  }
 
 
@@ -219,7 +219,7 @@
 
  #exercise-cont>* {
    flex: 0 1 18%;
-   height: 65%;
+   height: 75%;
  }
 
  button {
