@@ -1,43 +1,43 @@
 let clicker = document.getElementById("halter");
 let pauser = document.getElementById("halter");
 let rewind = document.getElementById("backer");
-let foward = document.getElementById('foward')
-let roundUp = document.getElementById('round-up')
+let foward = document.getElementById("foward");
+let roundUp = document.getElementById("round-up");
 
-const signature = document.getElementsByClassName('copy-right')[0]
-const dashboard = document.getElementsByClassName('indicator-container')[0]
-console.log(dashboard)
-const copyWritght = '&copy;'
-const current = new Date().getFullYear()
-signature.innerText = ` ${current} Amalu Productions`
-console.log(signature)
+const signature = document.getElementsByClassName("copy-right")[0];
+const dashboard = document.getElementsByClassName("indicator-container")[0];
+console.log(dashboard);
+const copyWritght = "&copy;";
+const current = new Date().getFullYear();
+signature.innerText = ` ${current} Amalu Productions`;
+console.log(signature);
 
 let jogUp = document.getElementById("jog-up");
-const excercises = document.getElementsByClassName("exercise")
+const excercises = document.getElementsByClassName("exercise");
 let pressUp = excercises[0];
 let squat = excercises[1];
 let running = excercises[2];
 let plank = excercises[3];
 let jackKnife = excercises[4];
+const saver = document.getElementsByClassName("saver")[0];
 
-let exCont = document.getElementById('exercise-cont')
+let exCont = document.getElementById("exercise-cont");
 
-const go = document.getElementById('go')
+const go = document.getElementById("go");
 // the element that contains the  the element that contains the timer  (seconds)
 // let cycleSteady = document.createElement("div");
 
-let cycle = document.getElementsByClassName("indicator")[0]
+let cycle = document.getElementsByClassName("indicator")[0];
 
 // cycle.style.width = '4rem'
 // cycle.style.borderRight = '5px solid goldenrod'
-let rounder = document.getElementsByClassName('indicator')[1]
+let rounder = document.getElementsByClassName("indicator")[1];
 // let rounder = document.getElementsByClassName('indicator')
 // cycle.style.borderRight = '5px solid goldenrod'
 
 let ID;
 let planks;
 let warning = 0;
-
 
 // the contianer for all the excercise types
 // let all = document.createElement("div");
@@ -46,7 +46,24 @@ let warning = 0;
   /* insert all the various excersises into the div element */
 }
 
+const saveWork = async () => {
+  const workDets = {
+    duration,
+    round,
+    oneExercise: anExercise,
+  };
+  const response = await fetch("https://localhost:5000/workout", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(workDets),
+  });
+  const content = await response.json();
+  console.log(content);
+};
 
+saver.addEventListener("click", saveWork);
 
 let i = 0;
 let sec = 0;
@@ -54,10 +71,9 @@ cycle.innerHTML = sec;
 let duration = 0;
 // occassional content of the the set element
 let round = 1;
+let anExercise = 0;
 
-rounder.innerHTML = `Round ${round}`
-
-
+rounder.innerHTML = `Round ${round}`;
 
 let ready = false;
 let pIndex = 0;
@@ -69,14 +85,15 @@ let controls = {
   runFunc: true,
 };
 
-
-
-jogUp.style.transitionDuration = '500ms'
+jogUp.style.transitionDuration = "500ms";
 for (let i = 0; i < excercises.length; i++) {
-  excercises[i].style.transitionDuration = '500ms'
+  excercises[i].style.transitionDuration = "500ms";
 }
-let RoundInspector = 3000
+let RoundInspector = 3000;
 function general(currentItem, formerItem, nextItem) {
+  setInterval(() => {
+    duration++;
+  }, 1000);
   let { complete } = controls;
   complete = "no";
   return new Promise((resolve, reject) => {
@@ -84,29 +101,27 @@ function general(currentItem, formerItem, nextItem) {
     formerItem.style.transform = "scale(1)";
     formerItem.style.backgroundColor = "darkorange";
     formerItem.style.color = "yellow";
-    formerItem.style.boxShadow = '0em 0em 0em'
+    formerItem.style.boxShadow = "0em 0em 0em";
 
     jogUp.style.transform = "scale(1.5)";
     jogUp.style.color = "yellow";
     jogUp.style.backgroundColor = "green";
-    jogUp.style.border = '2px solid green'
-    jogUp.style.boxShadow = '0.2em 0.3em 0.4em gray';
+    jogUp.style.border = "2px solid green";
+    jogUp.style.boxShadow = "0.2em 0.3em 0.4em gray";
 
     // change the content of the set element back to  the 'round' variable
     // after 3 seconds
     setTimeout(() => {
-      go.style.transitionProperty = 'font-size width height'
-      go.style.transitionDuration = '400ms'
-      go.style.fontSize = '4rem'
-      go.style.height = '4rem'
-      go.style.whiteSpace = 'no-wrap'
-      go.style.margin = '1rem 0'
-      go.innerHTML = `Let's Work!`
+      go.style.transitionProperty = "font-size width height";
+      go.style.transitionDuration = "400ms";
+      go.style.fontSize = "4rem";
+      go.style.height = "4rem";
+      go.style.whiteSpace = "no-wrap";
+      go.style.margin = "1rem 0";
+      go.innerHTML = `Let's Work!`;
     }, RoundInspector);
     // transfrorm the current excercise element after 16 seconds
     // an interval to check for when sec exceeds 14
-
-
 
     ID = window.setInterval(() => {
       if (sec > 14) {
@@ -119,12 +134,12 @@ function general(currentItem, formerItem, nextItem) {
         currentItem.style.transform = "scale(1.5)";
         currentItem.style.color = "yellow";
         currentItem.style.backgroundColor = "green";
-        currentItem.style.boxShadow = '0.2em 0.3em 0.4em gray';
+        currentItem.style.boxShadow = "0.2em 0.3em 0.4em gray";
         jogUp.style.transform = "scale(1)";
         jogUp.style.color = "sandybrown";
         jogUp.style.backgroundColor = "maroon";
         jogUp.style.border = "2px solid maroon";
-        jogUp.style.boxShadow = '0em 0em 0em'
+        jogUp.style.boxShadow = "0em 0em 0em";
 
         formerItem.style.color = "sandybrown";
         formerItem.style.backgroundColor = "maroon";
@@ -138,9 +153,10 @@ function general(currentItem, formerItem, nextItem) {
       // pausing the app.
       cycle.innerHTML = sec;
       if (controls.pause === true) {
-        return
+        return;
+      } else {
+        sec++;
       }
-      else sec++;
 
       // giving the athlete notice to start preparing for the next excercise
       if ((sec > 12 && sec <= 15) || (sec > 32 && sec <= 35)) {
@@ -153,41 +169,42 @@ function general(currentItem, formerItem, nextItem) {
         complete = "yes";
         if (complete === "yes") {
           resolve(console.log("resolved"));
+          anExercise++;
           clearInterval(ID);
         } else reject("not resolved");
         sec = 0;
       }
       // rate of sec change
       if (sec > 4) {
-
-        cycle.style.transitionProperty = 'font-size, height, border, grid-template-columns'
-        cycle.style.transitionDuration = '1s'
-        cycle.style.fontSize = '5.5rem'
-        cycle.style.height = '6rem'
-        cycle.style.border = '2px solid brown'
-        cycle.style.gridTemplateColumns = '5.5rem'
-        cycle.transitTimingFunction = 'ease-in'
+        cycle.style.transitionProperty =
+          "font-size, height, border, grid-template-columns";
+        cycle.style.transitionDuration = "1s";
+        cycle.style.fontSize = "5.5rem";
+        cycle.style.height = "6rem";
+        cycle.style.border = "2px solid brown";
+        cycle.style.gridTemplateColumns = "5.5rem";
+        cycle.transitTimingFunction = "ease-in";
         // cycle.style.transitionDelay = '.5s'
 
-
-        rounder.style.transitionProperty = 'font-size, height, border-right, border-top, border-bottom, flex'
-        rounder.style.transitionDuration = '.9s, .6s, .6s, .6s, .6s, .8s'
+        rounder.style.transitionProperty =
+          "font-size, height, border-right, border-top, border-bottom, flex";
+        rounder.style.transitionDuration = ".9s, .6s, .6s, .6s, .6s, .8s";
         // rounder.style.transitionDuration = '.5s'
-        rounder.style.transitTimingFunction = 'ease-in'
+        rounder.style.transitTimingFunction = "ease-in";
 
-        rounder.style.fontSize = '3rem'
-        rounder.style.height = '5rem'
-        rounder.style.borderRight = '2px solid brown'
-        rounder.style.borderTop = '2px solid brown'
-        rounder.style.borderBottom = '2px solid brown'
-        rounder.style.backgroundColor = 'goldenrod'
-        rounder.style.flex = '0 1 55%'
+        rounder.style.fontSize = "3rem";
+        rounder.style.height = "5rem";
+        rounder.style.borderRight = "2px solid brown";
+        rounder.style.borderTop = "2px solid brown";
+        rounder.style.borderBottom = "2px solid brown";
+        rounder.style.backgroundColor = "goldenrod";
+        rounder.style.flex = "0 1 55%";
         // rounder.style.transitionDelay = '.1s'
 
-        dashboard.style.transitionProperty = 'flex'
-        dashboard.style.transitionDuration = '1.2s'
+        dashboard.style.transitionProperty = "flex";
+        dashboard.style.transitionDuration = "1.2s";
         // dashboard.transitTimingFunction = 'ease-in'
-        dashboard.style.flex = '0 1 60%'
+        dashboard.style.flex = "0 1 60%";
         // dashboard.style.transitionDelay = '.2s'
       }
     }, 1000);
@@ -199,8 +216,8 @@ pauser.addEventListener("click", () => {
   //handler invoke the reality function just once
   let { runFunc, pause } = controls;
   if (runFunc === true) {
-    console.log(pause)
-    console.log(runFunc)
+    console.log(pause);
+    console.log(runFunc);
     pauser.innerHTML = `<i class="fa-solid fa-pause"/>`;
     reality();
   } else if (controls.pause === false) {
@@ -214,16 +231,16 @@ pauser.addEventListener("click", () => {
   }
 });
 
-roundUp.addEventListener('click', () => {
+roundUp.addEventListener("click", () => {
   if (round > 4) {
-    round = 0
-    rounder.innerHTML = `Round ${round}`
+    round = 0;
+    rounder.innerHTML = `Round ${round}`;
   }
   if (round < 6) {
-    round++
-    rounder.innerHTML = `Round ${round}`
+    round++;
+    rounder.innerHTML = `Round ${round}`;
   }
-})
+});
 
 let reducer;
 let upInter = (e) => {
@@ -239,7 +256,7 @@ let downInter = (e) => {
     if (sec < 1) sec = 0;
   }, 300);
   //My laptop screen does not notice when I remove my finger.
-  // As a reslut, it doesn't fire the pointerup event handler which
+  // As a reslut, it doesn't fire the pointerUp event handler which
   // leads me to create this setTimeout function to end after 3 seconds
   // the interval that is fired during the pointerdown event.
   setTimeout(() => {
@@ -272,7 +289,7 @@ rewind.addEventListener("click", decreaser);
 
 rewind.addEventListener("pointerup", upInter);
 
-foward.addEventListener('click', increaser)
+foward.addEventListener("click", increaser);
 
 let reality = async () => {
   controls.runFunc = false;
@@ -295,21 +312,19 @@ let reality = async () => {
 
     if (round === 4) {
       go.innerHTML = `the home stretch!`;
-      RoundInspector = 10000
-
+      RoundInspector = 10000;
     } else if (round === 5) {
-      RoundInspector = 15000
+      RoundInspector = 15000;
 
-      go.innerHTML = 'one more round!'
-    }
-    else {
-      RoundInspector = 3000
+      go.innerHTML = "one more round!";
+    } else {
+      RoundInspector = 3000;
       go.innerHTML = `Well Done!`;
     }
     // if five sets have not been completed, keep repeating the sets
     //by invoking the reality function
     if (round <= 5) {
-      rounder.innerHTML = `Round ${round}`
+      rounder.innerHTML = `Round ${round}`;
       reality();
       // round++
     } else {
@@ -317,11 +332,12 @@ let reality = async () => {
       // and shutdown the programm
       go.innerHTML = "Congrats!";
       round = 1;
-      rounder.innerHTML = `Round ${round}`
-      sec = 0
+      rounder.innerHTML = `Round ${round}`;
+      sec = 0;
       cycle.innerHTML = sec;
       pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
       controls.runFunc = true;
+      saveWork();
     }
   }
 };
