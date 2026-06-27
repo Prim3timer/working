@@ -51,8 +51,9 @@ const saveWork = async () => {
     duration,
     round,
     oneExercise: anExercise,
+    date: new Date(),
   };
-  const response = await fetch("https://localhost:5000/workout", {
+  const response = await fetch("http://localhost:5000/workout", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
