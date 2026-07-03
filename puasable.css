@@ -219,11 +219,11 @@
 
 
  #exercise-cont {
-   height: 4rem;
+   height: 5rem;
    display: flex;
    flex-wrap: wrap;
    justify-content: center;
-   align-items: center;
+   align-items: flex-start;
    text-align: center;
    column-gap: .5rem;
    row-gap: 1rem;
@@ -233,7 +233,7 @@
 
  #exercise-cont>* {
    flex: 0 1 18%;
-   height: 75%;
+   height: 50px;
  }
 
  button {
