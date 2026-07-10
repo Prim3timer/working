@@ -19,9 +19,16 @@ let squat = excercises[1];
 let running = excercises[2];
 let plank = excercises[3];
 let jackKnife = excercises[4];
+
+const body = document.getElementById("mat");
+
 const saver = document.getElementsByClassName("saver")[0];
 
 let exCont = document.getElementById("exercise-cont");
+const threeBars = document.getElementsByClassName("navbar")[0];
+const links = document.getElementsByClassName("nav-links")[0];
+const doneSettings = document.getElementsByClassName("done-settings")[0];
+let begin;
 
 const go = document.getElementById("go");
 // the element that contains the  the element that contains the timer  (seconds)
@@ -47,6 +54,11 @@ let warning = 0;
 }
 
 const saveWork = async () => {
+  const end = Date.now();
+  let duration = Math.floor((end - begin) / 1000);
+  console.log(begin);
+  console.log(duration);
+
   const workDets = {
     duration,
     round,
@@ -69,7 +81,6 @@ saver.addEventListener("click", saveWork);
 let i = 0;
 let sec = 0;
 cycle.innerHTML = sec;
-let duration = 0;
 // occassional content of the the set element
 let round = 1;
 let anExercise = 0;
@@ -92,9 +103,6 @@ for (let i = 0; i < excercises.length; i++) {
 }
 let RoundInspector = 3000;
 function general(currentItem, formerItem, nextItem) {
-  setInterval(() => {
-    duration++;
-  }, 1000);
   let { complete } = controls;
   complete = "no";
   return new Promise((resolve, reject) => {
@@ -198,7 +206,6 @@ function general(currentItem, formerItem, nextItem) {
         rounder.style.borderRight = "2px solid brown";
         rounder.style.borderTop = "2px solid brown";
         rounder.style.borderBottom = "2px solid brown";
-        rounder.style.backgroundColor = "goldenrod";
         rounder.style.flex = "0 1 55%";
         // rounder.style.transitionDelay = '.1s'
 
@@ -217,6 +224,8 @@ pauser.addEventListener("click", () => {
   //handler invoke the reality function just once
   let { runFunc, pause } = controls;
   if (runFunc === true) {
+    begin = Date.now();
+    console.log(begin);
     console.log(pause);
     console.log(runFunc);
     pauser.innerHTML = `<i class="fa-solid fa-pause"/>`;
@@ -265,7 +274,7 @@ let downInter = (e) => {
       controls.rewind = false;
       clearInterval(reducer);
     }
-  }, 3000);
+  }, 1000);
 };
 
 let decreaser = (e) => {
@@ -332,7 +341,7 @@ let reality = async () => {
       // otherwise change the content of the set element to 'congrats'
       // and shutdown the programm
       go.innerHTML = "Congrats!";
-      round = 1;
+      round = 5;
       rounder.innerHTML = `Round ${round}`;
       sec = 0;
       cycle.innerHTML = sec;
