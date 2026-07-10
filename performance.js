@@ -29,7 +29,7 @@ const deleteEntry = async (id) => {
 };
 
 const getData = async () => {
-  const response = await fetch("http://localhost:5000/workout", {
+  const response = await fetch("https://localhost:5000/workout", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
