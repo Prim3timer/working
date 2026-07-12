@@ -55,7 +55,7 @@ const getData = async () => {
     }`;
     console.log(roundCount);
     const endurance = document.createElement("td");
-    endurance.innerHTML = `${perfy.round}`;
+    endurance.innerHTML = `${perfy.oneExercise / 5}`;
     const exCount = document.createElement("td");
     exCount.innerHTML = `${perfy.oneExercise}`;
     const marker = document.createElement("td");
