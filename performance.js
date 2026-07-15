@@ -2,6 +2,31 @@ const performance = document.getElementsByClassName("performance")[0];
 performance.style.display = "flex";
 performance.style.rowGap = "2rem";
 
+let verifyWindow = document.createElement("div");
+verifyWindow.className = "no-verify-window";
+verifyWindow.style.padding = ".5rem";
+verifyWindow.style.display = "flex";
+verifyWindow.style.flexDirection = "column";
+verifyWindow.style.rowGap = "1rem";
+verifyWindow.style.alignItems = "center";
+verifyWindow.style.backgroundColor = "lavender";
+verifyWindow.style.position = "absolute";
+let question = document.createElement("p");
+question.innerHTML = "Are you sure you want to delete this entry";
+
+let verifyWindowButtonCont = document.createElement("article");
+// verifyWindow.append(verifyWindowButtonCont);
+let itemId = "";
+// verifyWindowButtonCont.className = "verify-button-cont";
+let noButton = document.createElement("button");
+noButton.innerHTML = "No";
+let yesButton = document.createElement("button");
+yesButton.innerHTML = "Yes";
+verifyWindowButtonCont.append(noButton, yesButton);
+verifyWindow.append(question, verifyWindowButtonCont);
+
+performance.appendChild(verifyWindow);
+
 const table = document.createElement("table");
 const tableBody = document.createElement("tbody");
 const headerRow = document.createElement("tr");
@@ -11,6 +36,7 @@ const exHeader = document.createElement("th");
 const markHeader = document.createElement("th");
 const dateHeader = document.createElement("th");
 // const delet = document.createElement("th");
+
 dHeader.innerHTML = "duraton (min:sec)";
 rHeader.innerHTML = "rounds";
 exHeader.innerHTML = "exercises";
@@ -20,12 +46,18 @@ table.appendChild(tableBody);
 tableBody.appendChild(headerRow);
 headerRow.append(dHeader, rHeader, exHeader, markHeader, dateHeader);
 
+noButton.addEventListener("click", () => {
+  verifyWindow.className = "no-verify-window";
+});
+
+verifyWindowButtonCont.className = "verify-window-cont";
+
 const deleteEntry = async (id) => {
-  console.log("wdvsaasf");
   console.log(id);
-  // const response = await fetch("http://localhost:5000/workout", {
-  //   method: "DELETE",
-  // });
+  const response = await fetch(`http://localhost:5000/workout/${id}`, {
+    method: "DELETE",
+  });
+  verifyWindow.className = "no-verify-window";
 };
 
 const getData = async () => {
@@ -35,6 +67,7 @@ const getData = async () => {
       "Content-Type": "application/json",
     },
   });
+  yesButton.addEventListener("click", () => deleteEntry(itemId));
   let perfData = await response.json();
   for (let i = 0; i < perfData.length; i++) {
     const dets = document.createElement("tr");
@@ -42,7 +75,7 @@ const getData = async () => {
     const perfy = perfData[i];
 
     const roundCount = document.createElement("td");
-    roundCount.innerHTML = `${
+    roundCount.innerHTML = `${1 + i}. ${
       perfy.duration < 10
         ? `0:0${perfy.duration % 60}`
         : perfy.duration < 60
@@ -71,24 +104,21 @@ const getData = async () => {
       minute: "numeric",
       second: "numeric",
     });
-    // const del = document.createElement("td");
-    // const trash = <i class="fa-solid fa-trash" />;
+
+    const removeVerifier = () => {
+      verifyWindow.className("veriy-window");
+    };
+
     del.innerHTML = "delete";
-    del.addEventListener("click", async () => {
-      // const response = await fetch(
-      //   `http://localhost:5000/workout/${perfy._id}`,
-      //   {
-      //     method: "DELETE",
-      //   },
-      // );
-      const response2 = await fetch("http://localhost:5000/workout", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      perfData = await response2.json();
-    });
+
+    const getId = async (id) => {
+      itemId = id;
+      console.log(itemId);
+      verifyWindow.className = "veriy-window";
+      verifyWindowButtonCont.className = "verify-button-cont";
+    };
+
+    del.addEventListener("click", () => getId(perfy._id));
     dets.append(roundCount, endurance, exCount, marker, date, del);
     console.log(dets);
 
