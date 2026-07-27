@@ -141,8 +141,10 @@ const getData = async () => {
     const removeVerifier = () => {
       verifyWindow.className("veriy-window");
     };
+    const icon = document.createElement("i");
+    icon.classList.add("fa-solid", "fa-trash");
 
-    del.innerHTML = "delete";
+    del.appendChild(icon);
 
     const getId = async (id) => {
       itemId = id;

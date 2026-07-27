@@ -319,6 +319,13 @@ align-items: ce
  .login-form {
   display: flex;
   flex-direction: column;
+}
+
+.login-form input {
+   width: 60vw;
+   max-width: 800px;
+   padding: .2rem;
+
  }
 
  table {
