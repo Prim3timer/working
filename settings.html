@@ -8,34 +8,43 @@
 </head>
 <body>
          <div class="navbar">
-   <a href="settings.html"> <p>settings</p></a>
-   <a href="login.html"> <p>logout</p></a>
-   <a href="performance.html"> <p>performance</p></a>
-   <a href="index.html"> <p>exercise</p></a>
+   <a href="settings.html"> settings</a>
+   <a href="performance.html">performance</a>
+   <a href="indeces.html"> exercise</a>
+   <a href="/users.html">users</a>
+   <a href="index.html" class="set-logout"> logout</a>
   </div>
+    <p class="greeting"></p>
  <div href="settings.html" class="settings">
     <section>
 
         <h3>settings</h3>
-        <form class="settings-form">
-            <input type="text" placeholder="first" class="exes">
-            <input type="text" placeholder="second" class="exes">
-            <input type="text" placeholder="third" class="exes"> 
-            <input type="text" placeholder="fourth" class="exes">
-            <input type="text" placeholder="fifth" class="exes">
+        <p>Please populate the input fields with your exercises of choice</p>
+        <form class="exercise-settings-form">   
+            <input type="text" placeholder="enter exercise" class="exes">
 
-            <label>Interval b/w each exercise
-            </br>
+            <input type="text" placeholder="enter exercise" class="exes">
+            <input type="text" placeholder="enter exercise" class="exes"> 
+    
+            <input type="text" placeholder="enter exercise (optional)" class="exes"/>
+            <input type="text" placeholder="enter exercise (optional)" class="exes"/>
+            <label>interval b/w exercises
+                <br>
             <input type="text" class="interval">
             </label>
             <label>exercises duration
-            </br>   
+            <br>   
             <input type="text" class="duration">
             </label>
+            <label>number of rounds/sets
+            <br>   
+            <input type="text" class="rounds">
+            </label>
             
+            <button class="done-settings">done</button>
         </form>
-        <button class="done-settings">done</button>
     </section>
+
 </div>
 <script src="settings.js" type="module"></script>
 </body>

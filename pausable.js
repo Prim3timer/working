@@ -3,6 +3,64 @@ let pauser = document.getElementById("halter");
 let rewind = document.getElementById("backer");
 let foward = document.getElementById("foward");
 let roundUp = document.getElementById("round-up");
+const greeting = document.getElementsByClassName("greeting")[0];
+
+const userId = localStorage.getItem("workoutUserId");
+let jogUp = document.getElementById("jog-up");
+const excercises = document.getElementsByClassName("exercise");
+
+let first = excercises[0];
+let second = excercises[1];
+let third = excercises[2];
+let fourth = excercises[3];
+let fifth = excercises[4];
+
+let rounder = document.getElementsByClassName("indicator")[1];
+// const getAuser = async () => {
+// const userId = localStorage.getItem("workoutUserId");
+let round = 1;
+const response = await fetch("http://localhost:5000/workout-users", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+const users = await response.json();
+const user = users.find((user) => user._id === userId);
+console.log(user);
+greeting.innerHTML = `welcome, ${user.username}`;
+const { exercise, interval, exercisesDuration, numberOfRounds } =
+  user.workSettings;
+// first.innerHTML = exercise[0];
+// second.innerHTML = exercise[1];
+// third.innerHTML = exercise[2];
+// fourth.innerHTML = exercise[3];
+// fifth.innerHTML = exercise[4];
+rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
+console.log(numberOfRounds);
+console.log(exercise);
+let exCont = document.getElementById("exercise-cont");
+const elements = exercise.map((element, i) => {
+  const newP = document.createElement("p");
+  newP.className = "exercise";
+  newP.innerHTML = element;
+  exCont.appendChild(newP);
+  return newP;
+});
+const noExAlertElement = document.createElement("p");
+noExAlertElement.style.minWidth = "80%";
+noExAlertElement.innerHTML =
+  "you have not chosen any exercises yet. Head to Settings to make entry";
+if (exCont.children.length === 0) {
+  exCont.appendChild(noExAlertElement);
+}
+
+console.log(elements);
+
+let workerSettings = user.workSettings;
+// };
+
+// getAuser();
 
 const signature = document.getElementsByClassName("copy-right")[0];
 const dashboard = document.getElementsByClassName("indicator-container")[0];
@@ -12,19 +70,10 @@ const current = new Date().getFullYear();
 signature.innerText = ` ${current} Amalu Productions`;
 console.log(signature);
 
-let jogUp = document.getElementById("jog-up");
-const excercises = document.getElementsByClassName("exercise");
-let pressUp = excercises[0];
-let squat = excercises[1];
-let running = excercises[2];
-let plank = excercises[3];
-let jackKnife = excercises[4];
-
 const body = document.getElementById("mat");
 
 const saver = document.getElementsByClassName("saver")[0];
 
-let exCont = document.getElementById("exercise-cont");
 const threeBars = document.getElementsByClassName("navbar")[0];
 const links = document.getElementsByClassName("nav-links")[0];
 const doneSettings = document.getElementsByClassName("done-settings")[0];
@@ -38,7 +87,6 @@ let cycle = document.getElementsByClassName("indicator")[0];
 
 // cycle.style.width = '4rem'
 // cycle.style.borderRight = '5px solid goldenrod'
-let rounder = document.getElementsByClassName("indicator")[1];
 // let rounder = document.getElementsByClassName('indicator')
 // cycle.style.borderRight = '5px solid goldenrod'
 
@@ -59,13 +107,17 @@ const saveWork = async () => {
   console.log(begin);
   console.log(duration);
 
+  const { exercise, numberOfRounds } = user.workSettings;
   const workDets = {
     duration,
     round,
     oneExercise: anExercise,
     date: new Date(),
+    userId,
+    mark: (anExercise / (exercise.length * numberOfRounds)) * 100,
   };
-  const response = await fetch("http://localhost:5000/workout", {
+  console.log(workDets);
+  const response = await fetch("http://localhost:5000/performance", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -82,10 +134,8 @@ let i = 0;
 let sec = 0;
 cycle.innerHTML = sec;
 // occassional content of the the set element
-let round = 1;
-let anExercise = 0;
 
-rounder.innerHTML = `Round ${round}`;
+let anExercise = 0;
 
 let ready = false;
 let pIndex = 0;
@@ -107,7 +157,7 @@ function general(currentItem, formerItem, nextItem) {
   complete = "no";
   return new Promise((resolve, reject) => {
     // the previous excersice is formerItem
-    formerItem.style.transform = "scale(1)";
+    formerItem.style.transform = "scale(1 )";
     formerItem.style.backgroundColor = "darkorange";
     formerItem.style.color = "yellow";
     formerItem.style.boxShadow = "0em 0em 0em";
@@ -129,11 +179,11 @@ function general(currentItem, formerItem, nextItem) {
       go.style.margin = "1rem 0";
       go.innerHTML = `Let's Work!`;
     }, RoundInspector);
-    // transfrorm the current excercise element after 16 seconds
-    // an interval to check for when sec exceeds 14
+    // transfrorm the current excercise element after interval elapses
+    // an interval to check for when sec exceeds interval
 
     ID = window.setInterval(() => {
-      if (sec > 14) {
+      if (sec > workerSettings.interval) {
         // the current excercise is currentItem
         currentItem.style.position = "relative";
         // It is used to make the current excersise appear above
@@ -168,13 +218,17 @@ function general(currentItem, formerItem, nextItem) {
       }
 
       // giving the athlete notice to start preparing for the next excercise
-      if ((sec > 12 && sec <= 15) || (sec > 32 && sec <= 35)) {
+      if (
+        (sec > workerSettings.interval - 3 && sec <= workerSettings.interval) ||
+        (sec > workerSettings.exercisesDuration + workerSettings.interval - 3 &&
+          sec <= workerSettings.exercisesDuration + workerSettings.interval - 3)
+      ) {
         cycle.style.color = "darkorange";
         //cycle element's color goes back to normal after warning.
       } else cycle.style.color = "purple";
 
       // if sec = 35 and controls.complete = 'yes', resolve the promise
-      if (sec > 35) {
+      if (sec > workerSettings.exercisesDuration + workerSettings.interval) {
         complete = "yes";
         if (complete === "yes") {
           resolve(console.log("resolved"));
@@ -244,11 +298,11 @@ pauser.addEventListener("click", () => {
 roundUp.addEventListener("click", () => {
   if (round > 4) {
     round = 0;
-    rounder.innerHTML = `Round ${round}`;
+    rounder.innerHTML = `R ${round} of ${workerSettings.numberOfRounds}`;
   }
   if (round < 6) {
     round++;
-    rounder.innerHTML = `Round ${round}`;
+    rounder.innerHTML = `R ${round} of ${workerSettings.numberOfRounds}`;
   }
 });
 
@@ -302,17 +356,19 @@ rewind.addEventListener("pointerup", upInter);
 foward.addEventListener("click", increaser);
 
 let reality = async () => {
+  console.log(elements);
   controls.runFunc = false;
   try {
-    await general(pressUp, jackKnife, squat);
-
-    await general(squat, pressUp, running);
-
-    await general(running, squat, plank);
-
-    await general(plank, running, jackKnife);
-
-    await general(jackKnife, plank, pressUp);
+    for (let i = 0; i < elements.length; i++) {
+      console.log(i);
+      // looping through the elements in the elements array
+      await general(
+        elements[i],
+        // if i = 0 subtract array length from index else subtract 1 from index``
+        elements[i == 0 ? i + elements.length - 1 : i - 1],
+        elements[i + 1],
+      );
+    }
   } catch (error) {
     console.log(error + " at all");
   } finally {
@@ -320,7 +376,7 @@ let reality = async () => {
     round++;
     // temporarily change the content of the set element to 'well done'
 
-    if (round === 4) {
+    if (round == workerSettings.numberOfRounds - 1) {
       go.innerHTML = `the home stretch!`;
       RoundInspector = 10000;
     } else if (round === 5) {
@@ -333,16 +389,17 @@ let reality = async () => {
     }
     // if five sets have not been completed, keep repeating the sets
     //by invoking the reality function
-    if (round <= 5) {
-      rounder.innerHTML = `Round ${round}`;
+    console.log(workerSettings);
+    if (round <= workerSettings.numberOfRounds) {
+      rounder.innerHTML = `R ${round} of ${workerSettings.numberOfRounds}`;
       reality();
       // round++
     } else {
       // otherwise change the content of the set element to 'congrats'
       // and shutdown the programm
       go.innerHTML = "Congrats!";
-      round = 5;
-      rounder.innerHTML = `Round ${round}`;
+      round = workerSettings.numberOfRounds;
+      rounder.innerHTML = `R ${round} of ${workerSettings.numberOfRounds}`;
       sec = 0;
       cycle.innerHTML = sec;
       pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;

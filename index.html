@@ -1,71 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aerobics</title>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <link rel="stylesheet" href="puasable.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="puasable.css">
 </head>
-
-<body id="mat">
-  <div class="navbar">
-   <a href="settings.html"> <p>settings</p></a>
-   <a href="login.html"> <p>logout</p></a>
-   <a href="performance.html"> <p>performance</p></a>
-   <a href="index.html"> <p>exercise</p></a>
+<body>  
+            <div class="navbar">
+                <h2>Aerobics Lab</h2>
+   <!-- <a href="/settings.html"> <p>settings</p></a>
+   <a href="/login.html"> <p>logout</p></a>
+   <a href="/performance.html"> <p>performance</p></a>
+      <a href="/index.html"> <p>exercise</p></a>
+      <a href="/activity.html"> <p>activity</p></a> -->
   </div>
-  <div id="fer">
-    <div id="buttons">
-      <button id="backer"><i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i></button>
-      <button id="halter"><i class="fa-solid fa-play"></i></button>
-      <!-- <button id="foward"><i class="fa-solid fa-forward-fast"></i></button> -->
-      <button id="foward"> <i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i></button>
-      <button id="round-up">Round <i class="fa-solid fa-forward-fast"></i></button>
-    </div>
-
-    <div id="go-container">
-      <p id="go"></p>
-      <!-- <button  class="saver">Save</button> -->
-        <button class="saver"><i class="fa-solid fa-save"></i></button>
-
-    </div>
-    <!-- <i class="p-icon--plus"></i> -->
-    <section id="status-container">
-      <p id="jog-up">Jog Up</p>
-
-      <div class="indicator-container">
-
-        <p id="clock" class="indicator"></p>
-        <p id="round" class="indicator"></p>
-      </div>
-    </section>
-    <section class="right-container">
-      <span>&copy;</span><span class="copy-right"></span>
-    </section>
-
-    <article id="exercise-cont">
-      <p class="exercise">Press</p>
-      <p class="exercise">Squat</p>
-      <p class="exercise">Climb</p>
-      <p class="exercise">Plank</p>
-      <p class="exercise">Sprint</p>
-    </article>
-
-
-
-  </div>
-
-  </div>
-  <!-- <span id="set"></span> -->
-  <script src="pausable.js" type="module"></script>
+ <div href="login.html" class="login">
+    <h3>login</h3>
+    <form class="login-form">
+        <label for="username">username
+        </br>
+        <input type="text" id="username">
+        </label>
+        <label for="password">password
+        </br>
+        <input type="password" id="password">
+        </label>    
+        <button class="sign-up-anchor"  >login</button>
+    </form>
+    <section class="login-links">
+    <a href="forgot.html">forgot password</a>
+<p>need an accout?</p>
+<a href="register.html">sign up</a>
+</section>
+</div>  
+<script  src="login.js"/>   
 </body>
-
 </html>

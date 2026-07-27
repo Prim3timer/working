@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="puasable.css"/>
+</head>
+<body>
+     <div class="navbar">
+        <a href="/settings.html">settings</a>
+         <a href="/performance.html"> <p>performance</p></a>
+         <a href="/indeces.html"> <p>exercise</p></a>
+         <a href="/users.html"> <p>users</p></a>
+         <a href="/index.html"> <p>logout</p></a>
+  </div>
+    <div class="user-setting">
+        <h3>User Settings</h3>
+        
+        <form class="user-setting-form">
+            <label>
+                username
+                <br>
+                <input class="user-setting-name"/>
+            </label>
+            <label>
+                email
+                <br>
+                <input class="user-setting-email"/>
+            </label>
+            <br>
+            <label>
+                verified
+                <br>
+                <input type="checkbox" class="user-setting-verified"/>
+            </label>
+            
+        </form>
+        <br>
+        <article class="user-setting-buttons">
+           <button class="user-setting-saver"><i class="fa-solid fa-save"></i></button>
+           <button class="user-setting-delete"><i class="fa-solid fa-trash"></i></button>
+           </article>
+    </div>
+    
+    <script src="userSettings.js"/>
+</body>
+</html>

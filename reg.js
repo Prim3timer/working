@@ -5,36 +5,48 @@ console.log(linker);
 console.log(regButton);
 console.log(inputs);
 
-const sendEmail = async () => {
-  const templateParams = {
-    name: "John Doe",
-    message: "Hello from Vanilla JS!",
-  };
-
-  // 'emailjs' is globally available from the CDN
-  emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams).then(
-    (response) => {
-      console.log("SUCCESS!", response.status, response.text);
-    },
-    (error) => {
-      console.error("FAILED...", error);
-    },
-  );
-};
+const now = Date.now();
+const serviceId = "service_d1lfnf9";
+const biz = "aerobics lab";
+const templateId = "template_2ho80e4";
+const publicKey = "f5fHgbJA_Fp-FHsdN";
+const rightNow = new Date();
 
 const handleSubmit = async () => {
+  console.log("asongo yeye!");
   const email = inputs[1].value;
-  linker.innerHTML = `A link has been sent to ${email}. Head over there to verify your email`;
   const username = inputs[0].value;
   const password = inputs[2].value;
   const confirmPassword = inputs[3].value;
+  const trimmedUsername = username.trim();
+  const trimmedPassword = password.trim();
+  const trimmedEmail = email.trim().toLowerCase();
   const credential = {
-    username,
-    email,
-    password,
+    username: trimmedUsername,
+    email: trimmedEmail,
+    password: trimmedPassword,
+    name: username,
+    joined: rightNow,
+    workSettings: {},
   };
+  console.log(credential);
   try {
+    const templateParams = {
+      name: username,
+      email: trimmedEmail,
+      biz,
+      link: `http://${window.location.host}/index.html?email=${trimmedEmail.toLowerCase()}&elapsed=${now}`,
+    };
+
+    const mailSent = await emailjs.send(
+      serviceId,
+      templateId,
+      templateParams,
+      publicKey,
+    );
+
     if (password === confirmPassword) {
+      linker.innerHTML = `A link has been sent to ${trimmedEmail}. Head over there to verify your email`;
       const response = await fetch("http://localhost:5000/workout-register", {
         method: "POST",
         headers: {
@@ -47,7 +59,7 @@ const handleSubmit = async () => {
       console.log("password do not match");
     }
   } catch (error) {
-    console.log(errorr.message);
+    console.log(error.message);
   }
 };
 regButton.addEventListener("click", handleSubmit);
