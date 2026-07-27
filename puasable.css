@@ -169,7 +169,6 @@ align-items: ce
 
 .performance, .settings, .login, .activity, .register, .forgot, .reset-password, .user-setting {
   padding-top: 3rem;
-   /* background-color: red; */
   display: flex;
   /* justify-content: center; */
   width: 100vw;
@@ -285,6 +284,7 @@ align-items: ce
   display: flex;
   flex-direction: column;
   row-gap: .5rem;
+  align-items: center;
 }
 .sign-up-anchor {
   text-align: center;
@@ -301,6 +301,7 @@ align-items: ce
 
  label {
   text-align: center;
+  font-weight: bold;
  }
 
  .login {
@@ -323,7 +324,7 @@ align-items: ce
 
 .login-form input {
    width: 60vw;
-   max-width: 800px;
+   max-width: 300px !important;
    padding: .2rem;
 
  }
