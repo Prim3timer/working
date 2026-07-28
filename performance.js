@@ -74,7 +74,8 @@ verifyWindowButtonCont.className = "verify-window-cont";
 const deleteEntry = async (id) => {
   console.log(id);
   try {
-    const response = await fetch(`${myUrl}/performance/${id}`, {
+    const response = await (`${myUrl}/performance/${id}`,
+    {
       method: "DELETE",
     });
     if (response) {
@@ -102,7 +103,7 @@ const getData = async () => {
   const users = await response2.json();
   const user = users.find((user) => user._id == userId);
   console.log(user?.roles);
-  const foundUserRoles = "hello";
+  const foundUserRoles = Object.keys(user.roles);
   if (!foundUserRoles.includes("Admin")) {
     userAnchor.href = "";
   } else {
