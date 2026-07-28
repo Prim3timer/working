@@ -5,9 +5,9 @@ const password = document.getElementById("password");
 const mainElement = document.getElementsByClassName("login")[0];
 const formElement = document.getElementsByClassName("login-form")[0];
 
-const myUrl = window.location.search;
-console.log(myUrl);
-const urlParams = new URLSearchParams(myUrl);
+const verifyUrl = window.location.search;
+console.log(verifyUrl);
+const urlParams = new URLSearchParams(verifyUrl);
 const email = urlParams.get("email");
 const issuedTime = urlParams.get("elapsed");
 console.log(email, issuedTime);
