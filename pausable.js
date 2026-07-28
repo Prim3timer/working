@@ -1,9 +1,11 @@
+import { myUrl } from "/myUrl.js";
 let clicker = document.getElementById("halter");
 let pauser = document.getElementById("halter");
 let rewind = document.getElementById("backer");
 let foward = document.getElementById("foward");
 let roundUp = document.getElementById("round-up");
 const greeting = document.getElementsByClassName("greeting")[0];
+const userAnchor = document.getElementsByClassName("users-anchor")[0];
 
 const userId = localStorage.getItem("workoutUserId");
 let jogUp = document.getElementById("jog-up");
@@ -19,7 +21,7 @@ let rounder = document.getElementsByClassName("indicator")[1];
 // const getAuser = async () => {
 // const userId = localStorage.getItem("workoutUserId");
 let round = 1;
-const response = await fetch("http://localhost:5000/workout-users", {
+const response = await fetch(`${myUrl}/workout-users`, {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -27,6 +29,12 @@ const response = await fetch("http://localhost:5000/workout-users", {
 });
 const users = await response.json();
 const user = users.find((user) => user._id === userId);
+const foundUserRoles = Object.keys(user?.roles);
+if (!foundUserRoles.includes("Admin")) {
+  userAnchor.href = "";
+} else {
+  userAnchor.href = "users.html";
+}
 console.log(user);
 greeting.innerHTML = `welcome, ${user.username}`;
 const { exercise, interval, exercisesDuration, numberOfRounds } =
@@ -117,7 +125,7 @@ const saveWork = async () => {
     mark: (anExercise / (exercise.length * numberOfRounds)) * 100,
   };
   console.log(workDets);
-  const response = await fetch("http://localhost:5000/performance", {
+  const response = await fetch(`${myUrl}/performance`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -342,7 +350,8 @@ let decreaser = (e) => {
 let increaser = (e) => {
   sec += 1;
   setInterval(() => {
-    if (sec > 34) sec = 35;
+    if (sec > workerSettings.exercisesDuration + workerSettings.interval - 1)
+      sec = workerSettings.exercisesDuration + workerSettings.interval;
     cycle.innerHTML = sec;
   }, 10);
 };

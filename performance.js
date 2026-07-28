@@ -1,6 +1,10 @@
+import { myUrl } from "/myUrl.js";
+console.log(myUrl);
 const userId = localStorage.getItem("workoutUserId");
 // location.href = location.href;
 console.log(userId);
+
+const userAnchor = document.getElementsByClassName("users-anchor")[0];
 
 const logoutLink = document.getElementsByClassName("logout-link")[0];
 
@@ -26,7 +30,7 @@ verifyWindow.style.backgroundColor = "lavender";
 verifyWindow.style.position = "fixed";
 verifyWindow.style.top = "40%";
 let question = document.createElement("p");
-question.innerHTML = "Are you sure you want to delete this entry";
+question.innerHTML = "Are you sure you want to delete this entry?";
 
 let verifyWindowButtonCont = document.createElement("article");
 // verifyWindow.append(verifyWindowButtonCont);
@@ -70,26 +74,26 @@ verifyWindowButtonCont.className = "verify-window-cont";
 const deleteEntry = async (id) => {
   console.log(id);
   try {
-    const response = await fetch(`http://localhost:5000/performance/${id}`, {
+    const response = await fetch(`${myUrl}/performance/${id}`, {
       method: "DELETE",
     });
     if (response) {
       tableBody.textContent = "";
       getData();
+      verifyWindow.className = "no-verify-window";
     }
-    verifyWindow.className = "no-verify-window";
   } catch (error) {}
 };
 
 const getData = async () => {
   tableBody.appendChild(headerRow);
-  const response = await fetch("http://localhost:5000/performance", {
+  const response = await fetch(`${myUrl}/performance`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   });
-  const response2 = await fetch("http://localhost:5000/workout-users", {
+  const response2 = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -97,6 +101,13 @@ const getData = async () => {
   });
   const users = await response2.json();
   const user = users.find((user) => user._id === userId);
+  console.log(user?.roles);
+  const foundUserRoles = Object.keys(user?.roles);
+  if (!foundUserRoles.includes("Admin")) {
+    userAnchor.href = "";
+  } else {
+    userAnchor.href = "users.html";
+  }
   greeting.innerHTML = `welcome, ${user.username}`;
   yesButton.addEventListener("click", () => deleteEntry(itemId));
   let perfData = await response.json();
@@ -141,15 +152,16 @@ const getData = async () => {
     const removeVerifier = () => {
       verifyWindow.className("veriy-window");
     };
-    const icon = document.createElement("i");
-    icon.classList.add("fa-solid", "fa-trash");
+    // const icon = document.createElement("i");
+    // icon.classList.add("fa-solid", "fa-trash");
 
-    del.appendChild(icon);
+    // del.appendChild(icon);
+    del.innerHTML = "delete";
 
     const getId = async (id) => {
       itemId = id;
       console.log(itemId);
-      verifyWindow.className = "veriy-window";
+      verifyWindow.className = "verify-window";
       verifyWindowButtonCont.className = "verify-button-cont";
     };
 

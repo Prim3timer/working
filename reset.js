@@ -1,7 +1,8 @@
-console.log("reset");
-const myUrl = window.location.search;
-console.log(myUrl);
-const urlParams = new URLSearchParams(myUrl);
+import { myUrl } from "./myUrl.js";
+
+const resetUrl = window.location.search;
+console.log(resetUrl);
+const urlParams = new URLSearchParams(resetUrl);
 const email = urlParams.get("email");
 const issuedTime = urlParams.get("elapsed");
 console.log(email);
@@ -21,7 +22,7 @@ const getUserVerified = async (e) => {
   e.preventDefault();
   const passObj = { password: passwordElement.value };
   console.log(passObj);
-  const response = await fetch("http://localhost:5000/workout-users", {
+  const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -31,7 +32,7 @@ const getUserVerified = async (e) => {
   const foundUser = users.find((user) => user.email === email);
   console.log(users);
   const updateUser = await fetch(
-    `http://localhost:5000/workout-users/reset-password/${foundUser._id}`,
+    `${myUrl}/workout-users/reset-password/${foundUser._id}`,
     {
       method: "PATCH",
       headers: {

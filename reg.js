@@ -1,6 +1,8 @@
+import { myUrl } from "/myUrl.js";
 const inputs = document.getElementsByClassName("reg-input");
 const regButton = document.getElementsByClassName("sign-up-anchor")[0];
 const linker = document.getElementsByClassName("linker")[0];
+
 console.log(linker);
 console.log(regButton);
 console.log(inputs);
@@ -47,7 +49,7 @@ const handleSubmit = async () => {
 
     if (password === confirmPassword) {
       linker.innerHTML = `A link has been sent to ${trimmedEmail}. Head over there to verify your email`;
-      const response = await fetch("http://localhost:5000/workout-register", {
+      const response = await fetch(`${myUrl}/workout-register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,6 +1,8 @@
+import { myUrl } from "./myUrl.js";
 const doneSettings = document.getElementsByClassName("done-settings")[0];
 const doneSettings2 = document.getElementsByClassName("done-settings")[1];
 console.log(doneSettings2);
+const userAnchor = document.getElementsByClassName("users-anchor")[0];
 
 const exes = document.getElementsByClassName("exes");
 exes[1].value = "heeee";
@@ -30,7 +32,7 @@ console.log(setLogout);
 const populate = async () => {
   const userId = localStorage.getItem("workoutUserId");
   console.log(userId);
-  const response = await fetch(`http://localhost:5000/workout-users`, {
+  const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -49,6 +51,12 @@ const populate = async () => {
   interv.value = workSettings.interval || "";
   exDuration.value = workSettings.exercisesDuration || "";
   rounds.value = workSettings.numberOfRounds || "";
+  const foundUserRoles = Object.keys(user?.roles);
+  if (!foundUserRoles.includes("Admin")) {
+    userAnchor.href = "";
+  } else {
+    userAnchor.href = "users.html";
+  }
 };
 
 populate();
@@ -57,13 +65,14 @@ const editUser = async (e) => {
   e.preventDefault();
   const userId = localStorage.getItem("workoutUserId");
   console.log(userId);
-  const response = await fetch(`http://localhost:5000/workout-users`, {
+  const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   });
   const users = await response.json();
+
   const rawExercise = [
     exes[0].value,
     exes[1].value,
@@ -82,20 +91,19 @@ const editUser = async (e) => {
       exercisesDuration: exDuration.value,
       numberOfRounds: rounds.value,
     };
+    console.log(users);
     const user = users.find((user) => user._id === userId);
+
     if (filteredExercise.length < 3) {
       console.log("exercise list is too short. make it at least 2");
     } else {
-      const respone2 = await fetch(
-        `http://localhost:5000/workout-users/${userId}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(workerSettings),
+      const respone2 = await fetch(`${myUrl}/workout-users/${userId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(workerSettings),
+      });
       const reply = await respone2.json();
       console.log(reply);
     }

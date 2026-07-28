@@ -1,3 +1,4 @@
+import { myUrl } from "./myUrl.js";
 const email = document.getElementsByClassName("email-input")[0];
 const submitButton = document.getElementsByClassName("forgot-submit-button")[0];
 console.log(email);
@@ -12,7 +13,7 @@ const verifyEmail = async (e) => {
   const trimmedEmail = email.value.trim().toLowerCase();
   const now = Date.now();
   try {
-    const response = await fetch("http://localhost:5000/workout-users", {
+    const response = await fetch(`${myUrl}/workout-users`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

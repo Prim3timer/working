@@ -1,5 +1,6 @@
+import { myUrl } from "./myUrl.js";
 const getUsers = async () => {
-  const response = await fetch("http://localhost:5000/workout-users", {
+  const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -17,7 +18,7 @@ const getUsers = async () => {
   const joinedHeader = document.createElement("th");
   const settingsHeader = document.createElement("th");
   nameHeader.innerHTML = "name";
-  emailHeader.innerHTML = "email";
+  emailHeader.innerHTML = "roles";
   joinedHeader.innerHTML = "joined";
   settingsHeader.innerHTML = "settings";
   headerRow.append(nameHeader, emailHeader, joinedHeader, settingsHeader);
@@ -33,7 +34,7 @@ const getUsers = async () => {
     usersList.style.backgroundColor = `${i % 2 === 0 ? "white" : "palegreen"}`;
     const nameElement = document.createElement("td");
     const joined = document.createElement("td");
-    const performanceElement = document.createElement("td");
+    const rolesElement = document.createElement("td");
     const settingsElement = document.createElement("td");
     const settingsAnchor = document.createElement("a");
 
@@ -43,7 +44,7 @@ const getUsers = async () => {
     settingsElement.appendChild(settingsAnchor);
     for (let j = 0; j < 4; j++) {
       nameElement.innerHTML = users[i].username;
-      performanceElement.innerHTML = users[i].email;
+      rolesElement.innerHTML = Object.keys(users[i].roles).join(", ");
       joined.innerHTML = new Date(users[i].joined).toLocaleString("en-US", {
         day: "numeric",
         month: "long",
@@ -55,7 +56,7 @@ const getUsers = async () => {
     }
     settingsAnchor.innerHTML = "settings";
     settingsAnchor.href = "userSetting.html";
-    usersList.append(nameElement, performanceElement, joined, settingsElement);
+    usersList.append(nameElement, rolesElement, joined, settingsElement);
     table.append(usersList);
   }
   console.log(await users);

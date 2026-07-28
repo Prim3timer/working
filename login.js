@@ -1,3 +1,4 @@
+import { myUrl } from "./myUrl.js";
 const loginLink = document.getElementsByClassName("sign-up-anchor")[0];
 const username = document.getElementById("username");
 const password = document.getElementById("password");
@@ -12,7 +13,7 @@ const issuedTime = urlParams.get("elapsed");
 console.log(email, issuedTime);
 const getVerified = async () => {
   if (email) {
-    const response = await fetch("http://localhost:5000/workout-users", {
+    const response = await fetch(`${myUrl}/workout-users`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +23,7 @@ const getVerified = async () => {
     const foundUser = users.find((user) => user.email === email);
     if (foundUser) {
       const updateUser = await fetch(
-        `http://localhost:5000/workout-users/verification/${foundUser._id}`,
+        `${myUrl}/workout-users/verification/${foundUser._id}`,
         {
           method: "PATCH",
           headers: {
@@ -45,6 +46,7 @@ const getVerified = async () => {
 getVerified();
 const handleLogin = async (e) => {
   e.preventDefault();
+  console.log(password.value);
   const credential = {
     username: username.value,
     password: password.value,
