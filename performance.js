@@ -102,7 +102,7 @@ const getData = async () => {
   const users = await response2.json();
   const user = users.find((user) => user._id === userId);
   console.log(user?.roles);
-  const foundUserRoles = Object.keys(user?.roles);
+  const foundUserRoles = users && Object.keys(user?.roles);
   if (!foundUserRoles.includes("Admin")) {
     userAnchor.href = "";
   } else {
