@@ -66,11 +66,11 @@ const handleLogin = async (e) => {
   if (username.value === user.name) {
     console.log(window.location.href);
     localStorage.setItem("workoutUserId", user.id);
-    window.location.href = "indeces.html";
+    window.location.href = `${myUrl}/indeces.html`;
   } else {
     console.log("denied");
     console.log(loginLink.href);
-    window.location.href = "index.html";
+    window.location.href = `index.html`;
     console.log("not logged in");
   }
 };
