@@ -1,4 +1,4 @@
-import { myUrl } from "/myUrl.js";
+import { myUrl } from "./myUrl.js";
 console.log(myUrl);
 const userId = localStorage.getItem("workoutUserId");
 // location.href = location.href;
