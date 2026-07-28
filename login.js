@@ -66,7 +66,7 @@ const handleLogin = async (e) => {
   if (username.value === user.name) {
     console.log(window.location.href);
     localStorage.setItem("workoutUserId", user.id);
-    window.location.href = `${myUrl}/indeces.html`;
+    window.location.href = `${myUrl}/working/indeces.html`;
   } else {
     console.log("denied");
     console.log(loginLink.href);
