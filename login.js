@@ -52,7 +52,7 @@ const handleLogin = async (e) => {
     password: password.value,
   };
 
-  const response = await fetch("http://localhost:5000/workout-auth", {
+  const response = await fetch(`${myUrl}/workout-auth`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
