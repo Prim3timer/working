@@ -1,4 +1,4 @@
-import { myUrl } from "./myUrl.js";
+import { myUrl } from ".  /myUrl.js";
 let clicker = document.getElementById("halter");
 let pauser = document.getElementById("halter");
 let rewind = document.getElementById("backer");
