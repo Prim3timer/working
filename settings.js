@@ -94,7 +94,7 @@ const editUser = async (e) => {
     console.log(users);
     const user = users.find((user) => user._id === userId);
 
-    if (filteredExercise.length < 3) {
+    if (filteredExercise.length < 2) {
       console.log("exercise list is too short. make it at least 2");
     } else {
       const respone2 = await fetch(`${myUrl}/workout-users/${userId}`, {

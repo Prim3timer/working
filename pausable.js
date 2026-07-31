@@ -7,6 +7,11 @@ let roundUp = document.getElementById("round-up");
 const greeting = document.getElementsByClassName("greeting")[0];
 const userAnchor = document.getElementsByClassName("users-anchor")[0];
 
+const underBodyElementContainer = document.getElementById("fer");
+console.log(underBodyElementContainer);
+let alertWindow = document.createElement("p");
+alertWindow.style.fontSize = "1.5rem";
+
 const userId = localStorage.getItem("workoutUserId");
 let jogUp = document.getElementById("jog-up");
 const excercises = document.getElementsByClassName("exercise");
@@ -17,6 +22,19 @@ let third = excercises[2];
 let fourth = excercises[3];
 let fifth = excercises[4];
 
+// alertWindow.className = "no-verify-window";
+// alertWindow.style.padding = "1rem";
+// alertWindow.style.fontSize = "1.5rem";
+// alertWindow.style.display = "flex";
+// alertWindow.style.flexDirection = "column";
+// alertWindow.style.rowGap = "1rem";
+// alertWindow.style.alignItems = "center";
+// alertWindow.style.color = "darkslateblues";
+// alertWindow.style.backgroundColor = "gainsboro";
+// alertWindow.style.position = "fixed";
+// alertWindow.style.top = "40%";
+
+underBodyElementContainer.appendChild(alertWindow);
 let rounder = document.getElementsByClassName("indicator")[1];
 // const getAuser = async () => {
 // const userId = localStorage.getItem("workoutUserId");
@@ -122,6 +140,7 @@ const saveWork = async () => {
     oneExercise: anExercise,
     date: new Date(),
     userId,
+    exerciseDets: exercise,
     mark: (anExercise / (exercise.length * numberOfRounds)) * 100,
   };
   console.log(workDets);
@@ -132,8 +151,15 @@ const saveWork = async () => {
     },
     body: JSON.stringify(workDets),
   });
-  const content = await response.json();
-  console.log(content);
+  // const content = await response.json();
+  // console.log(content);
+  const reply = await response.json();
+  console.log(reply);
+  alertWindow.innerHTML = reply;
+  alertWindow.className = "verify-window";
+  setTimeout(() => {
+    alertWindow.className = "no-verify-window";
+  }, 3000);
 };
 
 saver.addEventListener("click", saveWork);
@@ -157,10 +183,10 @@ let controls = {
 
 jogUp.style.transitionDuration = "500ms";
 for (let i = 0; i < excercises.length; i++) {
-  excercises[i].style.transitionDuration = "500ms";
+  excercises[i].style.transitionDuration = "900ms";
 }
 let RoundInspector = 3000;
-function general(currentItem, formerItem, nextItem) {
+function general(currentItem, formerItem, nextItem, index) {
   let { complete } = controls;
   complete = "no";
   return new Promise((resolve, reject) => {
@@ -170,7 +196,7 @@ function general(currentItem, formerItem, nextItem) {
     formerItem.style.color = "yellow";
     formerItem.style.boxShadow = "0em 0em 0em";
 
-    jogUp.style.transform = "scale(1.5)";
+    jogUp.style.transform = "scale(2) translateX(10px)";
     jogUp.style.color = "yellow";
     jogUp.style.backgroundColor = "green";
     jogUp.style.border = "2px solid green";
@@ -189,7 +215,8 @@ function general(currentItem, formerItem, nextItem) {
     }, RoundInspector);
     // transfrorm the current excercise element after interval elapses
     // an interval to check for when sec exceeds interval
-
+    const { exercise } = user.workSettings;
+    console.log(user.workSettings.exercise);
     ID = window.setInterval(() => {
       if (sec > workerSettings.interval) {
         // the current excercise is currentItem
@@ -197,15 +224,53 @@ function general(currentItem, formerItem, nextItem) {
         // It is used to make the current excersise appear above
         //  previous and next excercises
         currentItem.style.zIndex = pIndex;
+        console.log(
+          Math.floor(exercise.length / 2) ===
+            exercise.indexOf(currentItem.innerHTML),
+        );
+        const exerciseIndex = exercise.indexOf(currentItem.innerHTML);
+        const indexDiff =
+          exercise.length - exercise.indexOf(currentItem.innerHTML);
+        const indexSum =
+          exercise.length - exercise.indexOf(currentItem.innerHTML);
+        const translator =
+          exerciseIndex < Math.floor(exercise.length / 2)
+            ? `${((exercise.length - exerciseIndex) / exercise.length) * (exercise.length - exerciseIndex * 2) * 15}px`
+            : exerciseIndex === Math.floor(exercise.length / 2)
+              ? "0px"
+              : exerciseIndex > Math.floor(exercise.length / 2)
+                ? `-${((exerciseIndex + 1) / exercise.length) * exerciseIndex * 15}%`
+                : "";
+        // const translator =
+        // exercise.indexOf(currentItem.innerHTML) <
+        // Math.floor(exercise.length / 2)
+        //   ? `${indexDiff * 2 * 2 * indexDiff}px`
+        //   : exercise.indexOf(currentItem.innerHTML) ==
+        //       Math.floor(exercise.length / 2)
+        //     ? `0px`
+        //     : exercise.indexOf(currentItem.innerHTML) >
+        //         Math.floor(exercise.length / 2)
+        //       ? `-${exercise.length + exercise.indexOf(currentItem.innerHTML) * exercise.indexOf(currentItem.innerHTML) * 6}px`
+        //       : "";
 
-        currentItem.style.transform = "scale(1.5)";
+        currentItem.style.transform = `scale(3) translate(${translator}, -15px)`;
+        currentItem.style.fontSize =
+          currentItem.innerHTML.length > 7
+            ? "1.5rem"
+            : currentItem.innerHTML.length > 10
+              ? ".8rem"
+              : "2rem";
         currentItem.style.color = "yellow";
         currentItem.style.backgroundColor = "green";
         currentItem.style.boxShadow = "0.2em 0.3em 0.4em gray";
-        jogUp.style.transform = "scale(1)";
+        currentItem.style.padding = "0 1rem";
+        currentItem.style.justifySelf = "center";
+
+        jogUp.style.transform = "scale(1) translateX(10px)";
         jogUp.style.color = "sandybrown";
         jogUp.style.backgroundColor = "maroon";
         jogUp.style.border = "2px solid maroon";
+        jogUp.style.boxShadow = "0em 0em 0em";
         jogUp.style.boxShadow = "0em 0em 0em";
 
         formerItem.style.color = "sandybrown";
@@ -376,6 +441,7 @@ let reality = async () => {
         // if i = 0 subtract array length from index else subtract 1 from index``
         elements[i == 0 ? i + elements.length - 1 : i - 1],
         elements[i + 1],
+        2,
       );
     }
   } catch (error) {

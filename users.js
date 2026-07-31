@@ -1,4 +1,5 @@
 import { myUrl } from "./myUrl.js";
+const entryCount = document.getElementsByClassName("entry-count")[0];
 const getUsers = async () => {
   const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
@@ -6,7 +7,9 @@ const getUsers = async () => {
       "Content-Type": "application/json",
     },
   });
+
   const users = await response.json();
+  entryCount.innerHTML = `(${users.length})`;
   const main = document.getElementsByClassName("users")[0];
   main.style.marginTop = "3rem";
   const table = document.createElement("table");
@@ -26,7 +29,6 @@ const getUsers = async () => {
   table.appendChild(tableBody);
   main.appendChild(table);
 
-  const entryCount = document.getElementsByClassName("entry-count")[0];
   //   entryCount.innerHTML = `(${users.length})`;
 
   for (let i = 0; i < users.length; i++) {

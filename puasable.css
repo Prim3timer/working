@@ -356,16 +356,19 @@ flex-direction: column;
  table {
    border-collapse: collapse;
    width: 90vw;
-
  }
 
  .verify-window {
   background-color: lavender;
-  padding: .5rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
   align-items: center;
+  position: absolute;
+  justify-self: center;
+  z-index: 10000;
+  /* font-size: 2rem; */
  }
 
  .done-settings {
@@ -388,6 +391,7 @@ color: white;
 
  .no-verify-window {
   visibility: hidden;
+  position: absolute;
  }
 
 
@@ -415,12 +419,10 @@ table th {
  }
 
  .performance {
-  justify-content: flex-start;
   flex-direction: column;
   align-items: center;
   
   width: 10rem;
-  /* background-color: red; */
   width: 100vw;
  }
 
@@ -477,7 +479,7 @@ table th {
  .indicator-container {
    display: flex;
    align-items: center;
-   justify-content: flex-end;
+   justify-content: flex-start;
    /* background-color: blue; */
    height: 5rem;
    /* flex: 0 1 65% */

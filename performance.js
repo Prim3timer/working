@@ -3,6 +3,8 @@ console.log(myUrl);
 const userId = localStorage.getItem("workoutUserId");
 // location.href = location.href;
 console.log(userId);
+let globalData = [];
+let globalUser = {};
 
 const userAnchor = document.getElementsByClassName("users-anchor")[0];
 
@@ -16,10 +18,15 @@ logoutLink.addEventListener("click", () => {
 const performance = document.getElementsByClassName("performance")[0];
 console.log(window.location.href);
 performance.style.display = "flex";
-performance.style.rowGap = "2rem";
+// performance.style.rowGap = "2rem";
 const entryCount = document.getElementsByClassName("entry-count")[0];
 
 let verifyWindow = document.createElement("div");
+let question = document.createElement("p");
+question.innerHTML = "Are you sure you want to delete this entry?";
+
+let verifyWindowButtonCont = document.createElement("article");
+let alertWindow = document.createElement("p");
 verifyWindow.className = "no-verify-window";
 verifyWindow.style.padding = ".5rem";
 verifyWindow.style.display = "flex";
@@ -29,10 +36,19 @@ verifyWindow.style.alignItems = "center";
 verifyWindow.style.backgroundColor = "lavender";
 verifyWindow.style.position = "fixed";
 verifyWindow.style.top = "40%";
-let question = document.createElement("p");
-question.innerHTML = "Are you sure you want to delete this entry?";
 
-let verifyWindowButtonCont = document.createElement("article");
+alertWindow.className = "no-verify-window";
+alertWindow.style.padding = "1rem";
+alertWindow.style.fontSize = "1.5rem";
+alertWindow.style.display = "flex";
+alertWindow.style.flexDirection = "column";
+alertWindow.style.rowGap = "1rem";
+alertWindow.style.alignItems = "center";
+alertWindow.style.color = "darkslateblues";
+alertWindow.style.backgroundColor = "gainsboro";
+alertWindow.style.position = "fixed";
+alertWindow.style.top = "40%";
+
 // verifyWindow.append(verifyWindowButtonCont);
 let itemId = "";
 // verifyWindowButtonCont.className = "verify-button-cont";
@@ -44,6 +60,7 @@ verifyWindowButtonCont.append(noButton, yesButton);
 verifyWindow.append(question, verifyWindowButtonCont);
 
 performance.appendChild(verifyWindow);
+performance.appendChild(alertWindow);
 
 const table = document.createElement("table");
 const tableBody = document.createElement("tbody");
@@ -51,18 +68,29 @@ const headerRow = document.createElement("tr");
 const dHeader = document.createElement("th");
 const rHeader = document.createElement("th");
 const exHeader = document.createElement("th");
+const exDetsHeader = document.createElement("th");
 const markHeader = document.createElement("th");
 const dateHeader = document.createElement("th");
+const deleteHeader = document.createElement("th");
 // const delet = document.createElement("th");
 
 dHeader.innerHTML = "duraton (min:sec)";
 rHeader.innerHTML = "rounds completed";
 exHeader.innerHTML = "exercises completed";
+exDetsHeader.innerHTML = "exercises/set";
 markHeader.innerHTML = "mark (%)";
 dateHeader.innerHTML = "date";
 table.appendChild(tableBody);
 // tableBody.appendChild(headerRow);
-headerRow.append(dHeader, rHeader, exHeader, markHeader, dateHeader);
+headerRow.append(
+  dHeader,
+  rHeader,
+  exHeader,
+  exDetsHeader,
+  markHeader,
+  dateHeader,
+  deleteHeader,
+);
 const greeting = document.getElementsByClassName("greeting")[0];
 
 noButton.addEventListener("click", () => {
@@ -71,19 +99,88 @@ noButton.addEventListener("click", () => {
 
 verifyWindowButtonCont.className = "verify-window-cont";
 
-const deleteEntry = async (id) => {
-  console.log(id);
+const deleteEntry = async () => {
   try {
-    const response = await (`${myUrl}/performance/${id}`,
-    {
+    const response = await fetch(`${myUrl}/performance/${itemId}`, {
       method: "DELETE",
     });
     if (response) {
-      tableBody.textContent = "";
-      getData();
+      const reply = await response.json();
+      const filterate = globalData.filter((data) => data.userId === userId);
+      const entryFilterate = filterate.filter((entry) => entry._id != itemId);
+      globalData = entryFilterate;
+      console.log(reply);
+
+      tableBody.replaceChildren();
+      tableBody.appendChild(headerRow);
+      alertWindow.innerHTML = reply;
+      alertWindow.className = "verify-window";
+      entryCount.innerHTML = `(${entryFilterate.length} entries)`;
+      for (let i = 0; i < entryFilterate.length; i++) {
+        const dets = document.createElement("tr");
+        dets.style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;
+        tableBody.appendChild(dets);
+        const perfy = entryFilterate[i];
+        console.log(tableBody.children);
+        const { workSettings } = globalUser;
+        const roundCount = document.createElement("td");
+        roundCount.innerHTML = ` ${
+          perfy.duration < 10
+            ? `0:0${perfy.duration % 60}`
+            : perfy.duration < 60
+              ? `0:${perfy.duration % 60}`
+              : perfy.duration % 60 >= 10
+                ? `${Math.floor(perfy.duration / 60)}:${perfy.duration % 60}`
+                : perfy.duration < 10
+                  ? 0`${perfy.duration % 60}`
+                  : `${Math.floor(perfy.duration / 60)}:0${perfy.duration % 60}`
+        }`;
+        const endurance = document.createElement("td");
+        endurance.innerHTML = `${perfy.oneExercise / 5}`;
+        const exCount = document.createElement("td");
+        const exDet = document.createElement("td");
+        exCount.innerHTML = `${perfy.oneExercise}`;
+        exDet.innerHTML = `${globalUser.workSettings?.exercise.length}`;
+
+        const marker = document.createElement("td");
+        marker.innerHTML = `${parseInt(perfy.mark.toFixed(2))}`;
+        const date = document.createElement("td");
+        const del = document.createElement("td");
+        date.innerHTML = new Date(perfy.date).toLocaleString("en-US", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+          // hour: "numeric",
+          // minute: "numeric",
+          // second: "numeric",
+        });
+
+        const removeVerifier = () => {
+          verifyWindow.className("veriy-window");
+        };
+        del.innerHTML = "🗑";
+
+        const getId = async (id) => {
+          itemId = id;
+          console.log(itemId);
+          verifyWindow.className = "verify-window";
+          verifyWindowButtonCont.className = "verify-button-cont";
+        };
+
+        del.addEventListener("click", () => getId(perfy._id));
+        dets.append(roundCount, endurance, exCount, exDet, marker, date, del);
+        userId && performance.append(table);
+      }
+
       verifyWindow.className = "no-verify-window";
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  } finally {
+    setTimeout(() => {
+      alertWindow.className = "no-verify-window";
+    }, 3000);
+  }
 };
 
 const getData = async () => {
@@ -102,7 +199,8 @@ const getData = async () => {
   });
   const users = await response2.json();
   const user = users.find((user) => user._id == userId);
-  console.log(user?.roles);
+  globalUser = user;
+  console.log(user.workSettings);
   const foundUserRoles = Object.keys(user.roles);
   if (!foundUserRoles.includes("Admin")) {
     userAnchor.href = "";
@@ -110,8 +208,9 @@ const getData = async () => {
     userAnchor.href = "users.html";
   }
   greeting.innerHTML = `welcome, ${user.username}`;
-  yesButton.addEventListener("click", () => deleteEntry(itemId));
+  yesButton.addEventListener("click", deleteEntry);
   let perfData = await response.json();
+  globalData = perfData;
   const filteredData = perfData.filter((data) => data.userId === userId);
   entryCount.innerHTML = `(${filteredData.length} entries)`;
   for (let i = 0; i < filteredData.length; i++) {
@@ -136,18 +235,21 @@ const getData = async () => {
     const endurance = document.createElement("td");
     endurance.innerHTML = `${perfy.oneExercise / 5}`;
     const exCount = document.createElement("td");
+    const exDet = document.createElement("td");
     exCount.innerHTML = `${perfy.oneExercise}`;
+    exDet.innerHTML = `${user.workSettings?.exercise.length}`;
+
     const marker = document.createElement("td");
-    marker.innerHTML = `${parseFloat(perfy.mark).toFixed(2)}`;
+    marker.innerHTML = `${parseInt(perfy.mark)}`;
     const date = document.createElement("td");
     const del = document.createElement("td");
     date.innerHTML = new Date(perfy.date).toLocaleString("en-US", {
       day: "numeric",
       month: "long",
       year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
+      // hour: "numeric",
+      // minute: "numeric",
+      // second: "numeric",
     });
 
     const removeVerifier = () => {
@@ -157,7 +259,8 @@ const getData = async () => {
     // icon.classList.add("fa-solid", "fa-trash");
 
     // del.appendChild(icon);
-    del.innerHTML = "delete";
+    del.innerHTML = "🗑";
+    del.style.fontSize = "2rem";
 
     const getId = async (id) => {
       itemId = id;
@@ -167,7 +270,7 @@ const getData = async () => {
     };
 
     del.addEventListener("click", () => getId(perfy._id));
-    dets.append(roundCount, endurance, exCount, marker, date, del);
+    dets.append(roundCount, endurance, exCount, exDet, marker, date, del);
     userId && performance.append(table);
   }
 
