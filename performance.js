@@ -55,7 +55,7 @@ let itemId = "";
 let noButton = document.createElement("button");
 noButton.innerHTML = "No";
 let yesButton = document.createElement("button");
-yesButton.innerHTML = "Yes";
+yesButton.innerHTML = "Yes 🗑";
 verifyWindowButtonCont.append(noButton, yesButton);
 verifyWindow.append(question, verifyWindowButtonCont);
 

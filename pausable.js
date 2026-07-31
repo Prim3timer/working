@@ -31,8 +31,8 @@ let fifth = excercises[4];
 // alertWindow.style.alignItems = "center";
 // alertWindow.style.color = "darkslateblues";
 // alertWindow.style.backgroundColor = "gainsboro";
-// alertWindow.style.position = "fixed";
-// alertWindow.style.top = "40%";
+alertWindow.style.position = "fixed";
+alertWindow.style.top = "40%";
 
 underBodyElementContainer.appendChild(alertWindow);
 let rounder = document.getElementsByClassName("indicator")[1];
@@ -186,15 +186,15 @@ for (let i = 0; i < excercises.length; i++) {
   excercises[i].style.transitionDuration = "900ms";
 }
 let RoundInspector = 3000;
-function general(currentItem, formerItem, nextItem, index) {
+function general(currentItem, formerItem, nextItem) {
   let { complete } = controls;
   complete = "no";
   return new Promise((resolve, reject) => {
-    // the previous excersice is formerItem
     formerItem.style.transform = "scale(1 )";
     formerItem.style.backgroundColor = "darkorange";
     formerItem.style.color = "yellow";
     formerItem.style.boxShadow = "0em 0em 0em";
+    formerItem.style.zIndex = pIndex - 1;
 
     jogUp.style.transform = "scale(2) translateX(10px)";
     jogUp.style.color = "yellow";
@@ -441,7 +441,6 @@ let reality = async () => {
         // if i = 0 subtract array length from index else subtract 1 from index``
         elements[i == 0 ? i + elements.length - 1 : i - 1],
         elements[i + 1],
-        2,
       );
     }
   } catch (error) {

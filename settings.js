@@ -1,7 +1,12 @@
 import { myUrl } from "./myUrl.js";
+const settingsElement = document.getElementsByClassName("settings")[0];
+console.log(settingsElement);
 const doneSettings = document.getElementsByClassName("done-settings")[0];
 const doneSettings2 = document.getElementsByClassName("done-settings")[1];
 console.log(doneSettings2);
+let alertWindow = document.createElement("p");
+alertWindow.style.fontSize = "1.5rem";
+settingsElement.appendChild(alertWindow);
 const userAnchor = document.getElementsByClassName("users-anchor")[0];
 
 const exes = document.getElementsByClassName("exes");
@@ -105,6 +110,13 @@ const editUser = async (e) => {
         body: JSON.stringify(workerSettings),
       });
       const reply = await respone2.json();
+      alertWindow.innerHTML = reply;
+      alertWindow.className = "verify-window";
+      alertWindow.style.position = "fixed";
+      alertWindow.style.top = "40%";
+      setTimeout(() => {
+        alertWindow.className = "no-verify-window";
+      }, 3000);
       console.log(reply);
     }
   }
