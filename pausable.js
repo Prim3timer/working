@@ -135,7 +135,12 @@ const saveWork = async () => {
   const { exercise, numberOfRounds, exercisesDuration, interval } =
     user.workSettings;
   const workDets = {
-    exerciseTimings: [exercisesDuration, interval, numberOfRounds],
+    exerciseTimings: [
+      { duration },
+      { exercisesDuration },
+      { interval },
+      { numberOfRounds },
+    ],
     oneExercise: anExercise,
     date: new Date(),
     userId,
@@ -195,7 +200,7 @@ function general(currentItem, formerItem, nextItem) {
     formerItem.style.boxShadow = "0em 0em 0em";
     formerItem.style.zIndex = pIndex - 1;
 
-    jogUp.style.transform = "scale(2) translateX(10px)";
+    jogUp.style.transform = "scale(2) translateX(40px)";
     jogUp.style.color = "yellow";
     jogUp.style.backgroundColor = "green";
     jogUp.style.border = "2px solid green";
@@ -217,7 +222,7 @@ function general(currentItem, formerItem, nextItem) {
     const { exercise } = user.workSettings;
     console.log(user.workSettings.exercise);
     ID = window.setInterval(() => {
-      if (sec > workerSettings.interval) {
+      if (sec === workerSettings.interval) {
         // the current excercise is currentItem
         currentItem.style.position = "relative";
         // It is used to make the current excersise appear above
@@ -241,17 +246,6 @@ function general(currentItem, formerItem, nextItem) {
               : exerciseIndex > Math.floor(exercise.length / 2)
                 ? `-${((exerciseIndex + 1) / exercise.length) * exerciseIndex * 15}%`
                 : "";
-        // const translator =
-        // exercise.indexOf(currentItem.innerHTML) <
-        // Math.floor(exercise.length / 2)
-        //   ? `${indexDiff * 2 * 2 * indexDiff}px`
-        //   : exercise.indexOf(currentItem.innerHTML) ==
-        //       Math.floor(exercise.length / 2)
-        //     ? `0px`
-        //     : exercise.indexOf(currentItem.innerHTML) >
-        //         Math.floor(exercise.length / 2)
-        //       ? `-${exercise.length + exercise.indexOf(currentItem.innerHTML) * exercise.indexOf(currentItem.innerHTML) * 6}px`
-        //       : "";
 
         formerItem.style.color = "sandybrown";
         formerItem.style.backgroundColor = "maroon";
@@ -283,7 +277,19 @@ function general(currentItem, formerItem, nextItem) {
       }
 
       // pausing the app.
-      cycle.innerHTML = sec;
+      cycle.innerHTML = ` ${
+        sec > 3600
+          ? `${Math.floor(sec / 3600)}:${Math.floor((sec % 3600) / 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) / 60)}:${Math.floor((sec % 3600) % 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) % 60)} `
+          : sec < 10
+            ? `:0${sec % 60}`
+            : sec < 60
+              ? ` :${sec % 60}`
+              : sec % 60 >= 10
+                ? `${Math.floor(sec / 60)}:${sec % 60}`
+                : sec < 10
+                  ? 0`${sec % 60}`
+                  : `${Math.floor(sec / 60)}:0${sec % 60}`
+      }`;
       if (controls.pause === true) {
         return;
       } else {
@@ -315,7 +321,7 @@ function general(currentItem, formerItem, nextItem) {
         cycle.style.transitionProperty =
           "font-size, height, border, grid-template-columns";
         cycle.style.transitionDuration = "1s";
-        cycle.style.fontSize = "5.5rem";
+        cycle.style.fontSize = sec > 10000 ? "3.5rem" : "4.5rem";
         cycle.style.height = "6rem";
         cycle.style.border = "2px solid brown";
         cycle.style.gridTemplateColumns = "5.5rem";
@@ -408,7 +414,19 @@ let decreaser = (e) => {
   sec -= 1;
   setInterval(() => {
     if (sec < 1) sec = 0;
-    cycle.innerHTML = sec;
+    cycle.innerHTML = ` ${
+      sec > 3600
+        ? `${Math.floor(sec / 3600)}:${Math.floor((sec % 3600) / 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) / 60)}:${Math.floor((sec % 3600) % 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) % 60)} `
+        : sec < 10
+          ? `:0${sec % 60}`
+          : sec < 60
+            ? ` :${sec % 60}`
+            : sec % 60 >= 10
+              ? `${Math.floor(sec / 60)}:${sec % 60}`
+              : sec < 10
+                ? 0`${sec % 60}`
+                : `${Math.floor(sec / 60)}:0${sec % 60}`
+    }`;
   }, 10);
 };
 
@@ -417,7 +435,19 @@ let increaser = (e) => {
   setInterval(() => {
     if (sec > workerSettings.exercisesDuration + workerSettings.interval - 1)
       sec = workerSettings.exercisesDuration + workerSettings.interval;
-    cycle.innerHTML = sec;
+    cycle.innerHTML = ` ${
+      sec > 3600
+        ? `${Math.floor(sec / 3600)}:${Math.floor((sec % 3600) / 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) / 60)}:${Math.floor((sec % 3600) % 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) % 60)} `
+        : sec < 10
+          ? `:0${sec % 60}`
+          : sec < 60
+            ? ` :${sec % 60}`
+            : sec % 60 >= 10
+              ? `${Math.floor(sec / 60)}:${sec % 60}`
+              : sec < 10
+                ? 0`${sec % 60}`
+                : `${Math.floor(sec / 60)}:0${sec % 60}`
+    }`;
   }, 10);
 };
 

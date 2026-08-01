@@ -3,6 +3,7 @@ const settingsMain = document.getElementsByClassName("user-setting")[0];
 const selectElement = document.getElementsByClassName("roles-select")[0];
 const saver = document.getElementsByClassName("user-setting-saver")[0];
 const userId = localStorage.getItem("userSettingsId");
+const mainUserId = localStorage.getItem("workouUserId");
 const usernameElement = document.getElementsByClassName("user-setting-name")[0];
 const userAnchor = document.getElementsByClassName("users-anchor")[0];
 const activeElement = document.getElementsByClassName(
@@ -149,14 +150,16 @@ const getAUser = async () => {
   });
   const users = await response.json();
   const foundUser = users.find((user) => user._id === userId);
+  const user = users.find((user) => user._id === mainUserId);
   selectElement.name = "roles";
+  const mainUserRoles = Object.keys(user?.roles);
   const foundUserRoles = Object.keys(foundUser.roles);
   selectElement.value = foundUserRoles;
-  console.log(foundUser.roles);
+  console.log(user);
   const usernameElement =
     document.getElementsByClassName("user-setting-name")[0];
   usernameElement.value = foundUser.username;
-  if (!foundUserRoles.includes("Admin")) userAnchor.href = "";
+  if (!mainUserRoles.includes("Admin")) userAnchor.href = "";
   activeElement.checked = foundUser.active;
   // const emailElement = document.getElementsByClassName("user-setting-email")[0];
   // emailElement.value = foundUser.email;

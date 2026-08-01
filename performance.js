@@ -199,6 +199,7 @@ const getData = async () => {
   });
   const users = await response2.json();
   const user = users.find((user) => user._id == userId);
+  console.log(user);
   globalUser = user;
   console.log(user.workSettings);
   const foundUserRoles = Object.keys(user.roles);
@@ -210,6 +211,7 @@ const getData = async () => {
   greeting.innerHTML = `welcome, ${user.username}`;
   yesButton.addEventListener("click", deleteEntry);
   let perfData = await response.json();
+  console.log(perfData);
   globalData = perfData;
   const filteredData = perfData.filter((data) => data.userId === userId);
   entryCount.innerHTML = `(${filteredData.length} entries)`;
@@ -221,19 +223,19 @@ const getData = async () => {
     const { workSettings } = user;
     const roundCount = document.createElement("td");
     console.log(5 % 2);
-    console.log(tableBody.children);
+    const { duration } = perfy.exerciseTimings[0];
     roundCount.innerHTML = ` ${
       perfy.duration > 3600
-        ? `${Math.floor(perfy.duration / 3600)}:${Math.floor((perfy.duration % 3600) / 60) < 10 ? 0 : ""}${Math.floor((perfy.duration % 3600) / 60)}:${Math.floor((perfy.duration % 3600) % 60) < 10 ? 0 : ""}${Math.floor((perfy.duration % 3600) % 60)} `
-        : perfy.duration < 10
-          ? `0:0${perfy.duration % 60}`
-          : perfy.duration < 60
-            ? `0:${perfy.duration % 60}`
-            : perfy.duration % 60 >= 10
-              ? `${Math.floor(perfy.duration / 60)}:${perfy.duration % 60}`
-              : perfy.duration < 10
-                ? 0`${perfy.duration % 60}`
-                : `${Math.floor(perfy.duration / 60)}:0${perfy.duration % 60}`
+        ? `${Math.floor(duration / 3600)}:${Math.floor((duration % 3600) / 60) < 10 ? 0 : ""}${Math.floor((duration % 3600) / 60)}:${Math.floor((duration % 3600) % 60) < 10 ? 0 : ""}${Math.floor((duration % 3600) % 60)} `
+        : duration < 10
+          ? `0:0${duration % 60}`
+          : duration < 60
+            ? `0:${duration % 60}`
+            : duration % 60 >= 10
+              ? `${Math.floor(duration / 60)}:${duration % 60}`
+              : duration < 10
+                ? 0`${duration % 60}`
+                : `${Math.floor(duration / 60)}:0${duration % 60}`
     }`;
     const endurance = document.createElement("td");
     endurance.innerHTML = `${perfy.oneExercise / 5}`;
