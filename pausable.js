@@ -81,9 +81,8 @@ if (exCont.children.length === 0) {
   exCont.appendChild(noExAlertElement);
 }
 
-console.log(elements);
-
 let workerSettings = user.workSettings;
+console.log(workerSettings);
 // };
 
 // getAuser();
@@ -133,10 +132,10 @@ const saveWork = async () => {
   console.log(begin);
   console.log(duration);
 
-  const { exercise, numberOfRounds } = user.workSettings;
+  const { exercise, numberOfRounds, exercisesDuration, interval } =
+    user.workSettings;
   const workDets = {
-    duration,
-    round,
+    exerciseTimings: [exercisesDuration, interval, numberOfRounds],
     oneExercise: anExercise,
     date: new Date(),
     userId,
@@ -236,7 +235,8 @@ function general(currentItem, formerItem, nextItem) {
         const translator =
           exerciseIndex < Math.floor(exercise.length / 2)
             ? `${((exercise.length - exerciseIndex) / exercise.length) * (exercise.length - exerciseIndex * 2) * 15}px`
-            : exerciseIndex === Math.floor(exercise.length / 2)
+            : exerciseIndex === Math.floor(exercise.length / 2) ||
+                (exercise.length === 4 && exerciseIndex === 1)
               ? "0px"
               : exerciseIndex > Math.floor(exercise.length / 2)
                 ? `-${((exerciseIndex + 1) / exercise.length) * exerciseIndex * 15}%`
@@ -252,6 +252,9 @@ function general(currentItem, formerItem, nextItem) {
         //         Math.floor(exercise.length / 2)
         //       ? `-${exercise.length + exercise.indexOf(currentItem.innerHTML) * exercise.indexOf(currentItem.innerHTML) * 6}px`
         //       : "";
+
+        formerItem.style.color = "sandybrown";
+        formerItem.style.backgroundColor = "maroon";
 
         currentItem.style.transform = `scale(3) translate(${translator}, -15px)`;
         currentItem.style.fontSize =
@@ -272,9 +275,6 @@ function general(currentItem, formerItem, nextItem) {
         jogUp.style.border = "2px solid maroon";
         jogUp.style.boxShadow = "0em 0em 0em";
         jogUp.style.boxShadow = "0em 0em 0em";
-
-        formerItem.style.color = "sandybrown";
-        formerItem.style.backgroundColor = "maroon";
 
         // the variable for the z-index.
         pIndex++;

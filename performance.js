@@ -74,11 +74,11 @@ const dateHeader = document.createElement("th");
 const deleteHeader = document.createElement("th");
 // const delet = document.createElement("th");
 
-dHeader.innerHTML = "duraton (min:sec)";
+dHeader.innerHTML = "duraton (hr:min:s)";
 rHeader.innerHTML = "rounds completed";
-exHeader.innerHTML = "exercises completed";
+exHeader.innerHTML = "completed (%)";
 exDetsHeader.innerHTML = "exercises/set";
-markHeader.innerHTML = "mark (%)";
+// markHeader.innerHTML = "mark (%)";
 dateHeader.innerHTML = "date";
 table.appendChild(tableBody);
 // tableBody.appendChild(headerRow);
@@ -87,7 +87,7 @@ headerRow.append(
   rHeader,
   exHeader,
   exDetsHeader,
-  markHeader,
+  // markHeader,
   dateHeader,
   deleteHeader,
 );
@@ -124,26 +124,26 @@ const deleteEntry = async () => {
         console.log(tableBody.children);
         const { workSettings } = globalUser;
         const roundCount = document.createElement("td");
-        roundCount.innerHTML = ` ${
-          perfy.duration < 10
-            ? `0:0${perfy.duration % 60}`
-            : perfy.duration < 60
-              ? `0:${perfy.duration % 60}`
-              : perfy.duration % 60 >= 10
-                ? `${Math.floor(perfy.duration / 60)}:${perfy.duration % 60}`
-                : perfy.duration < 10
-                  ? 0`${perfy.duration % 60}`
-                  : `${Math.floor(perfy.duration / 60)}:0${perfy.duration % 60}`
+        roundCount.innerHTML = `${
+          perfy.duration > 3600
+            ? `${Math.floor(perfy.duration / 3600)}:${Math.floor((perfy.duration % 3600) / 60)}:${Math.floor((perfy.duration % 3600) % 60)} `
+            : perfy.duration < 10
+              ? `0:0${perfy.duration % 60}`
+              : perfy.duration < 60
+                ? `0:${perfy.duration % 60}`
+                : perfy.duration % 60 >= 10
+                  ? `${Math.floor(perfy.duration / 60)}:${perfy.duration % 60}`
+                  : perfy.duration < 10
+                    ? 0`${perfy.duration % 60}`
+                    : `${Math.floor(perfy.duration / 60)}:0${perfy.duration % 60}`
         }`;
         const endurance = document.createElement("td");
         endurance.innerHTML = `${perfy.oneExercise / 5}`;
         const exCount = document.createElement("td");
         const exDet = document.createElement("td");
-        exCount.innerHTML = `${perfy.oneExercise}`;
+        exCount.innerHTML = `${parseInt(perfy.mark.toFixed(2))}`;
         exDet.innerHTML = `${globalUser.workSettings?.exercise.length}`;
 
-        const marker = document.createElement("td");
-        marker.innerHTML = `${parseInt(perfy.mark.toFixed(2))}`;
         const date = document.createElement("td");
         const del = document.createElement("td");
         date.innerHTML = new Date(perfy.date).toLocaleString("en-US", {
@@ -168,7 +168,7 @@ const deleteEntry = async () => {
         };
 
         del.addEventListener("click", () => getId(perfy._id));
-        dets.append(roundCount, endurance, exCount, exDet, marker, date, del);
+        dets.append(roundCount, endurance, exCount, exDet, date, del);
         userId && performance.append(table);
       }
 
@@ -218,29 +218,29 @@ const getData = async () => {
     dets.style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;
     tableBody.appendChild(dets);
     const perfy = filteredData[i];
-    console.log(tableBody.children);
     const { workSettings } = user;
     const roundCount = document.createElement("td");
+    console.log(5 % 2);
+    console.log(tableBody.children);
     roundCount.innerHTML = ` ${
-      perfy.duration < 10
-        ? `0:0${perfy.duration % 60}`
-        : perfy.duration < 60
-          ? `0:${perfy.duration % 60}`
-          : perfy.duration % 60 >= 10
-            ? `${Math.floor(perfy.duration / 60)}:${perfy.duration % 60}`
-            : perfy.duration < 10
-              ? 0`${perfy.duration % 60}`
-              : `${Math.floor(perfy.duration / 60)}:0${perfy.duration % 60}`
+      perfy.duration > 3600
+        ? `${Math.floor(perfy.duration / 3600)}:${Math.floor((perfy.duration % 3600) / 60) < 10 ? 0 : ""}${Math.floor((perfy.duration % 3600) / 60)}:${Math.floor((perfy.duration % 3600) % 60) < 10 ? 0 : ""}${Math.floor((perfy.duration % 3600) % 60)} `
+        : perfy.duration < 10
+          ? `0:0${perfy.duration % 60}`
+          : perfy.duration < 60
+            ? `0:${perfy.duration % 60}`
+            : perfy.duration % 60 >= 10
+              ? `${Math.floor(perfy.duration / 60)}:${perfy.duration % 60}`
+              : perfy.duration < 10
+                ? 0`${perfy.duration % 60}`
+                : `${Math.floor(perfy.duration / 60)}:0${perfy.duration % 60}`
     }`;
     const endurance = document.createElement("td");
     endurance.innerHTML = `${perfy.oneExercise / 5}`;
     const exCount = document.createElement("td");
     const exDet = document.createElement("td");
-    exCount.innerHTML = `${perfy.oneExercise}`;
+    exCount.innerHTML = `${parseInt(perfy.mark)}`;
     exDet.innerHTML = `${user.workSettings?.exercise.length}`;
-
-    const marker = document.createElement("td");
-    marker.innerHTML = `${parseInt(perfy.mark)}`;
     const date = document.createElement("td");
     const del = document.createElement("td");
     date.innerHTML = new Date(perfy.date).toLocaleString("en-US", {
@@ -270,7 +270,7 @@ const getData = async () => {
     };
 
     del.addEventListener("click", () => getId(perfy._id));
-    dets.append(roundCount, endurance, exCount, exDet, marker, date, del);
+    dets.append(roundCount, endurance, exCount, exDet, date, del);
     userId && performance.append(table);
   }
 
