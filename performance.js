@@ -155,6 +155,7 @@ const deleteEntry = async () => {
           // minute: "numeric",
           // second: "numeric",
         });
+        del.style.fontSize = "1.5rem";
 
         const removeVerifier = () => {
           verifyWindow.className("veriy-window");

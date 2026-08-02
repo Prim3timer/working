@@ -189,6 +189,10 @@ jogUp.style.transitionDuration = "500ms";
 for (let i = 0; i < excercises.length; i++) {
   excercises[i].style.transitionDuration = "500ms";
 }
+console.log(user);
+// setInterval(() => {
+//   let RoundInspector = (user.workSettings.invterval - 3) * 1000;
+// }, 300);
 let RoundInspector = 3000;
 function general(currentItem, formerItem, nextItem) {
   let { complete } = controls;
@@ -219,7 +223,8 @@ function general(currentItem, formerItem, nextItem) {
     }, RoundInspector);
     // transfrorm the current excercise element after interval elapses
     // an interval to check for when sec exceeds interval
-    const { exercise } = user.workSettings;
+    console.log(workerSettings);
+    const { exercise, interval } = user.workSettings;
     console.log(user.workSettings.exercise);
     ID = window.setInterval(() => {
       if (sec === workerSettings.interval) {
@@ -539,6 +544,14 @@ let reality = async () => {
       cycle.innerHTML = sec;
       pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
       controls.runFunc = true;
+      elements.map((element) => {
+        if (element.style.backgroundColor == "green") {
+          element.style.backgroundColor = "maroon";
+          element.style.color = "sandybrown";
+          element.style.boxShadow = "0em 0em 0em";
+          element.style.transform = "scale(1)";
+        }
+      });
       saveWork();
     }
   }
