@@ -464,14 +464,37 @@ let reality = async () => {
   controls.runFunc = false;
   try {
     for (let i = 0; i < elements.length; i++) {
+      const currentItemIndex = elements[i];
+      // if i = 0 subtract array length from index else subtract 1 from index``
+      const formerIemIndex = elements[i == 0 ? i + elements.length - 1 : i - 1];
+      const nextItemIndex = elements[i + 1];
+      for (let j = 0; j < elements.length; j++) {
+        elements[j].addEventListener("click", () => {
+          i = elements.indexOf(elements[j]) - 1;
+          const { interval, exercisesDuration } = user.workSettings;
+          console.log(interval, exercisesDuration);
+          sec = interval + exercisesDuration;
+
+          if (
+            elements[j].style.color == "yellow" &&
+            elements[j].style.backgroundColor == "green"
+          ) {
+            elements[j].style.color = "sandybrown";
+            elements[j].style.backgroundColor = "maroon";
+          } else if (elements[j].style.backgroundColor == "darkorange") {
+            elements[j].style.backgroundColor = "maroon";
+          } else if (
+            elements[j].style.backgroundColor == "darkorange" &&
+            elements.indexOf(elements[j]) != i - 1
+          ) {
+            elements[j].style.backgroundColor = "maroon";
+          }
+        });
+      }
       console.log(i);
       // looping through the elements in the elements array
-      await general(
-        elements[i],
-        // if i = 0 subtract array length from index else subtract 1 from index``
-        elements[i == 0 ? i + elements.length - 1 : i - 1],
-        elements[i + 1],
-      );
+
+      await general(currentItemIndex, formerIemIndex, nextItemIndex);
     }
   } catch (error) {
     console.log(error + " at all");
