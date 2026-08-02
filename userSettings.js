@@ -152,14 +152,14 @@ const getAUser = async () => {
   const foundUser = users.find((user) => user._id === userId);
   const user = users.find((user) => user._id === mainUserId);
   selectElement.name = "roles";
-  const mainUserRoles = Object.keys(user?.roles);
   const foundUserRoles = Object.keys(foundUser.roles);
+  // const mainUserRoles = Object.keys(user.roles);
   selectElement.value = foundUserRoles;
   console.log(user);
   const usernameElement =
     document.getElementsByClassName("user-setting-name")[0];
   usernameElement.value = foundUser.username;
-  if (!mainUserRoles.includes("Admin")) userAnchor.href = "";
+  // if (!mainUserRoles.includes("Admin")) userAnchor.href = "";
   activeElement.checked = foundUser.active;
   // const emailElement = document.getElementsByClassName("user-setting-email")[0];
   // emailElement.value = foundUser.email;

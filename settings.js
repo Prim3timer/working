@@ -10,7 +10,6 @@ settingsElement.appendChild(alertWindow);
 const userAnchor = document.getElementsByClassName("users-anchor")[0];
 
 const exes = document.getElementsByClassName("exes");
-exes[1].value = "heeee";
 const greeting = document.getElementsByClassName("greeting")[0];
 
 const userId = localStorage.getItem("workoutUserId");
