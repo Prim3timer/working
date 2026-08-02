@@ -55,7 +55,7 @@ let itemId = "";
 let noButton = document.createElement("button");
 noButton.innerHTML = "No";
 let yesButton = document.createElement("button");
-yesButton.innerHTML = "Yes 🗑";
+yesButton.innerHTML = `Yes <i class="fa-solid fa-trash"></i>`;
 verifyWindowButtonCont.append(noButton, yesButton);
 verifyWindow.append(question, verifyWindowButtonCont);
 
@@ -124,18 +124,19 @@ const deleteEntry = async () => {
         console.log(tableBody.children);
         const { workSettings } = globalUser;
         const roundCount = document.createElement("td");
+        const { duration } = perfy.exerciseTimings[0];
         roundCount.innerHTML = `${
-          perfy.duration > 3600
-            ? `${Math.floor(perfy.duration / 3600)}:${Math.floor((perfy.duration % 3600) / 60)}:${Math.floor((perfy.duration % 3600) % 60)} `
-            : perfy.duration < 10
-              ? `0:0${perfy.duration % 60}`
-              : perfy.duration < 60
-                ? `0:${perfy.duration % 60}`
-                : perfy.duration % 60 >= 10
-                  ? `${Math.floor(perfy.duration / 60)}:${perfy.duration % 60}`
-                  : perfy.duration < 10
-                    ? 0`${perfy.duration % 60}`
-                    : `${Math.floor(perfy.duration / 60)}:0${perfy.duration % 60}`
+          duration > 3600
+            ? `${Math.floor(duration / 3600)}:${Math.floor((duration % 3600) / 60)}:${Math.floor((duration % 3600) % 60)} `
+            : duration < 10
+              ? `0:0${duration % 60}`
+              : duration < 60
+                ? `0:${duration % 60}`
+                : duration % 60 >= 10
+                  ? `${Math.floor(duration / 60)}:${duration % 60}`
+                  : duration < 10
+                    ? 0`${duration % 60}`
+                    : `${Math.floor(duration / 60)}:0${duration % 60}`
         }`;
         const endurance = document.createElement("td");
         endurance.innerHTML = `${perfy.oneExercise / 5}`;
@@ -158,7 +159,7 @@ const deleteEntry = async () => {
         const removeVerifier = () => {
           verifyWindow.className("veriy-window");
         };
-        del.innerHTML = "🗑";
+        del.innerHTML = `<i class="fa-solid fa-trash"></i>`;
 
         const getId = async (id) => {
           itemId = id;
@@ -261,8 +262,8 @@ const getData = async () => {
     // icon.classList.add("fa-solid", "fa-trash");
 
     // del.appendChild(icon);
-    del.innerHTML = "🗑";
-    del.style.fontSize = "2rem";
+    del.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+    del.style.fontSize = "1.5rem";
 
     const getId = async (id) => {
       itemId = id;
