@@ -187,7 +187,7 @@ let controls = {
 
 jogUp.style.transitionDuration = "500ms";
 for (let i = 0; i < excercises.length; i++) {
-  excercises[i].style.transitionDuration = "900ms";
+  excercises[i].style.transitionDuration = "500ms";
 }
 let RoundInspector = 3000;
 function general(currentItem, formerItem, nextItem) {
@@ -473,24 +473,32 @@ let reality = async () => {
           i = elements.indexOf(elements[j]) - 1;
           const { interval, exercisesDuration } = user.workSettings;
           console.log(interval, exercisesDuration);
+          // get to the end of the exercise so the next one can quickly begin
           sec = interval + exercisesDuration;
-
-          if (
-            elements[j].style.color == "yellow" &&
-            elements[j].style.backgroundColor == "green"
-          ) {
-            elements[j].style.color = "sandybrown";
-            elements[j].style.backgroundColor = "maroon";
-          } else if (elements[j].style.backgroundColor == "darkorange") {
-            elements[j].style.backgroundColor = "maroon";
-          } else if (
-            elements[j].style.backgroundColor == "darkorange" &&
-            elements.indexOf(elements[j]) != i - 1
-          ) {
-            elements[j].style.backgroundColor = "maroon";
-          }
+          // reverse many other events at the push of any axercise
+          elements.map((element) => {
+            if (
+              // if any exercise is Active, reverse it
+              element.style.color == "yellow" &&
+              element.style.backgroundColor == "green"
+            ) {
+              element.style.color = "sandybrown";
+              element.style.backgroundColor = "maroon";
+              element.style.transform = "scale(1)";
+              element.style.boxShadow = "0em 0em 0em";
+            } else if (
+              // is any exercise is in transition to invactive state, make it fully inactive
+              element.style.backgroundColor == "darkorange"
+              // elements.indexOf(element) != i - 1
+            ) {
+              element.style.backgroundColor = "maroon";
+              element.style.color = "sandybrown";
+            }
+          });
         });
+        elements.map((element) => {});
       }
+
       console.log(i);
       // looping through the elements in the elements array
 
