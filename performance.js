@@ -139,7 +139,8 @@ const deleteEntry = async () => {
                     : `${Math.floor(duration / 60)}:0${duration % 60}`
         }`;
         const endurance = document.createElement("td");
-        endurance.innerHTML = `${perfy.oneExercise / 5}`;
+        console.log(perfy.exerciseTimings[3]);
+        endurance.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds}}`;
         const exCount = document.createElement("td");
         const exDet = document.createElement("td");
         exCount.innerHTML = `${parseInt(perfy.mark.toFixed(2))}`;
@@ -227,7 +228,7 @@ const getData = async () => {
     console.log(5 % 2);
     const { duration } = perfy.exerciseTimings[0];
     roundCount.innerHTML = ` ${
-      perfy.duration > 3600
+      duration > 3600
         ? `${Math.floor(duration / 3600)}:${Math.floor((duration % 3600) / 60) < 10 ? 0 : ""}${Math.floor((duration % 3600) / 60)}:${Math.floor((duration % 3600) % 60) < 10 ? 0 : ""}${Math.floor((duration % 3600) % 60)} `
         : duration < 10
           ? `0:0${duration % 60}`
@@ -240,11 +241,12 @@ const getData = async () => {
                 : `${Math.floor(duration / 60)}:0${duration % 60}`
     }`;
     const endurance = document.createElement("td");
-    endurance.innerHTML = `${perfy.oneExercise / 5}`;
+    console.log(perfy);
+    endurance.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds}`;
     const exCount = document.createElement("td");
     const exDet = document.createElement("td");
     exCount.innerHTML = `${parseInt(perfy.mark)}`;
-    exDet.innerHTML = `${user.workSettings?.exercise.length}`;
+    exDet.innerHTML = `${perfy.exerciseDets.length}`;
     const date = document.createElement("td");
     const del = document.createElement("td");
     date.innerHTML = new Date(perfy.date).toLocaleString("en-US", {

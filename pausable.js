@@ -6,9 +6,12 @@ let foward = document.getElementById("foward");
 let roundUp = document.getElementById("round-up");
 const greeting = document.getElementsByClassName("greeting")[0];
 const userAnchor = document.getElementsByClassName("users-anchor")[0];
+// This variable is created because everytime an exercise is clicked on, time runs out on current active
+// exercise. As a result, as soon as the next exercise starts, the number of exercises completed increases.
+// So the variable makes sure that doesn't happen.
+let integrityCheck = 0;
 
 const underBodyElementContainer = document.getElementById("fer");
-console.log(underBodyElementContainer);
 let alertWindow = document.createElement("p");
 alertWindow.style.fontSize = "1.5rem";
 
@@ -53,7 +56,6 @@ if (!foundUserRoles.includes("Admin")) {
 } else {
   userAnchor.href = "users.html";
 }
-console.log(user);
 greeting.innerHTML = `welcome, ${user.username}`;
 const { exercise, interval, exercisesDuration, numberOfRounds } =
   user.workSettings;
@@ -63,8 +65,6 @@ const { exercise, interval, exercisesDuration, numberOfRounds } =
 // fourth.innerHTML = exercise[3];
 // fifth.innerHTML = exercise[4];
 rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
-console.log(numberOfRounds);
-console.log(exercise);
 let exCont = document.getElementById("exercise-cont");
 const elements = exercise.map((element, i) => {
   const newP = document.createElement("p");
@@ -82,18 +82,11 @@ if (exCont.children.length === 0) {
 }
 
 let workerSettings = user.workSettings;
-console.log(workerSettings);
-// };
-
-// getAuser();
-
 const signature = document.getElementsByClassName("copy-right")[0];
 const dashboard = document.getElementsByClassName("indicator-container")[0];
-console.log(dashboard);
 const copyWritght = "&copy;";
 const current = new Date().getFullYear();
 signature.innerText = ` ${current} Amalu Productions`;
-console.log(signature);
 
 const body = document.getElementById("mat");
 
@@ -132,7 +125,7 @@ const saveWork = async () => {
   console.log(begin);
   console.log(duration);
 
-  const { exercise, numberOfRounds, exercisesDuration, interval } =
+  const { exercise, numberOfRounds, exercisesDuration, interval, oneExercise } =
     user.workSettings;
   const workDets = {
     exerciseTimings: [
@@ -189,7 +182,6 @@ jogUp.style.transitionDuration = "500ms";
 for (let i = 0; i < excercises.length; i++) {
   excercises[i].style.transitionDuration = "500ms";
 }
-console.log(user);
 // setInterval(() => {
 //   let RoundInspector = (user.workSettings.invterval - 3) * 1000;
 // }, 300);
@@ -223,9 +215,8 @@ function general(currentItem, formerItem, nextItem) {
     }, RoundInspector);
     // transfrorm the current excercise element after interval elapses
     // an interval to check for when sec exceeds interval
-    console.log(workerSettings);
+
     const { exercise, interval } = user.workSettings;
-    console.log(user.workSettings.exercise);
     ID = window.setInterval(() => {
       if (sec === workerSettings.interval) {
         // the current excercise is currentItem
@@ -233,10 +224,7 @@ function general(currentItem, formerItem, nextItem) {
         // It is used to make the current excersise appear above
         //  previous and next excercises
         currentItem.style.zIndex = pIndex;
-        console.log(
-          Math.floor(exercise.length / 2) ===
-            exercise.indexOf(currentItem.innerHTML),
-        );
+
         const exerciseIndex = exercise.indexOf(currentItem.innerHTML);
         const indexDiff =
           exercise.length - exercise.indexOf(currentItem.innerHTML);
@@ -299,6 +287,7 @@ function general(currentItem, formerItem, nextItem) {
         return;
       } else {
         sec++;
+        integrityCheck++;
       }
 
       // giving the athlete notice to start preparing for the next excercise
@@ -316,9 +305,19 @@ function general(currentItem, formerItem, nextItem) {
         complete = "yes";
         if (complete === "yes") {
           resolve(console.log("resolved"));
-          anExercise++;
+          // console.log(integrityCheck, exercisesDuration + interval);
+          console.log(integrityCheck, sec - 1);
+          if (integrityCheck / (exercisesDuration + interval) < 1) {
+            anExercise = anExercise;
+            console.log("don't add");
+          } else {
+            anExercise++;
+            console.log("add");
+            console.log(anExercise);
+          }
           clearInterval(ID);
         } else reject("not resolved");
+        integrityCheck = 0;
         sec = 0;
       }
       // rate of sec change
@@ -358,20 +357,17 @@ function general(currentItem, formerItem, nextItem) {
 }
 
 pauser.addEventListener("click", () => {
+  let { runFunc, pause } = controls;
   //the unique condition is desinged to let this event
   //handler invoke the reality function just once
-  let { runFunc, pause } = controls;
   if (runFunc === true) {
     begin = Date.now();
-    console.log(begin);
-    console.log(pause);
-    console.log(runFunc);
     pauser.innerHTML = `<i class="fa-solid fa-pause"/>`;
     reality();
   } else if (controls.pause === false) {
     //console.log(runFunc)
     controls.pause = true;
-    cycle.innerHTML = sec;
+    // cycle.innerHTML = sec;
     pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
   } else {
     controls.pause = false;
@@ -380,7 +376,7 @@ pauser.addEventListener("click", () => {
 });
 
 roundUp.addEventListener("click", () => {
-  if (round > 4) {
+  if (round === numberOfRounds) {
     round = 0;
     rounder.innerHTML = `R ${round} of ${workerSettings.numberOfRounds}`;
   }
@@ -465,7 +461,6 @@ rewind.addEventListener("pointerup", upInter);
 foward.addEventListener("click", increaser);
 
 let reality = async () => {
-  console.log(elements);
   controls.runFunc = false;
   try {
     for (let i = 0; i < elements.length; i++) {
@@ -477,8 +472,9 @@ let reality = async () => {
         elements[j].addEventListener("click", () => {
           i = elements.indexOf(elements[j]) - 1;
           const { interval, exercisesDuration } = user.workSettings;
-          console.log(interval, exercisesDuration);
           // get to the end of the exercise so the next one can quickly begin
+          // console.log(integrityCheck, interval + exercisesDuration);
+          console.log(integrityCheck);
           sec = interval + exercisesDuration;
           // reverse many other events at the push of any axercise
           elements.map((element) => {
@@ -501,12 +497,9 @@ let reality = async () => {
             }
           });
         });
-        elements.map((element) => {});
       }
 
-      console.log(i);
       // looping through the elements in the elements array
-
       await general(currentItemIndex, formerIemIndex, nextItemIndex);
     }
   } catch (error) {
@@ -529,7 +522,7 @@ let reality = async () => {
     }
     // if five sets have not been completed, keep repeating the sets
     //by invoking the reality function
-    console.log(workerSettings);
+
     if (round <= workerSettings.numberOfRounds) {
       rounder.innerHTML = `R ${round} of ${workerSettings.numberOfRounds}`;
       reality();
@@ -541,7 +534,7 @@ let reality = async () => {
       round = workerSettings.numberOfRounds;
       rounder.innerHTML = `R ${round} of ${workerSettings.numberOfRounds}`;
       sec = 0;
-      cycle.innerHTML = sec;
+      cycle.innerHTML = ":00";
       pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
       controls.runFunc = true;
       elements.map((element) => {
