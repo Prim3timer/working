@@ -370,6 +370,18 @@ flex-direction: column;
   z-index: 10000;
   /* font-size: 2rem; */
  }
+ .dets-verify-window {
+  background-color: lavender;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  align-items: center;
+  position: absolute;
+  justify-self: center;
+  z-index: 10000;
+  /* font-size: 2rem; */
+ }
 
  .done-settings {
 justify-self: center;

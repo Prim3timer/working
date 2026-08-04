@@ -6,6 +6,20 @@ console.log(userId);
 let globalData = [];
 let globalUser = {};
 
+const timeClocking = (duration) => {
+  return duration > 3600
+    ? `${Math.floor(duration / 3600)}:${Math.floor((duration % 3600) / 60)}:${Math.floor((duration % 3600) % 60)} `
+    : duration < 10
+      ? `0:0${duration % 60}`
+      : duration < 60
+        ? `0:${duration % 60}`
+        : duration % 60 >= 10
+          ? `${Math.floor(duration / 60)}:${duration % 60}`
+          : duration < 10
+            ? 0`${duration % 60}`
+            : `${Math.floor(duration / 60)}:0${duration % 60}`;
+};
+
 const userAnchor = document.getElementsByClassName("users-anchor")[0];
 
 const logoutLink = document.getElementsByClassName("logout-link")[0];
@@ -125,22 +139,10 @@ const deleteEntry = async () => {
         const { workSettings } = globalUser;
         const roundCount = document.createElement("td");
         const { duration } = perfy.exerciseTimings[0];
-        roundCount.innerHTML = `${
-          duration > 3600
-            ? `${Math.floor(duration / 3600)}:${Math.floor((duration % 3600) / 60)}:${Math.floor((duration % 3600) % 60)} `
-            : duration < 10
-              ? `0:0${duration % 60}`
-              : duration < 60
-                ? `0:${duration % 60}`
-                : duration % 60 >= 10
-                  ? `${Math.floor(duration / 60)}:${duration % 60}`
-                  : duration < 10
-                    ? 0`${duration % 60}`
-                    : `${Math.floor(duration / 60)}:0${duration % 60}`
-        }`;
+        roundCount.innerHTML = timeClocking(duration);
         const endurance = document.createElement("td");
         console.log(perfy.exerciseTimings[3]);
-        endurance.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds}}`;
+        endurance.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds}`;
         const exCount = document.createElement("td");
         const exDet = document.createElement("td");
         exCount.innerHTML = `${parseInt(perfy.mark.toFixed(2))}`;
@@ -159,7 +161,7 @@ const deleteEntry = async () => {
         del.style.fontSize = "1.5rem";
 
         const removeVerifier = () => {
-          verifyWindow.className("veriy-window");
+          verifyWindow.className = "veriy-window";
         };
         del.innerHTML = `<i class="fa-solid fa-trash"></i>`;
 
@@ -218,36 +220,108 @@ const getData = async () => {
   globalData = perfData;
   const filteredData = perfData.filter((data) => data.userId === userId);
   entryCount.innerHTML = `(${filteredData.length} entries)`;
+
+  const showDetWindow = () => {
+    let detsWindow = document.createElement("div");
+    detsWindow.style.padding = ".5rem";
+    let detsExHeader = document.createElement("h4");
+    let detsExList = document.createElement("ol");
+    let closure = document.createElement("p");
+    closure.style.position = "absolute";
+    closure.style.top = "0px";
+    closure.style.right = "0px";
+    closure.addEventListener("click", () => {
+      detsWindow.className = "no-verify-window";
+    });
+    closure.style.position = "abolute";
+    closure.innerHTML = `<i class="fa-solid fa-x"></i>`;
+
+    detsWindow.className = "dets-verify-window";
+    detsWindow.appendChild(closure);
+    detsWindow.appendChild(detsExHeader);
+    detsWindow.appendChild(detsExList);
+    let detNumberOfRounds = document.createElement("p");
+    let detExDuration = document.createElement("p");
+    let detsInterval = document.createElement("p");
+    detsExList.replaceChildren();
+    detNumberOfRounds.innerHTML = `number of rounds: ${perfy.exerciseTimings[3].numberOfRounds}`;
+    detsInterval.innerHTML = `interval b/w exercises: ${perfy.exerciseTimings[2].interval}`;
+    detExDuration.innerHTML = `duration of each exercise: ${perfy.exerciseTimings[1].exercisesDuration}`;
+    detsExHeader.innerHTML = `Exercises Done`;
+    performance.appendChild(detsWindow);
+    detsWindow.append(detNumberOfRounds, detsInterval, detExDuration);
+    perfy.exerciseDets.map((exercise) => {
+      const listItem = document.createElement("li");
+      listItem.innerHTML = exercise;
+      detsExList.append(listItem);
+    });
+    // console.log(perfy);
+  };
+
   for (let i = 0; i < filteredData.length; i++) {
     const dets = document.createElement("tr");
     dets.style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;
     tableBody.appendChild(dets);
     const perfy = filteredData[i];
+    const { duration } = perfy.exerciseTimings[0];
+    const showDetWindow = () => {
+      let detsWindow = document.createElement("div");
+      detsWindow.style.padding = ".5rem";
+      let detsDuration = document.createElement("p");
+      let detsExHeader = document.createElement("h4");
+      let detsExList = document.createElement("ol");
+      let closure = document.createElement("p");
+      closure.style.position = "absolute";
+      closure.style.top = "0px";
+      closure.style.right = "0px";
+      closure.addEventListener("click", () => {
+        detsWindow.className = "no-verify-window";
+      });
+      closure.style.position = "abolute";
+      closure.innerHTML = `<i class="fa-solid fa-x"></i>`;
+
+      detsWindow.className = "dets-verify-window";
+      detsWindow.appendChild(detsDuration);
+      detsWindow.appendChild(closure);
+      detsWindow.appendChild(detsExHeader);
+      detsWindow.appendChild(detsExList);
+      let detNumberOfRounds = document.createElement("p");
+      let detExDuration = document.createElement("p");
+      let detsInterval = document.createElement("p");
+      detsExList.replaceChildren();
+      detNumberOfRounds.innerHTML = `number of rounds: ${perfy.exerciseTimings[3].numberOfRounds}`;
+      detsInterval.innerHTML = `interval b/w exercises: ${perfy.exerciseTimings[2].interval}`;
+      detExDuration.innerHTML = `duration of each exercise: ${perfy.exerciseTimings[1].exercisesDuration}`;
+      detsDuration.innerHTML = `duration: ${timeClocking(duration)}`;
+      detsExHeader.innerHTML = `exercises done:`;
+      performance.appendChild(detsWindow);
+      detsWindow.append(detNumberOfRounds, detsInterval, detExDuration);
+      perfy.exerciseDets.map((exercise) => {
+        const listItem = document.createElement("li");
+        listItem.innerHTML = exercise;
+        detsExList.append(listItem);
+      });
+      // console.log(perfy);
+    };
+
     const { workSettings } = user;
     const roundCount = document.createElement("td");
     console.log(5 % 2);
-    const { duration } = perfy.exerciseTimings[0];
-    roundCount.innerHTML = ` ${
-      duration > 3600
-        ? `${Math.floor(duration / 3600)}:${Math.floor((duration % 3600) / 60) < 10 ? 0 : ""}${Math.floor((duration % 3600) / 60)}:${Math.floor((duration % 3600) % 60) < 10 ? 0 : ""}${Math.floor((duration % 3600) % 60)} `
-        : duration < 10
-          ? `0:0${duration % 60}`
-          : duration < 60
-            ? `0:${duration % 60}`
-            : duration % 60 >= 10
-              ? `${Math.floor(duration / 60)}:${duration % 60}`
-              : duration < 10
-                ? 0`${duration % 60}`
-                : `${Math.floor(duration / 60)}:0${duration % 60}`
-    }`;
+
+    roundCount.innerHTML = timeClocking(duration);
+    roundCount.addEventListener("click", showDetWindow);
     const endurance = document.createElement("td");
+    endurance.addEventListener("click", showDetWindow);
     console.log(perfy);
     endurance.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds}`;
     const exCount = document.createElement("td");
+    exCount.addEventListener("click", showDetWindow);
     const exDet = document.createElement("td");
+    exDet.addEventListener("click", showDetWindow);
     exCount.innerHTML = `${parseInt(perfy.mark)}`;
     exDet.innerHTML = `${perfy.exerciseDets.length}`;
     const date = document.createElement("td");
+    date.addEventListener("click", showDetWindow);
     const del = document.createElement("td");
     date.innerHTML = new Date(perfy.date).toLocaleString("en-US", {
       day: "numeric",
@@ -271,22 +345,19 @@ const getData = async () => {
     const getId = async (id) => {
       itemId = id;
       console.log(itemId);
-      verifyWindow.className = "verify-window";
       verifyWindowButtonCont.className = "verify-button-cont";
+      verifyWindow.className = "verify-window ";
     };
 
     del.addEventListener("click", () => getId(perfy._id));
     dets.append(roundCount, endurance, exCount, exDet, date, del);
+    // detsWindow.className = "no-verify-window";
+
     userId && performance.append(table);
   }
 
   const navbar = document.getElementsByClassName("navbar")[0];
-  console.log(navbar);
   const getDatas = document.getElementsByClassName("get-data")[0];
-  // console.log(getDatas);
-  console.log(filteredData);
   const perfContainer = document.createElement("section");
 };
-
-// getDatas.addEventListener("click", getData);
 getData();
