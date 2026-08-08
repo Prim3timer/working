@@ -5,7 +5,7 @@ const password = document.getElementById("password");
 const mainElement = document.getElementsByClassName("login")[0];
 const formElement = document.getElementsByClassName("login-form")[0];
 
-const verifyUrl = window.location.search;
+const verifyUrl = window.location.href;
 console.log(verifyUrl);
 const urlParams = new URLSearchParams(verifyUrl);
 const email = urlParams.get("email");
@@ -52,7 +52,7 @@ const handleLogin = async (e) => {
     password: password.value,
   };
 
-  const response = await fetch(`/${myUrl}/workout-auth`, {
+  const response = await fetch(`${myUrl}/workout-auth`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const handleLogin = async (e) => {
   console.log(username.value === user.name);
   if (username.value === user.name) {
     localStorage.setItem("workoutUserId", user.id);
-    window.location.href = `/${myUrl}/indeces.html`;
+    window.location.href = `/indeces.html`;
     console.log(window.location.href);
   } else {
     console.log("denied");
