@@ -50,12 +50,12 @@ const response = await fetch(`${myUrl}/workout-users`, {
 });
 const users = await response.json();
 const user = users.find((user) => user._id === userId);
-const foundUserRoles = Object.keys(user?.roles);
-if (!foundUserRoles.includes("Admin")) {
-  userAnchor.href = "";
-} else {
-  userAnchor.href = "users.html";
-}
+// const foundUserRoles = Object.keys(user?.roles);
+// if (!foundUserRoles.includes("Admin")) {
+//   userAnchor.href = "";
+// } else {
+//   userAnchor.href = "users.html";
+// }
 greeting.innerHTML = `welcome, ${user.username}`;
 const { exercise, interval, exercisesDuration, numberOfRounds } =
   user.workSettings;
