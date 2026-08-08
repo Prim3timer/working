@@ -132,7 +132,7 @@ const saveWork = async () => {
       { duration },
       { exercisesDuration },
       { interval },
-      { numberOfRounds },
+      { numberOfRounds: round },
     ],
     oneExercise: anExercise,
     date: new Date(),
@@ -200,7 +200,7 @@ function general(currentItem, formerItem, nextItem) {
     jogUp.style.color = "yellow";
     jogUp.style.backgroundColor = "green";
     jogUp.style.border = "2px solid green";
-    jogUp.style.boxShadow = "0.2em 0.3em 0.4em gray";
+    jogUp.style.boxShadow = "0.6em 0.6em .6em gray";
 
     // change the content of the set element back to  the 'round' variable
     // after 3 seconds

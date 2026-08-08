@@ -6,7 +6,10 @@ console.log(userId);
 let globalData = [];
 let globalUser = {};
 
-const timeClocking = (duration) => {
+const timeClocking = (lamda) => {
+  // defining duration this way is simply for experiment where i will change the value of the variable and it will
+  // reflect all over its instances.
+  const duration = lamda + 0;
   return duration > 3600
     ? `${Math.floor(duration / 3600)}:${Math.floor((duration % 3600) / 60)}:${Math.floor((duration % 3600) % 60)} `
     : duration < 10
@@ -118,6 +121,7 @@ const deleteEntry = async () => {
     const response = await fetch(`${myUrl}/performance/${itemId}`, {
       method: "DELETE",
     });
+    console.log(response);
     if (response) {
       const reply = await response.json();
       const filterate = globalData.filter((data) => data.userId === userId);
@@ -161,7 +165,7 @@ const deleteEntry = async () => {
         del.style.fontSize = "1.5rem";
 
         const removeVerifier = () => {
-          verifyWindow.className = "veriy-window";
+          verifyWindow.className = "no-veriy-window";
         };
         del.innerHTML = `<i class="fa-solid fa-trash"></i>`;
 
@@ -263,6 +267,7 @@ const getData = async () => {
     dets.style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;
     tableBody.appendChild(dets);
     const perfy = filteredData[i];
+    console.log(perfy);
     const { duration } = perfy.exerciseTimings[0];
     const showDetWindow = () => {
       let detsWindow = document.createElement("div");
